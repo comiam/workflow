@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="cub-eq-solution:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/cub_eq_solution_jar</output-path>
+    <root id="archive" name="cub-eq-solution.jar">
+      <element id="module-output" name="cub-eq-solution" />
+    </root>
+  </artifact>
+</component>
