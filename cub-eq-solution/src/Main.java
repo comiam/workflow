@@ -1,9 +1,9 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main
 {
-
-    public static void main(String[] args)
+    public static void main(String... args)
     {
         if (args.length < 6)
         {
@@ -18,63 +18,108 @@ public class Main
                 return;
             }
 
-        double eps = Math.abs(getNum(args[0]));
-        double delta = Math.abs(getNum(args[1]));
+        var roots = getSolution(getNum(args[0]), getNum(args[1]), getNum(args[2]), getNum(args[3]), getNum(args[4]), getNum(args[5]));
+        switch(roots.size())
+        {
+            case 0:
+                System.out.println("Equation haven't solution!");
+                break;
+            case 1:
+                System.out.println("Equation have 1 root: " + roots.get(0));
+                break;
+            default:
+                System.out.print("Equation have " + roots.size() + " roots: ");
+                for(int i = 0;i < roots.size();i++)
+                    if(i == roots.size() - 1)
+                        System.out.println(roots.get(i));
+                    else
+                        System.out.print(roots.get(i) + ", ");
+        }
+    }
 
-        Equation mainEq = Equation.getDefaultCubicEquation(getNum(args[3]) / getNum(args[2]),getNum(args[4]) / getNum(args[2]),getNum(args[5]) / getNum(args[2]));
-        Equation derivative = Equation.getDerivative(mainEq);
+    public static ArrayList<Double> getSolution(double eps, double delta, double a, double b, double c, double d)
+    {
+        ArrayList<Double> roots = new ArrayList<>();
+
+        Equation equation = Equation.getDefaultCubicEquation(a, b, c, d);
+        Equation derivative = Equation.getDerivative(equation);
         double dis = derivative.getDiscriminant();
 
         if(dis < 0)
         {
             Scanner scan = new Scanner(System.in);
-            System.out.println("I found that derivative of equation is always positive, \n" +
-                                "so root maybe one, or equation haven't root. I will try \n" +
-                                "find root on interval (-oo, 0]. You are agree?(y/n)");
-            char ans = ' ';
 
-            while(ans  != 'y' && ans != 'n')
-                ans = scan.next().charAt(0);
-
-            if(ans == 'y')
-                System.out.println("Root is " + RangeFinder.findRootAt(mainEq, eps, delta, Double.NEGATIVE_INFINITY, 0));
+            if(Math.abs(equation.calc(0)) < eps)
+                roots.add(0d);
             else
-                System.out.println("Well:c");
+            {
+                System.out.println("I found that derivative of equation is always positive, \n" +
+                        "so root maybe one, or equation haven't root. I will try \n" +
+                        "find root on interval " + (equation.calc(0) > eps ? "(-oo, 0]" : "[0, +oo)") + ". You are agree?(y/n)");
+                char ans = ' ';
+
+                while(ans  != 'y' && ans != 'n')
+                    ans = scan.next().toLowerCase().charAt(0);
+
+                if(ans == 'y')
+                    roots.add(equation.calc(0) > eps ?
+                            RangeFinder.findRootAt(equation, eps, delta, Double.NEGATIVE_INFINITY, 0) :
+                            RangeFinder.findRootAt(equation, eps, delta, 0, Double.POSITIVE_INFINITY));
+                else
+                    System.out.println("Well:c");
+            }
         }else if(dis == 0)
         {
-            double derCalc = mainEq.calc(0);
+            double derCalc = equation.calc(0);
 
             if(Math.abs(derCalc) < eps)
-                System.out.println("Root is " + derCalc);
+                roots.add(derCalc);
             else if(derCalc < -eps)
-                System.out.println("Root is " + RangeFinder.findRootAt(mainEq, eps, delta, 0, Double.POSITIVE_INFINITY));
+                roots.add(RangeFinder.findRootAt(equation, eps, delta, 0, Double.POSITIVE_INFINITY));
             else if(derCalc > eps)
-                System.out.println("Root is " + RangeFinder.findRootAt(mainEq, eps, delta, Double.NEGATIVE_INFINITY, 0));
+                roots.add(RangeFinder.findRootAt(equation, eps, delta, Double.NEGATIVE_INFINITY, 0));
         }else if(dis > 0)
         {
-            double x1 = (-derivative.getC() + Math.sqrt(dis)) / derivative.getB();
-            double x2 = (-derivative.getC() - Math.sqrt(dis)) / derivative.getB();
+            double x1 = (-derivative.getC() + Math.sqrt(dis)) / (2 * derivative.getB());
+            double x2 = (-derivative.getC() - Math.sqrt(dis)) / (2 * derivative.getB());
 
-            System.out.println(mainEq.calc(x1) + " " + mainEq.calc(x2));
+            if(equation.calc(x1) < equation.calc(x2))
+            {
+                var tmp = x1;
+                x1 = x2;
+                x2 = tmp;
+            }
 
-            if(mainEq.calc(x1) > eps && mainEq.calc(x2) > eps) // f(x1) > e & f(x2) > e
-                System.out.println("Root is " + RangeFinder.findRootAt(mainEq, eps, delta, Double.NEGATIVE_INFINITY, x1));
+            if(equation.calc(x1) > eps && equation.calc(x2) > eps) // f(x1) > e & f(x2) > e
+                roots.add(RangeFinder.findRootAt(equation, eps, delta, Double.NEGATIVE_INFINITY, x1));
             else
-                if(mainEq.calc(x1) < -eps && mainEq.calc(x2) < -eps) // f(x1) < -e & f(x2) < -e
-                System.out.println("Root is " + RangeFinder.findRootAt(mainEq, eps, delta, x2, Double.POSITIVE_INFINITY));
+            if(equation.calc(x1) < -eps && equation.calc(x2) < -eps) // f(x1) < -e & f(x2) < -e
+                roots.add(RangeFinder.findRootAt(equation, eps, delta, x2, Double.POSITIVE_INFINITY));
             else
-                if(mainEq.calc(x1) > eps && Math.abs(mainEq.calc(x2)) < eps) // f(x1) > e & |f(x2)| < e
-                System.out.println("Root is " + x2 + " and " + RangeFinder.findRootAt(mainEq, eps, delta, Double.NEGATIVE_INFINITY, x1));
+            if(equation.calc(x1) > eps && Math.abs(equation.calc(x2)) < eps) // f(x1) > e & |f(x2)| < e
+            {
+                roots.add(x2);
+                roots.add(RangeFinder.findRootAt(equation, eps, delta, Double.NEGATIVE_INFINITY, x1));
+            }
             else
-                if(mainEq.calc(x2) < -eps && Math.abs(mainEq.calc(x1)) < eps) // f(x2) < -e & |f(x1)| < e
-                System.out.println("Root is " + x1 + " and " + RangeFinder.findRootAt(mainEq, eps, delta, x2, Double.POSITIVE_INFINITY));
+            if(equation.calc(x2) < -eps && Math.abs(equation.calc(x1)) < eps) // f(x2) < -e & |f(x1)| < e
+            {
+                roots.add(x1);
+                roots.add(RangeFinder.findRootAt(equation, eps, delta, x2, Double.POSITIVE_INFINITY));
+            }
             else
-                if(mainEq.calc(x1) > eps && mainEq.calc(x2) < -eps) // f(x1) > e & f(x2) < -e
-                System.out.println("Root is " + RangeFinder.findRootAt(mainEq, eps, delta, x2, Double.POSITIVE_INFINITY));
+            if(equation.calc(x1) > eps && equation.calc(x2) < -eps) // f(x1) > e & f(x2) < -e
+            {
+                roots.add(RangeFinder.findRootAt(equation, eps, delta, x2, Double.POSITIVE_INFINITY));
+                roots.add(RangeFinder.findRootAt(equation, eps, delta, x1, x2));
+                roots.add(RangeFinder.findRootAt(equation, eps, delta, Double.NEGATIVE_INFINITY, x1));
+            }
             else
-                if(Math.abs(mainEq.calc(x2)) < eps && Math.abs(mainEq.calc(x1)) < eps) // |f(x1)| < e & |f(x2)| < e
-                System.out.println("Root is " + (x2 + x1) / 2);
+            if(Math.abs(equation.calc(x2)) < eps && Math.abs(equation.calc(x1)) < eps) // |f(x1)| < e & |f(x2)| < e
+                roots.add((x2 + x1) / 2);
         }
+
+        return roots;
     }
 
     public static Double getNum(String str)

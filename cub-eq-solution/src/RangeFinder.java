@@ -22,15 +22,6 @@ public class RangeFinder
             if(a == Double.POSITIVE_INFINITY)
                 throw new IllegalArgumentException("Left edge of interval is POSITIVE_INFINITY");
 
-            do
-            {
-                if(Math.abs(eq.calc(nb)) < eps)
-                    return nb;
-                else
-                    nb += delta;
-            }
-            while(eq.calc(nb) < 0);
-
             while(true)
                 if(eq.calc(nb - delta) < 0)
                     return findRootAt(eq, eps, delta, nb - delta, nb);
@@ -42,15 +33,6 @@ public class RangeFinder
             if(b == Double.NEGATIVE_INFINITY)
                 throw new IllegalArgumentException("Right edge of interval is NEGATIVE_INFINITY");
 
-            do
-            {
-                if(Math.abs(eq.calc(na)) < eps)
-                    return na;
-                else
-                    na -= delta;
-            }
-            while(eq.calc(na) > 0);
-
             while(true)
                 if(eq.calc(na + delta) > 0)
                     return findRootAt(eq, eps, delta, na, na + delta);
@@ -61,9 +43,16 @@ public class RangeFinder
         {
             double mid;
 
+            if(eq.calc(na) > eq.calc(nb))
+            {
+                var tmp = na;
+                na = nb;
+                nb = tmp;
+            }
+
             while(Double.isNaN(root))
             {
-                mid = (na+nb)/2;
+                mid = (na + nb) / 2;
 
                 if(Math.abs(eq.calc(mid)) < eps)
                     root = mid;

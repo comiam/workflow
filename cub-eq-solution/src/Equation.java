@@ -1,24 +1,24 @@
 public class Equation
 {
-    private double a_eq = 0;
-    private double b_eq = 0;
-    private double c_eq = 0;
-    private double d_eq = 0;
+    private double a_eq = 0; //coefficient of x^3
+    private double b_eq = 0; //coefficient of x^2
+    private double c_eq = 0; //coefficient of x
+    private double d_eq = 0; //coefficient of constant
     private int hashedDegree = -1;
 
     /**
      * @param b_eq
      * @param c_eq
      * @param d_eq
-     * @return equation of type x^3 + bx^2 + cx + d
+     * @return equation of type ax^3 + bx^2 + cx + d
      */
-    public static Equation getDefaultCubicEquation(double b_eq, double c_eq, double d_eq)
+    public static Equation getDefaultCubicEquation(double a_eq, double b_eq, double c_eq, double d_eq)
     {
         Equation cub = new Equation();
         cub.a_eq = 1;
-        cub.b_eq = b_eq;
-        cub.c_eq = c_eq;
-        cub.d_eq = d_eq;
+        cub.b_eq = b_eq / a_eq;
+        cub.c_eq = c_eq / a_eq;
+        cub.d_eq = d_eq / a_eq;
 
         return cub;
     }
@@ -46,7 +46,6 @@ public class Equation
     public double calc(double arg)
     {
         return a_eq * (arg * arg * arg) + b_eq * (arg * arg) + c_eq * (arg) + d_eq;
-
     }
 
     public double getDiscriminant()
