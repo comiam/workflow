@@ -9,14 +9,14 @@ import java.util.stream.DoubleStream;
 
 public class MainTest
 {
-
     @Test
     public void testMain()
     {
         double eps = 0.001;
         double delta = 0.0005;
 
-        double[][] testSet = {
+        //equation coefficients
+        double[][] eqSet = {
                 {8, -36, 54, -27},
                 {8, 12, 6, 1},
                 {1, 9, 27, 27},
@@ -30,6 +30,7 @@ public class MainTest
                 {1, -21, 111, -91}
         };
 
+        //answers to equation
         double[][] ansSet = {
                 {1.5},
                 {-0.5},
@@ -44,26 +45,33 @@ public class MainTest
                 {1, 13, 7},
         };
 
-        System.out.println("Tests with eps="+eps+" and delta="+delta);
+        System.out.println("Tests with eps=" + eps + " and delta=" + delta);
 
         boolean ok = true;
-        for(int i = 0;i < testSet.length;i++)
+        int fallIndex = -1;
+        for(int i = 0;i < eqSet.length;i++)
         {
-            var sol = Main.getSolution(eps, delta, testSet[i][0], testSet[i][1], testSet[i][2], testSet[i][3]);
+            var sol = Main.getSolution(eps, delta, eqSet[i][0], eqSet[i][1], eqSet[i][2], eqSet[i][3]);
             var ans = getList(ansSet[i]);
             System.out.print(sol);
             System.out.print(" vs ");
             System.out.print(ans);
-            if(!equalLists(eps, Main.getSolution(eps, delta, testSet[i][0], testSet[i][1], testSet[i][2], testSet[i][3]), getList(ansSet[i])))
+            if(!equalLists(eps, Main.getSolution(eps, delta, eqSet[i][0], eqSet[i][1], eqSet[i][2], eqSet[i][3]), getList(ansSet[i])))
             {
                 ok = false;
+                fallIndex = i;
                 System.out.println(" - false");
                 break;
             }
             System.out.println(" - ok");
         }
 
-        Assert.assertEquals(ok, true);
+        if(ok)
+            System.out.println("\n" + eqSet.length + " tests complete successfully c:");
+        else
+            System.out.println("\nTest " + (fallIndex+1) + " failed :c");
+
+        Assert.assertTrue(ok);
     }
 
     public List<Double> getList(double[] arr)
@@ -76,11 +84,11 @@ public class MainTest
         if (one == null && two == null)
             return true;
 
+        assert one != null;
+        assert two != null;
         if(one.size() != two.size())
             return false;
 
-        //to avoid messing the order of the lists we will use a copy
-        //as noted in comments by A. R. S.
         one = new ArrayList<>(one);
         two = new ArrayList<>(two);
 

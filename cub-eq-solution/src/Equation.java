@@ -51,7 +51,7 @@ public class Equation
     public double getDiscriminant()
     {
         if(getDegree() != 2)
-            return -1;
+            return Double.NaN;
 
         return c_eq*c_eq - 4 * b_eq * d_eq;
     }
