@@ -1,0 +1,57 @@
+import syntax_tree;
+
+export {
+	ArRpn(rpn:[RpnNode]);
+	RpnNode ::= RpnOp, RpnArg, RpnVar;
+	RpnOp(id:string, op: (int,int)-> int);
+	RpnArg(val:int);
+	RpnVar(var:string);
+
+	ar2rpn(ar:ArExp) -> ArRpn;
+	s2rpn(s:string) -> ArRpn;
+	rpn2s(ar:ArRpn, index:int) -> string;
+	
+}
+
+ar2rpn(ar:ArExp) -> ArRpn {
+	switch(ar) {
+		ArSum(l, r): 
+			ArRpn(concat([RpnOp("+", \i,i2 -> i+i2)], concat(ar2rpn(r).rpn, ar2rpn(l).rpn)));
+		ArMult(l, r): 
+			ArRpn(concat([RpnOp("*", \i,i2 -> i*i2)], concat(ar2rpn(r).rpn, ar2rpn(l).rpn)));
+		ArInt(val): 
+			ArRpn([RpnArg(val)]);
+		ArVar(var):
+			ArRpn([RpnVar(var)]);
+	}
+}
+
+s2rpn(s:string) -> ArRpn {
+	ar2rpn(s2ar(s));
+}
+
+rpn2s(ar:ArRpn, index:int) -> string {
+	if(index < 0 || index >= length(ar.rpn))
+		"null"
+	else
+	{
+		switch(ar.rpn[index]) {
+			RpnOp(id, op):
+				if(index + 1 >= length(ar.rpn))
+					id
+				else	
+					concatStrings([rpn2s(ar, index+1),id]);
+			RpnArg(val):
+				if(index + 1 >= length(ar.rpn))
+					i2s(val)
+				else	
+					concatStrings([rpn2s(ar, index+1),i2s(val)]);
+			RpnVar(var):
+				if(index + 1 >= length(ar.rpn))
+					var
+				else	
+					concatStrings([rpn2s(ar, index+1),var]);	
+		}
+	}
+	
+}

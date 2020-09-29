@@ -1,0 +1,11 @@
+import alg;
+import var_parse;
+
+
+main() -> void {
+	alg = readUntil("\n");
+	vars = readUntil("\n");
+
+	//println(ar2s(s2ar(a)));
+	println(calcVarRpn(s2rpn(alg), s2vars(vars)));
+}

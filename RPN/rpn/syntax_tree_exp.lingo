@@ -1,8 +1,11 @@
-S = plus | mult | int;
+S = plus | mult | int | var;
 ws = (" " | "\t" | "\n" | "\r")*;
 
 plus = ws "(" ws S:l ws "+" ws S:r ws ")" ws {ArSum(:l,:r)};
 mult = ws "(" ws S:l ws "*" ws S:r ws ")" ws {ArMult(:l,:r)};
 
 int = ws digit+$s ws {ArInt(s2i($s))};
-digit='0'-'9';
+var = ws word$s ws {ArVar($s)};
+
+digit = '0'-'9';
+word = ('a'-'z')+ ('0'-'9')*;

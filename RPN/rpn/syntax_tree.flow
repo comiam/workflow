@@ -1,15 +1,15 @@
-import runtime;
 import lingo/pegcode/driver;
 
-ArExp ::= ArSum, ArMult, ArInt;
-ArSum(l:ArExp, r:ArExp);
-ArMult(l:ArExp, r:ArExp);
-ArInt(val:int);
+export {
+	ArExp ::= ArSum, ArMult, ArInt, ArVar;
+	ArSum(l:ArExp, r:ArExp);
+	ArMult(l:ArExp, r:ArExp);
+	ArInt(val:int);
+	ArVar(var:string);
 
-ArRpn(rpn:[RpnNode]);
-RpnNode ::= RpnOp, RpnArg;
-RpnOp(id:string, op: (int,int)-> int);
-RpnArg(val:int);
+	s2ar(s:string) -> ArExp;
+	ar2s(ar:ArExp) -> string;
+}
 
 s2ar(s:string) -> ArExp {
 	gram="#include syntax_tree_exp.lingo";
@@ -24,14 +24,7 @@ ar2s(ar:ArExp) -> string {
 			concatStrings(["(", ar2s(l), " * ", ar2s(r), ")"]);
 		ArInt(val): 
 			i2s(val);
+		ArVar(var):
+			var;
 	}
-}
-
-ar2rpn(ar:ArExp) -> ArRpn {
-	
-}
-
-main() -> void {
-	println(ar2s(s2ar("                    (1   +(2  *4)       		    )      ")));
-	println(s2ans(s2ar("(1+(2*4))")));
 }

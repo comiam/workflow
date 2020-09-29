@@ -1,0 +1,39 @@
+import lingo/pegcode/driver;
+import ds/tree;
+
+export {
+	Var ::= VarPair, VarVal;
+	VarPair(first: Maybe<VarVal>, second: Maybe<VarPair>);
+	VarVal(name: string, val: int);
+
+	s2vars(s:string) -> Tree<string, int>;
+}
+
+s2vars(s:string) -> Tree<string, int> {
+	gram="#include var_parse.lingo";
+	vars = parsic(compilePegGrammar(gram), s, defaultPegActions);
+
+	tr = makeTree();
+	if(isNone(vars))
+		tr
+	else
+		fillTree(vars, tr);
+}
+
+fillTree(vars: Maybe<Var>, tree: Tree<string, int>) -> Tree<string, int> {
+	switch (vars) {
+		None(): 
+			tree;
+		Some(value): {
+			switch (value) {
+				VarPair(first, second):
+				{
+					a = either(first, VarVal("",-1));
+					fillTree(value.second, setTree(tree, a.name, a.val));
+				}
+				VarVal(name, val):
+					setTree(tree, name, val);
+			}		
+		}	
+	}
+}

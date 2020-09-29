@@ -1,0 +1,10 @@
+S = pair | var | empty;
+ws = (" " | "\t" | "\n" | "\r")*;
+ws0 = (" " | "\t" | "\r")*;
+
+pair = ws var:v ws ";" ws S:r ws      {Some(VarPair(:v, :r))};
+var = ws word$d ws '=' ws digit+$s ws {Some(VarVal($d, s2i($s)))};
+
+empty = ws0 "\n" 					  {None()};
+word = ('a'-'z')+ digit*;
+digit = '0'-'9';
