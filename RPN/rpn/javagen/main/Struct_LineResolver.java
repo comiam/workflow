@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.601369194107E12
+// timestamp: 1.601659965874E12
 
 package main;
 
@@ -15,7 +15,7 @@ public class Struct_LineResolver extends Struct {
 		f_linestarts = a_linestarts;
 	}
 
-	public int getTypeId() { return 38; }
+	public int getTypeId() { return 43; }
 	public String getTypeName() { return "LineResolver"; }
 
 	private static final String[] field_names = new String[] {
@@ -43,7 +43,7 @@ public class Struct_LineResolver extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 38) return 38-tmp;
+		if (tmp != 43) return 43-tmp;
 		Struct_LineResolver other = (Struct_LineResolver)other_gen;
 		tmp = f_input.compareTo(other.f_input);
 		if (tmp != 0) return tmp;

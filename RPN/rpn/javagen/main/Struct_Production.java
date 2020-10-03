@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.601369194132E12
+// timestamp: 1.60165996589E12
 
 package main;
 
@@ -19,7 +19,7 @@ public class Struct_Production extends Struct {
 		f_choices = a_choices;
 	}
 
-	public int getTypeId() { return 93; }
+	public int getTypeId() { return 98; }
 	public String getTypeName() { return "Production"; }
 
 	private static final String[] field_names = new String[] {
@@ -49,7 +49,7 @@ public class Struct_Production extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 93) return 93-tmp;
+		if (tmp != 98) return 98-tmp;
 		Struct_Production other = (Struct_Production)other_gen;
 		tmp = f_name.compareTo(other.f_name);
 		if (tmp != 0) return tmp;

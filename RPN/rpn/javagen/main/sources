@@ -31,8 +31,8 @@
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Module_grammar2code.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Module_lingocode.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Module_driver.java
-/home/maxim/git/workflow/RPN/rpn/javagen/main/Module_var_parse.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Module_syntax_tree.java
+/home/maxim/git/workflow/RPN/rpn/javagen/main/Module_var_parse.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Module_rpn.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Module_alg.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Module_main.java
@@ -43,8 +43,11 @@
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ActionConstantInt.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ActionConstantString.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ActionVar.java
+/home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ArDiv.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ArInt.java
+/home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ArMin.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ArMult.java
+/home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ArPow.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ArRpn.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ArSum.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ArVar.java
@@ -56,8 +59,10 @@
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_CutDown.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_CutUp.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_Grammar.java
+/home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_IntInt.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_IntTreeNode.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_IntTreeValue.java
+/home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_IntVar.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_JsonArray.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_JsonBool.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_JsonDouble.java
@@ -120,8 +125,10 @@
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_Term.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_TreeNode.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_Triple.java
+/home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_VarInt.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_VarPair.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_VarVal.java
+/home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_VarVar.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_iRule.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/main.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/SingletonStructs.java

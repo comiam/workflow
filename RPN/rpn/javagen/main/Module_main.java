@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.601363109E12
+// timestamp: 1.601647143E12
 
 package main;
 
@@ -13,7 +13,6 @@ final class Module_main {
 	}
 	Object f_main() {
 		final String l0_alg = runtime.h_Native.readUntil("\n");
-		final String l1_vars = runtime.h_Native.readUntil("\n");
-		return runtime.m_runtime.f_println(runtime.m_alg.f_calcVarRpn(runtime.m_rpn.f_s2rpn(l0_alg), runtime.m_var_parse.f_s2vars(l1_vars)));
+		return runtime.m_runtime.f_println(runtime.m_syntax_tree.f_ar2s(runtime.m_syntax_tree.f_simplifyTree(runtime.m_syntax_tree.f_s2ar(l0_alg))));
 	}
 }

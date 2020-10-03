@@ -14,10 +14,10 @@ final class Module_list {
 	Object nf_headList(Struct al, Object adefault) {
 		Struct l0__tmp = al;
 		switch (l0__tmp.getTypeId()) {
-		case 20/*EmptyList*/: {
+		case 23/*EmptyList*/: {
 			return adefault;
 		}
-		case 17/*Cons*/: {
+		case 20/*Cons*/: {
 			final Struct_Cons l1__tmp = (Struct_Cons)l0__tmp;
 			final Object l2_h = l1__tmp.f_head;
 			final Struct l3_t = l1__tmp.f_tail;
@@ -32,10 +32,10 @@ final class Module_list {
 	Struct nf_tailList(Struct al) {
 		Struct l0__tmp = al;
 		switch (l0__tmp.getTypeId()) {
-		case 20/*EmptyList*/: {
+		case 23/*EmptyList*/: {
 			return al;
 		}
-		case 17/*Cons*/: {
+		case 20/*Cons*/: {
 			final Struct_Cons l1__tmp = (Struct_Cons)l0__tmp;
 			final Object l2_h = l1__tmp.f_head;
 			final Struct l3_t = l1__tmp.f_tail;
@@ -51,10 +51,10 @@ final class Module_list {
 	 TAIL_CALL: for(;;) {
 		Struct l0__tmp = al;
 		switch (l0__tmp.getTypeId()) {
-		case 20/*EmptyList*/: {
+		case 23/*EmptyList*/: {
 			return ainit;
 		}
-		case 17/*Cons*/: {
+		case 20/*Cons*/: {
 			final Struct_Cons l1__tmp = (Struct_Cons)l0__tmp;
 			final Object l2_h = l1__tmp.f_head;
 			final Struct l3_t = l1__tmp.f_tail;
@@ -76,10 +76,10 @@ final class Module_list {
 	Object f_headList(Struct al, Object adefault) {
 		Struct l0__tmp = al;
 		switch (l0__tmp.getTypeId()) {
-		case 20/*EmptyList*/: {
+		case 23/*EmptyList*/: {
 			return adefault;
 		}
-		case 17/*Cons*/: {
+		case 20/*Cons*/: {
 			final Struct_Cons l1__tmp = (Struct_Cons)l0__tmp;
 			final Object l2_h = l1__tmp.f_head;
 			final Struct l3_t = l1__tmp.f_tail;
@@ -97,10 +97,10 @@ final class Module_list {
 	Struct f_tailList(Struct al) {
 		Struct l0__tmp = al;
 		switch (l0__tmp.getTypeId()) {
-		case 20/*EmptyList*/: {
+		case 23/*EmptyList*/: {
 			return al;
 		}
-		case 17/*Cons*/: {
+		case 20/*Cons*/: {
 			final Struct_Cons l1__tmp = (Struct_Cons)l0__tmp;
 			final Object l2_h = l1__tmp.f_head;
 			final Struct l3_t = l1__tmp.f_tail;

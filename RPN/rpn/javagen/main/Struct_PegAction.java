@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.601369194111E12
+// timestamp: 1.601659965878E12
 
 package main;
 
@@ -13,7 +13,7 @@ public class Struct_PegAction extends Struct {
 		f_fn = a_fn;
 	}
 
-	public int getTypeId() { return 47; }
+	public int getTypeId() { return 52; }
 	public String getTypeName() { return "PegAction"; }
 
 	private static final String[] field_names = new String[] {
@@ -40,7 +40,7 @@ public class Struct_PegAction extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 47) return 47-tmp;
+		if (tmp != 52) return 52-tmp;
 		Struct_PegAction other = (Struct_PegAction)other_gen;
 		tmp = FlowRuntime.compareByValue(f_fn, other.f_fn);
 		return tmp;

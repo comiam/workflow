@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.601369194095E12
+// timestamp: 1.601659965866E12
 
 package main;
 
@@ -17,7 +17,7 @@ public class Struct_CharRange extends Struct implements Field_first<String> {
 	public String get_first() { return f_first; }
 	public void set_first(String value) { f_first = value; }
 
-	public int getTypeId() { return 15; }
+	public int getTypeId() { return 18; }
 	public String getTypeName() { return "CharRange"; }
 
 	private static final String[] field_names = new String[] {
@@ -45,7 +45,7 @@ public class Struct_CharRange extends Struct implements Field_first<String> {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 15) return 15-tmp;
+		if (tmp != 18) return 18-tmp;
 		Struct_CharRange other = (Struct_CharRange)other_gen;
 		tmp = f_first.compareTo(other.f_first);
 		if (tmp != 0) return tmp;

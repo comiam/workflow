@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.601369194153E12
+// timestamp: 1.601659965901E12
 
 package main;
 
@@ -18,8 +18,11 @@ public final class Structs {
 			new Struct_ActionConstantString(),
 			SingletonStructs.str_ActionIndex,
 			new Struct_ActionVar(),
+			new Struct_ArDiv(),
 			new Struct_ArInt(),
+			new Struct_ArMin(),
 			new Struct_ArMult(),
+			new Struct_ArPow(),
 			new Struct_ArRpn(),
 			new Struct_ArSum(),
 			new Struct_ArVar(),
@@ -35,9 +38,11 @@ public final class Structs {
 			SingletonStructs.str_Epsilon,
 			new Struct_Grammar(),
 			SingletonStructs.str_IllegalStruct,
+			new Struct_IntInt(),
 			new Struct_IntTreeNode(),
 			SingletonStructs.str_IntTreeNone,
 			new Struct_IntTreeValue(),
+			new Struct_IntVar(),
 			new Struct_JsonArray(),
 			new Struct_JsonBool(),
 			new Struct_JsonDouble(),
@@ -120,8 +125,10 @@ public final class Structs {
 			SingletonStructs.str_TreeEmpty,
 			new Struct_TreeNode(),
 			new Struct_Triple(),
+			new Struct_VarInt(),
 			new Struct_VarPair(),
 			new Struct_VarVal(),
+			new Struct_VarVar(),
 			new Struct_iRule()
 	};
 	static final Struct[] structList() {

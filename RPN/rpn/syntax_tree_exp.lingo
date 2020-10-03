@@ -1,6 +1,9 @@
-S = plus | mult | int | var;
+S = min | divide | power | plus | mult | int | var;
 ws = (" " | "\t" | "\n" | "\r")*;
 
+power = ws "(" ws S:l "^" S:r ws ")" ws {ArPow(:l,:r)};
+divide = ws "(" ws S:l ws "/" ws S:r ws ")" ws {ArDiv(:l,:r)};
+min = ws "(" ws S:l ws "-" ws S:r ws ")" ws {ArMin(:l,:r)};
 plus = ws "(" ws S:l ws "+" ws S:r ws ")" ws {ArSum(:l,:r)};
 mult = ws "(" ws S:l ws "*" ws S:r ws ")" ws {ArMult(:l,:r)};
 

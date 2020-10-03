@@ -22,13 +22,31 @@ calcVarRpn(ar:ArRpn, vars: Tree<string, int>) -> int {
 						if(len < 2)
 							concat(take(acc, len-1), [1])
 						else 
-							concat([acc[0]+acc[1]], tailFrom(acc, 2));
+							concat([op(acc[0],acc[1])], tailFrom(acc, 2));
 					}else 
 						if(id == "*") {
 							if(len < 2)
 								concat(take(acc, len-1), [1])
 							else 
-								concat([acc[0]*acc[1]], tailFrom(acc, 2));
+								concat([op(acc[0],acc[1])], tailFrom(acc, 2));
+						}else
+							if(id == "-") {
+								if(len < 2)
+									concat(take(acc, len-1), [1])
+								else 
+									concat([op(acc[0],acc[1])], tailFrom(acc, 2));
+						}else
+							if(id == "/") {
+								if(len < 2)
+									concat(take(acc, len-1), [1])
+								else 
+									concat([op(acc[0],acc[1])], tailFrom(acc, 2));
+						}else
+							if(id == "^") {
+								if(len < 2)
+									concat(take(acc, len-1), [1])
+								else 
+									concat([op(acc[0],acc[1])], tailFrom(acc, 2));
 						}else
 							acc;
 				}

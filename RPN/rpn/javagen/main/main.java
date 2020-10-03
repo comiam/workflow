@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.601369194145E12
+// timestamp: 1.601659965898E12
 
 package main;
 
@@ -42,8 +42,8 @@ public final class main extends FlowRuntime {
 	final Module_grammar2code m_grammar2code = new Module_grammar2code(this);
 	final Module_lingocode m_lingocode = new Module_lingocode(this);
 	final Module_driver m_driver = new Module_driver(this);
-	final Module_var_parse m_var_parse = new Module_var_parse(this);
 	final Module_syntax_tree m_syntax_tree = new Module_syntax_tree(this);
+	final Module_var_parse m_var_parse = new Module_var_parse(this);
 	final Module_rpn m_rpn = new Module_rpn(this);
 	final Module_alg m_alg = new Module_alg(this);
 	final Module_main m_main = new Module_main(this);

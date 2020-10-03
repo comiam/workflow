@@ -49,6 +49,15 @@ final class Module_array {
 			return (new Struct_Some(((Object)(aa[l3_foundIndex]))));
 		}
 	}
+	Struct f_array2list(Object[] aa) {
+		final SingletonStruct l2_$1 = SingletonStructs.str_EmptyList;
+		final Func2<Struct_Cons,Struct, Object> l3_$0 = new Func2<Struct_Cons,Struct,Object>() {
+			final public Struct_Cons invoke(final Struct aac, final Object ae) {
+				return (new Struct_Cons(ae, aac));
+			}
+		};
+		return ((Struct)runtime.h_Native.fold(aa, l2_$1, ((Func2<Object,Object, Object>)(Func2)l3_$0)));
+	}
 	Object[] f_arrayPush(Object[] aarray, Object avalue) {
 		return runtime.h_Native.replace(aarray, runtime.h_Native.length(aarray), avalue);
 	}
@@ -84,21 +93,6 @@ final class Module_array {
 			final int l0_m = (al/2);
 			return runtime.h_Native.concat(f_doConcatA(aa, ai, l0_m), f_doConcatA(aa, (ai+l0_m), (al-l0_m)));
 		}
-	}
-	Object f_doFoldr(Object[] acs, int ai, Object aacc, Func2<Object,Object, Object> afn) {
-	 TAIL_CALL: for(;;) {
-		if ((ai>=0)) {
-			{
-				final int l0___tmp = (ai-1);
-				final Object l1___tmp = afn.invoke(aacc, ((Object)(acs[ai])));
-				ai = l0___tmp;
-				aacc = l1___tmp;
-				continue TAIL_CALL;
-			}
-		} else {
-			return aacc;
-		}
-	 }
 	}
 	int f_elemIndex(Object[] aa, Object aelem, int aillegal) {
 		final Object l2_elem = aelem;
@@ -161,9 +155,6 @@ final class Module_array {
 		}
 	 }
 	}
-	Object f_foldr(Object[] acs, Object aacc, Func2<Object,Object, Object> afn) {
-		return f_doFoldr(acs, (runtime.h_Native.length(acs)-1), aacc, afn);
-	}
 	Object[] f_reverseA(Object[] aa) {
 		final int l0_l = runtime.h_Native.length(aa);
 		if ((l0_l>1)) {
@@ -177,20 +168,6 @@ final class Module_array {
 			return runtime.h_Native.map(l3_$2, ((Func1<Object,Object>)(Func1)l4_$1));
 		} else {
 			return aa;
-		}
-	}
-	Object[] f_tailFrom(Object[] aa, int astartIndex) {
-		return runtime.h_Native.subrange(aa, astartIndex, (runtime.h_Native.length(aa)-astartIndex));
-	}
-	Object[] f_take(Object[] aa, int acount) {
-		if ((acount<=0)) {
-			return SingletonStructs.arr_empty;
-		} else {
-			if ((acount>=runtime.h_Native.length(aa))) {
-				return aa;
-			} else {
-				return runtime.h_Native.subrange(aa, 0, acount);
-			}
 		}
 	}
 }

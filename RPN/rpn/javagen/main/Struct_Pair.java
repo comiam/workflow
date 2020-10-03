@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.601369194109E12
+// timestamp: 1.601659965876E12
 
 package main;
 
@@ -19,7 +19,7 @@ public class Struct_Pair extends Struct implements Field_first<Object>, Field_se
 	public Object get_second() { return f_second; }
 	public void set_second(Object value) { f_second = value; }
 
-	public int getTypeId() { return 44; }
+	public int getTypeId() { return 49; }
 	public String getTypeName() { return "Pair"; }
 
 	private static final String[] field_names = new String[] {
@@ -47,7 +47,7 @@ public class Struct_Pair extends Struct implements Field_first<Object>, Field_se
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 44) return 44-tmp;
+		if (tmp != 49) return 49-tmp;
 		Struct_Pair other = (Struct_Pair)other_gen;
 		tmp = FlowRuntime.compareByValue(f_first, other.f_first);
 		if (tmp != 0) return tmp;

@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.601369194093E12
+// timestamp: 1.601659965865E12
 
 package main;
 
@@ -15,7 +15,7 @@ public class Struct_ArSum extends Struct {
 		f_r = a_r;
 	}
 
-	public int getTypeId() { return 11; }
+	public int getTypeId() { return 14; }
 	public String getTypeName() { return "ArSum"; }
 
 	private static final String[] field_names = new String[] {
@@ -43,7 +43,7 @@ public class Struct_ArSum extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 11) return 11-tmp;
+		if (tmp != 14) return 14-tmp;
 		Struct_ArSum other = (Struct_ArSum)other_gen;
 		tmp = f_l.compareTo(other.f_l);
 		if (tmp != 0) return tmp;

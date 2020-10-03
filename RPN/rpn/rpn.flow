@@ -15,10 +15,16 @@ export {
 
 ar2rpn(ar:ArExp) -> ArRpn {
 	switch(ar) {
+		ArPow(l, power): 
+			ArRpn(concat([RpnOp("^", \i,i2 -> pow(i,i2))], concat(ar2rpn(l).rpn, ar2rpn(power).rpn)));
+		ArDiv(up, down): 
+			ArRpn(concat([RpnOp("/", \i,i2 -> i/i2)], concat(ar2rpn(up).rpn, ar2rpn(down).rpn)));
+		ArMin(l, r): 
+			ArRpn(concat([RpnOp("-", \i,i2 -> i-i2)], concat(ar2rpn(l).rpn, ar2rpn(r).rpn)));
 		ArSum(l, r): 
-			ArRpn(concat([RpnOp("+", \i,i2 -> i+i2)], concat(ar2rpn(r).rpn, ar2rpn(l).rpn)));
+			ArRpn(concat([RpnOp("+", \i,i2 -> i+i2)], concat(ar2rpn(l).rpn, ar2rpn(r).rpn)));
 		ArMult(l, r): 
-			ArRpn(concat([RpnOp("*", \i,i2 -> i*i2)], concat(ar2rpn(r).rpn, ar2rpn(l).rpn)));
+			ArRpn(concat([RpnOp("*", \i,i2 -> i*i2)], concat(ar2rpn(l).rpn, ar2rpn(r).rpn)));
 		ArInt(val): 
 			ArRpn([RpnArg(val)]);
 		ArVar(var):

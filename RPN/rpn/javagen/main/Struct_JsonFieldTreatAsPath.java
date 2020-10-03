@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.601369194103E12
+// timestamp: 1.601659965872E12
 
 package main;
 
@@ -13,7 +13,7 @@ public class Struct_JsonFieldTreatAsPath extends Struct {
 		f_pathDelimiter = a_pathDelimiter;
 	}
 
-	public int getTypeId() { return 32; }
+	public int getTypeId() { return 37; }
 	public String getTypeName() { return "JsonFieldTreatAsPath"; }
 
 	private static final String[] field_names = new String[] {
@@ -40,7 +40,7 @@ public class Struct_JsonFieldTreatAsPath extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 32) return 32-tmp;
+		if (tmp != 37) return 37-tmp;
 		Struct_JsonFieldTreatAsPath other = (Struct_JsonFieldTreatAsPath)other_gen;
 		tmp = f_pathDelimiter.compareTo(other.f_pathDelimiter);
 		return tmp;

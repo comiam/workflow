@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.601369194104E12
+// timestamp: 1.601659965872E12
 
 package main;
 
@@ -13,7 +13,7 @@ public class Struct_JsonObject extends Struct {
 		f_members = a_members;
 	}
 
-	public int getTypeId() { return 34; }
+	public int getTypeId() { return 39; }
 	public String getTypeName() { return "JsonObject"; }
 
 	private static final String[] field_names = new String[] {
@@ -40,7 +40,7 @@ public class Struct_JsonObject extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 34) return 34-tmp;
+		if (tmp != 39) return 39-tmp;
 		Struct_JsonObject other = (Struct_JsonObject)other_gen;
 		tmp = FlowRuntime.compareByValue(f_members, other.f_members);
 		return tmp;
