@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.599535537E12
+// timestamp: 1.599279091E12
 
 package main;
 
@@ -85,7 +85,7 @@ final class Module_json {
 	Object[] f_getJsonObjectValue(Struct ajson, Object[] adef) {
 		Struct l0__tmp = ajson;
 		switch (l0__tmp.getTypeId()) {
-		case 39/*JsonObject*/: {
+		case 43/*JsonObject*/: {
 			final Struct_JsonObject l1__tmp = (Struct_JsonObject)l0__tmp;
 			final Object[] l2_members = l1__tmp.f_members;
 			final Object[] l3_members = l1__tmp.f_members;
@@ -102,13 +102,13 @@ final class Module_json {
 	String f_getJsonStringValue(Struct ajson, String adef) {
 		Struct l0__tmp = ajson;
 		switch (l0__tmp.getTypeId()) {
-		case 40/*JsonString*/: {
+		case 44/*JsonString*/: {
 			final Struct_JsonString l1__tmp = (Struct_JsonString)l0__tmp;
 			final String l2_s = l1__tmp.f_s;
 			final String l3_s = l1__tmp.f_s;
 			return l3_s;
 		}
-		case 35/*JsonDouble*/: {
+		case 39/*JsonDouble*/: {
 			final Struct_JsonDouble l1__tmp = (Struct_JsonDouble)l0__tmp;
 			final double l4_d = l1__tmp.f_value;
 			final double l5_d = l1__tmp.f_value;

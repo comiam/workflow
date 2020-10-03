@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.599535537E12
+// timestamp: 1.599279091E12
 
 package main;
 
@@ -105,31 +105,31 @@ final class Module_peg {
 	Struct f_convertNestedSequence(Struct_Production aprod, Struct apar, Reference<Integer> anextFree, Reference<Object[]> aextraProductions) {
 		Struct l0__tmp = apar;
 		switch (l0__tmp.getTypeId()) {
-		case 103/*Rule*/: {
+		case 107/*Rule*/: {
 			final Struct_Rule l1__tmp = (Struct_Rule)l0__tmp;
 			final String l2_name = l1__tmp.f_name;
 			final String l3_name = l1__tmp.f_name;
 			return l1__tmp;
 		}
-		case 110/*Star*/: {
+		case 114/*Star*/: {
 			final Struct_Star l1__tmp = (Struct_Star)l0__tmp;
 			final Struct l4_p = l1__tmp.f_p;
 			final Struct l5_p = l1__tmp.f_p;
 			return (new Struct_Star(f_convertNestedSequence(aprod, l5_p, anextFree, aextraProductions)));
 		}
-		case 95/*Plus*/: {
+		case 99/*Plus*/: {
 			final Struct_Plus l1__tmp = (Struct_Plus)l0__tmp;
 			final Struct l6_p = l1__tmp.f_p;
 			final Struct l7_p = l1__tmp.f_p;
 			return (new Struct_Plus(f_convertNestedSequence(aprod, l7_p, anextFree, aextraProductions)));
 		}
-		case 48/*Opt*/: {
+		case 52/*Opt*/: {
 			final Struct_Opt l1__tmp = (Struct_Opt)l0__tmp;
 			final Struct l8_p = l1__tmp.f_p;
 			final Struct l9_p = l1__tmp.f_p;
 			return (new Struct_Opt(f_convertNestedSequence(aprod, l9_p, anextFree, aextraProductions)));
 		}
-		case 45/*Negation*/: {
+		case 49/*Negation*/: {
 			final Struct_Negation l1__tmp = (Struct_Negation)l0__tmp;
 			final Struct l10_p = l1__tmp.f_p;
 			final Struct l11_p = l1__tmp.f_p;
@@ -151,13 +151,13 @@ final class Module_peg {
 			final Struct l19_p = l1__tmp.f_v;
 			return (new Struct_BindMatched(l18_name, f_convertNestedSequence(aprod, l19_p, anextFree, aextraProductions)));
 		}
-		case 119/*iRule*/: {
+		case 124/*iRule*/: {
 			final Struct_iRule l1__tmp = (Struct_iRule)l0__tmp;
 			final int l20_i = l1__tmp.f_i;
 			final int l21_i = l1__tmp.f_i;
 			return l1__tmp;
 		}
-		case 111/*Term*/: {
+		case 115/*Term*/: {
 			final Struct_Term l1__tmp = (Struct_Term)l0__tmp;
 			final String l22_name = l1__tmp.f_name;
 			final String l23_name = l1__tmp.f_name;
@@ -171,7 +171,7 @@ final class Module_peg {
 			final String l27_last = l1__tmp.f_last;
 			return l1__tmp;
 		}
-		case 44/*LingoValue*/: {
+		case 48/*LingoValue*/: {
 			final Struct_LingoValue l1__tmp = (Struct_LingoValue)l0__tmp;
 			final Object l28_v = l1__tmp.f_value;
 			final Object l29_v = l1__tmp.f_value;
@@ -209,7 +209,7 @@ final class Module_peg {
 			};
 			return (new Struct_Choices(runtime.h_Native.map(l35_s, ((Func1<Object,Object>)(Func1)l37_$36))));
 		}
-		case 106/*Seq*/: {
+		case 110/*Seq*/: {
 			final Struct_Seq l1__tmp = (Struct_Seq)l0__tmp;
 			final Object[] l41_s = l1__tmp.f_seq;
 			final Object[] l42_s = l1__tmp.f_seq;
@@ -251,7 +251,7 @@ final class Module_peg {
 	Object[] f_inlineParsingProductions(Struct_Grammar ag, Struct ap) {
 		Struct l0__tmp = ap;
 		switch (l0__tmp.getTypeId()) {
-		case 119/*iRule*/: {
+		case 124/*iRule*/: {
 			final Struct_iRule l1__tmp = (Struct_iRule)l0__tmp;
 			final int l2_i = l1__tmp.f_i;
 			final int l3_i = l1__tmp.f_i;

@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.601659965873E12
+// timestamp: 1.601710122754E12
 
 package main;
 
@@ -13,7 +13,7 @@ public class Struct_JsonString extends Struct {
 		f_s = a_s;
 	}
 
-	public int getTypeId() { return 40; }
+	public int getTypeId() { return 44; }
 	public String getTypeName() { return "JsonString"; }
 
 	private static final String[] field_names = new String[] {
@@ -40,7 +40,7 @@ public class Struct_JsonString extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 40) return 40-tmp;
+		if (tmp != 44) return 44-tmp;
 		Struct_JsonString other = (Struct_JsonString)other_gen;
 		tmp = f_s.compareTo(other.f_s);
 		return tmp;

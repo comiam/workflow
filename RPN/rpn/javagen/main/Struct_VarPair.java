@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.601659965896E12
+// timestamp: 1.601710122762E12
 
 package main;
 
@@ -19,7 +19,7 @@ public class Struct_VarPair extends Struct implements Field_first<Struct>, Field
 	public Struct get_second() { return f_second; }
 	public void set_second(Struct value) { f_second = value; }
 
-	public int getTypeId() { return 116; }
+	public int getTypeId() { return 121; }
 	public String getTypeName() { return "VarPair"; }
 
 	private static final String[] field_names = new String[] {
@@ -47,7 +47,7 @@ public class Struct_VarPair extends Struct implements Field_first<Struct>, Field
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 116) return 116-tmp;
+		if (tmp != 121) return 121-tmp;
 		Struct_VarPair other = (Struct_VarPair)other_gen;
 		tmp = f_first.compareTo(other.f_first);
 		if (tmp != 0) return tmp;

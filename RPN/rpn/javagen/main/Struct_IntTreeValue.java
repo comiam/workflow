@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.60165996587E12
+// timestamp: 1.601710122753E12
 
 package main;
 
@@ -15,7 +15,7 @@ public class Struct_IntTreeValue extends Struct {
 		f_value = a_value;
 	}
 
-	public int getTypeId() { return 31; }
+	public int getTypeId() { return 35; }
 	public String getTypeName() { return "IntTreeValue"; }
 
 	private static final String[] field_names = new String[] {
@@ -43,7 +43,7 @@ public class Struct_IntTreeValue extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 31) return 31-tmp;
+		if (tmp != 35) return 35-tmp;
 		Struct_IntTreeValue other = (Struct_IntTreeValue)other_gen;
 		if (f_key != other.f_key)
 			return (f_key > other.f_key) ? 1 : -1;

@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.601659965876E12
+// timestamp: 1.601710122755E12
 
 package main;
 
@@ -19,7 +19,7 @@ public class Struct_ParseConstants extends Struct {
 		f_semantics = a_semantics;
 	}
 
-	public int getTypeId() { return 50; }
+	public int getTypeId() { return 54; }
 	public String getTypeName() { return "ParseConstants"; }
 
 	private static final String[] field_names = new String[] {
@@ -49,7 +49,7 @@ public class Struct_ParseConstants extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 50) return 50-tmp;
+		if (tmp != 54) return 54-tmp;
 		Struct_ParseConstants other = (Struct_ParseConstants)other_gen;
 		tmp = FlowRuntime.compareByValue(f_input, other.f_input);
 		if (tmp != 0) return tmp;

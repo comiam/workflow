@@ -1,4 +1,5 @@
 import alg;
+import simplifier;
 import var_parse;
 
 

@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.601659965871E12
+// timestamp: 1.601710122753E12
 
 package main;
 
@@ -13,7 +13,7 @@ public class Struct_JsonBool extends Struct {
 		f_v = a_v;
 	}
 
-	public int getTypeId() { return 34; }
+	public int getTypeId() { return 38; }
 	public String getTypeName() { return "JsonBool"; }
 
 	private static final String[] field_names = new String[] {
@@ -40,7 +40,7 @@ public class Struct_JsonBool extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 34) return 34-tmp;
+		if (tmp != 38) return 38-tmp;
 		Struct_JsonBool other = (Struct_JsonBool)other_gen;
 		if (f_v != other.f_v)
 			return f_v ? 1 : -1;

@@ -33,6 +33,7 @@
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Module_driver.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Module_syntax_tree.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Module_var_parse.java
+/home/maxim/git/workflow/RPN/rpn/javagen/main/Module_simplifier.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Module_rpn.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Module_alg.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Module_main.java
@@ -58,7 +59,11 @@
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_Cons.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_CutDown.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_CutUp.java
+/home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ExpExp.java
+/home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ExpInt.java
+/home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ExpVar.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_Grammar.java
+/home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_IntExp.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_IntInt.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_IntTreeNode.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_IntTreeValue.java
@@ -125,6 +130,7 @@
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_Term.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_TreeNode.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_Triple.java
+/home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_VarExp.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_VarInt.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_VarPair.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_VarVal.java
