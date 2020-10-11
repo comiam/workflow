@@ -11,7 +11,7 @@ export {
 	ArVar(var:string);
 
 	s2ar(s:string) -> ArExp;
-	ar2s(ar:Maybe<ArExp>) -> string;
+	ar2s(ar:ArExp) -> string;
 }
 
 s2ar(s:string) -> ArExp {
@@ -19,25 +19,21 @@ s2ar(s:string) -> ArExp {
 	parsic(compilePegGrammar(gram), s, defaultPegActions);
 }
 
-ar2s(ar:Maybe<ArExp>) -> string {
-	if(isNone(ar))
-		"error tree!!!"
-	else {
-		switch(either(ar, ArInt(0))) {
-			ArPow(l, power): 
-				concatStrings(["(", ar2s(Some(l)), "^", ar2s(Some(power)), ")"]);
-			ArDiv(up, down): 
-				concatStrings(["(", ar2s(Some(up)), " / ", ar2s(Some(down)), ")"]);
-			ArMin(l, r): 
-				concatStrings(["(", ar2s(Some(l)), " - ", ar2s(Some(r)), ")"]);
-			ArSum(l, r): 
-				concatStrings(["(", ar2s(Some(l)), " + ", ar2s(Some(r)), ")"]);
-			ArMult(l, r): 
-				concatStrings(["(", ar2s(Some(l)), " * ", ar2s(Some(r)), ")"]);
-			ArInt(val): 
-				i2s(val);
-			ArVar(var):
-				var;
-		}
+ar2s(ar:ArExp) -> string {
+	switch(ar) {
+		ArPow(l, power): 
+			concatStrings(["(", ar2s(l), "^", ar2s(power), ")"]);
+		ArDiv(up, down): 
+			concatStrings(["(", ar2s(up), " / ", ar2s(down), ")"]);
+		ArMin(l, r): 
+			concatStrings(["(", ar2s(l), " - ", ar2s(r), ")"]);
+		ArSum(l, r): 
+			concatStrings(["(", ar2s(l), " + ", ar2s(r), ")"]);
+		ArMult(l, r): 
+			concatStrings(["(", ar2s(l), " * ", ar2s(r), ")"]);
+		ArInt(val): 
+			i2s(val);
+		ArVar(var):
+			var;
 	}
 }

@@ -85,34 +85,34 @@ final class Module_rename_bindings {
 	Struct_Pair f_renameBindingsInParsing(Struct apar, Struct arenamings) {
 		Struct l0__tmp = apar;
 		switch (l0__tmp.getTypeId()) {
-		case 48/*LingoValue*/: {
+		case 42/*LingoValue*/: {
 			final Struct_LingoValue l1__tmp = (Struct_LingoValue)l0__tmp;
 			final Object l2_v = l1__tmp.f_value;
 			final Object l3_v = l1__tmp.f_value;
 			return ((Struct_Pair)(new Struct_Pair(l1__tmp, arenamings)));
 		}
-		case 114/*Star*/: {
+		case 108/*Star*/: {
 			final Struct_Star l1__tmp = (Struct_Star)l0__tmp;
 			final Struct l4_p = l1__tmp.f_p;
 			final Struct l5_p = l1__tmp.f_p;
 			final Struct_Pair l6_r = f_renameBindingsInParsing(l5_p, arenamings);
 			return (new Struct_Pair((new Struct_Star(((Struct)l6_r.f_first))), l6_r.f_second));
 		}
-		case 99/*Plus*/: {
+		case 93/*Plus*/: {
 			final Struct_Plus l1__tmp = (Struct_Plus)l0__tmp;
 			final Struct l7_p = l1__tmp.f_p;
 			final Struct l8_p = l1__tmp.f_p;
 			final Struct_Pair l9_r = f_renameBindingsInParsing(l8_p, arenamings);
 			return (new Struct_Pair((new Struct_Plus(((Struct)l9_r.f_first))), l9_r.f_second));
 		}
-		case 52/*Opt*/: {
+		case 46/*Opt*/: {
 			final Struct_Opt l1__tmp = (Struct_Opt)l0__tmp;
 			final Struct l10_p = l1__tmp.f_p;
 			final Struct l11_p = l1__tmp.f_p;
 			final Struct_Pair l12_r = f_renameBindingsInParsing(l11_p, arenamings);
 			return (new Struct_Pair((new Struct_Opt(((Struct)l12_r.f_first))), l12_r.f_second));
 		}
-		case 49/*Negation*/: {
+		case 43/*Negation*/: {
 			final Struct_Negation l1__tmp = (Struct_Negation)l0__tmp;
 			final Struct l13_p = l1__tmp.f_p;
 			final Struct l14_p = l1__tmp.f_p;
@@ -133,19 +133,19 @@ final class Module_rename_bindings {
 			final Struct_Pair l21_r = f_renameBindingsInParsing(l20_p, arenamings);
 			return (new Struct_Pair((new Struct_CutDown(((Struct)l21_r.f_first))), l21_r.f_second));
 		}
-		case 107/*Rule*/: {
+		case 101/*Rule*/: {
 			final Struct_Rule l1__tmp = (Struct_Rule)l0__tmp;
 			final String l22_n = l1__tmp.f_name;
 			final String l23_n = l1__tmp.f_name;
 			return (new Struct_Pair(l1__tmp, arenamings));
 		}
-		case 124/*iRule*/: {
+		case 115/*iRule*/: {
 			final Struct_iRule l1__tmp = (Struct_iRule)l0__tmp;
 			final int l24_n = l1__tmp.f_i;
 			final int l25_n = l1__tmp.f_i;
 			return (new Struct_Pair(l1__tmp, arenamings));
 		}
-		case 115/*Term*/: {
+		case 109/*Term*/: {
 			final Struct_Term l1__tmp = (Struct_Term)l0__tmp;
 			final String l26_s = l1__tmp.f_name;
 			final String l27_s = l1__tmp.f_name;
@@ -199,7 +199,7 @@ final class Module_rename_bindings {
 			final Struct_Pair l49_r = f_renameBindingsInParsing(l46_p, l48_rena);
 			return (new Struct_Pair((new Struct_BindMatched(l47_newId, ((Struct)l49_r.f_first))), l49_r.f_second));
 		}
-		case 110/*Seq*/: {
+		case 104/*Seq*/: {
 			final Struct_Seq l1__tmp = (Struct_Seq)l0__tmp;
 			final Object[] l50_s = l1__tmp.f_seq;
 			final Object[] l51_s = l1__tmp.f_seq;

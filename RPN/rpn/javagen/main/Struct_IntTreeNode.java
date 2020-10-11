@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.601710122753E12
+// timestamp: 1.602429435486E12
 
 package main;
 
@@ -13,7 +13,7 @@ public class Struct_IntTreeNode extends Struct {
 		f_children = a_children;
 	}
 
-	public int getTypeId() { return 33; }
+	public int getTypeId() { return 28; }
 	public String getTypeName() { return "IntTreeNode"; }
 
 	private static final String[] field_names = new String[] {
@@ -40,7 +40,7 @@ public class Struct_IntTreeNode extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 33) return 33-tmp;
+		if (tmp != 28) return 28-tmp;
 		Struct_IntTreeNode other = (Struct_IntTreeNode)other_gen;
 		tmp = FlowRuntime.compareByValue(f_children, other.f_children);
 		return tmp;

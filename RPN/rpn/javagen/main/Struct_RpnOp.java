@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.60171012276E12
+// timestamp: 1.602429435493E12
 
 package main;
 
@@ -15,7 +15,7 @@ public class Struct_RpnOp extends Struct {
 		f_op = a_op;
 	}
 
-	public int getTypeId() { return 105; }
+	public int getTypeId() { return 99; }
 	public String getTypeName() { return "RpnOp"; }
 
 	private static final String[] field_names = new String[] {
@@ -43,7 +43,7 @@ public class Struct_RpnOp extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 105) return 105-tmp;
+		if (tmp != 99) return 99-tmp;
 		Struct_RpnOp other = (Struct_RpnOp)other_gen;
 		tmp = f_id.compareTo(other.f_id);
 		if (tmp != 0) return tmp;

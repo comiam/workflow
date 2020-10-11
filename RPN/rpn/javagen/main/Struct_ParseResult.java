@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.601710122755E12
+// timestamp: 1.602429435488E12
 
 package main;
 
@@ -15,7 +15,7 @@ public class Struct_ParseResult extends Struct {
 		f_result = a_result;
 	}
 
-	public int getTypeId() { return 55; }
+	public int getTypeId() { return 49; }
 	public String getTypeName() { return "ParseResult"; }
 
 	private static final String[] field_names = new String[] {
@@ -43,7 +43,7 @@ public class Struct_ParseResult extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 55) return 55-tmp;
+		if (tmp != 49) return 49-tmp;
 		Struct_ParseResult other = (Struct_ParseResult)other_gen;
 		if (f_pos != other.f_pos)
 			return (f_pos > other.f_pos) ? 1 : -1;

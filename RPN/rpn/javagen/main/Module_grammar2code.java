@@ -183,34 +183,34 @@ final class Module_grammar2code {
 				return runtime.h_Native.concat(l13_c, (new Object[] { (new Struct_PegBindValue(l11_n)) }));
 			}
 		}
-		case 52/*Opt*/: {
+		case 46/*Opt*/: {
 			final Struct_Opt l1__tmp = (Struct_Opt)l0__tmp;
 			final Struct l14_p = l1__tmp.f_p;
 			final Struct l15_p = l1__tmp.f_p;
 			final Object[] l16_c = f_surroundChoice(ag, l15_p, 1);
 			return runtime.m_array.f_concat3((new Object[] { SingletonStructs.str_PegStartCaptureList }), l16_c, (new Object[] { SingletonStructs.str_PegCaptureList }));
 		}
-		case 99/*Plus*/: {
+		case 93/*Plus*/: {
 			final Struct_Plus l1__tmp = (Struct_Plus)l0__tmp;
 			final Struct l17_p = l1__tmp.f_p;
 			final Struct l18_p = l1__tmp.f_p;
 			final Object[] l19_c = f_parsing2code(ag, l18_p);
 			return runtime.m_array.f_concatA((new Object[] { (new Object[] { SingletonStructs.str_PegStartCaptureList }), l19_c, (new Object[] { (new Struct_PegChoice((runtime.h_Native.length(l19_c)+2))) }), l19_c, (new Object[] { (new Struct_PegCommit((-(runtime.h_Native.length(l19_c)+1)))), SingletonStructs.str_PegCaptureList }) }));
 		}
-		case 114/*Star*/: {
+		case 108/*Star*/: {
 			final Struct_Star l1__tmp = (Struct_Star)l0__tmp;
 			final Struct l20_p = l1__tmp.f_p;
 			final Struct l21_p = l1__tmp.f_p;
 			final Object[] l22_c = f_parsing2code(ag, l21_p);
 			return runtime.m_array.f_concat3((new Object[] { SingletonStructs.str_PegStartCaptureList, (new Struct_PegChoice((runtime.h_Native.length(l22_c)+2))) }), l22_c, (new Object[] { (new Struct_PegCommit((-(runtime.h_Native.length(l22_c)+1)))), SingletonStructs.str_PegCaptureList }));
 		}
-		case 110/*Seq*/: {
+		case 104/*Seq*/: {
 			final Struct_Seq l1__tmp = (Struct_Seq)l0__tmp;
 			final Object[] l23_s = l1__tmp.f_seq;
 			final Object[] l24_s = l1__tmp.f_seq;
 			return f_sequence2code(ag, l24_s);
 		}
-		case 49/*Negation*/: {
+		case 43/*Negation*/: {
 			final Struct_Negation l1__tmp = (Struct_Negation)l0__tmp;
 			final Struct l25_p = l1__tmp.f_p;
 			final Struct l26_p = l1__tmp.f_p;
@@ -229,13 +229,13 @@ final class Module_grammar2code {
 			final Struct l31_p = l1__tmp.f_p;
 			return runtime.h_Native.concat(f_parsing2code(ag, l31_p), (new Object[] { SingletonStructs.str_PegClearCache }));
 		}
-		case 124/*iRule*/: {
+		case 115/*iRule*/: {
 			final Struct_iRule l1__tmp = (Struct_iRule)l0__tmp;
 			final int l32_i = l1__tmp.f_i;
 			final int l33_i = l1__tmp.f_i;
 			return (new Object[] { (new Struct_PegCall(f_production2mark(l33_i))) });
 		}
-		case 107/*Rule*/: {
+		case 101/*Rule*/: {
 			final Struct_Rule l1__tmp = (Struct_Rule)l0__tmp;
 			final String l34_name = l1__tmp.f_name;
 			final String l35_name = l1__tmp.f_name;
@@ -329,7 +329,7 @@ final class Module_grammar2code {
 		case 25/*Epsilon*/: {
 			return SingletonStructs.arr_empty;
 		}
-		case 115/*Term*/: {
+		case 109/*Term*/: {
 			final Struct_Term l1__tmp = (Struct_Term)l0__tmp;
 			final String l64_text = l1__tmp.f_name;
 			final String l65_text = l1__tmp.f_name;
@@ -343,7 +343,7 @@ final class Module_grammar2code {
 			final String l69_last = l1__tmp.f_last;
 			return (new Object[] { (new Struct_PegRange(l68_first, l69_last)) });
 		}
-		case 48/*LingoValue*/: {
+		case 42/*LingoValue*/: {
 			final Struct_LingoValue l1__tmp = (Struct_LingoValue)l0__tmp;
 			final Object l70_v = l1__tmp.f_value;
 			final Object l71_v = l1__tmp.f_value;
@@ -397,13 +397,13 @@ final class Module_grammar2code {
 									final Struct l0_gsymswitch0 = ((Struct)(ac[0]));
 									Struct l1__tmp = l0_gsymswitch0;
 									switch (l1__tmp.getTypeId()) {
-									case 90/*PegString*/: {
+									case 84/*PegString*/: {
 										final Struct_PegString l2__tmp = (Struct_PegString)l1__tmp;
 										final String l3_s = l2__tmp.f_x;
 										final String l4_s = l2__tmp.f_x;
 										return runtime.h_Native.concat((new Object[] { (new Struct_PegStringChoice(l4_s, (runtime.h_Native.length(aacc)+1))) }), aacc);
 									}
-									case 81/*PegRange*/: {
+									case 75/*PegRange*/: {
 										final Struct_PegRange l2__tmp = (Struct_PegRange)l1__tmp;
 										final String l5_low = l2__tmp.f_l;
 										final String l6_up = l2__tmp.f_u;
@@ -456,7 +456,7 @@ final class Module_grammar2code {
 				return l1__tmp;
 			}
 		}
-		case 124/*iRule*/: {
+		case 115/*iRule*/: {
 			final Struct_iRule l1__tmp = (Struct_iRule)l0__tmp;
 			final int l10_i = l1__tmp.f_i;
 			final int l11_i = l1__tmp.f_i;
@@ -470,7 +470,7 @@ final class Module_grammar2code {
 			final String l15_l = l1__tmp.f_last;
 			return l1__tmp;
 		}
-		case 115/*Term*/: {
+		case 109/*Term*/: {
 			final Struct_Term l1__tmp = (Struct_Term)l0__tmp;
 			final String l16_n = l1__tmp.f_name;
 			final String l17_n = l1__tmp.f_name;
@@ -482,7 +482,7 @@ final class Module_grammar2code {
 		case 25/*Epsilon*/: {
 			return ap;
 		}
-		case 107/*Rule*/: {
+		case 101/*Rule*/: {
 			final Struct_Rule l1__tmp = (Struct_Rule)l0__tmp;
 			final String l18_m = l1__tmp.f_name;
 			final String l19_m = l1__tmp.f_name;
@@ -494,7 +494,7 @@ final class Module_grammar2code {
 			final Func1<Object,Struct_PegEnv> l21_fn = l1__tmp.f_fn;
 			return l1__tmp;
 		}
-		case 110/*Seq*/: {
+		case 104/*Seq*/: {
 			final Struct_Seq l1__tmp = (Struct_Seq)l0__tmp;
 			final Object[] l22_seq = l1__tmp.f_seq;
 			final Object[] l23_seq = l1__tmp.f_seq;
@@ -506,25 +506,25 @@ final class Module_grammar2code {
 			final Object[] l25_seq = l1__tmp.f_p;
 			return (new Struct_Choices(f_renameBindings2(l25_seq, aname, anewname)));
 		}
-		case 52/*Opt*/: {
+		case 46/*Opt*/: {
 			final Struct_Opt l1__tmp = (Struct_Opt)l0__tmp;
 			final Struct l26_r = l1__tmp.f_p;
 			final Struct l27_r = l1__tmp.f_p;
 			return (new Struct_Opt(f_renameBinding(l27_r, aname, anewname)));
 		}
-		case 114/*Star*/: {
+		case 108/*Star*/: {
 			final Struct_Star l1__tmp = (Struct_Star)l0__tmp;
 			final Struct l28_r = l1__tmp.f_p;
 			final Struct l29_r = l1__tmp.f_p;
 			return (new Struct_Star(f_renameBinding(l29_r, aname, anewname)));
 		}
-		case 99/*Plus*/: {
+		case 93/*Plus*/: {
 			final Struct_Plus l1__tmp = (Struct_Plus)l0__tmp;
 			final Struct l30_r = l1__tmp.f_p;
 			final Struct l31_r = l1__tmp.f_p;
 			return (new Struct_Plus(f_renameBinding(l31_r, aname, anewname)));
 		}
-		case 49/*Negation*/: {
+		case 43/*Negation*/: {
 			final Struct_Negation l1__tmp = (Struct_Negation)l0__tmp;
 			final Struct l32_r = l1__tmp.f_p;
 			final Struct l33_r = l1__tmp.f_p;
@@ -548,7 +548,7 @@ final class Module_grammar2code {
 			final Struct l39_e = l1__tmp.f_e;
 			return (new Struct_Action2(f_renameBindingInAction(l39_e, aname, anewname)));
 		}
-		case 48/*LingoValue*/: {
+		case 42/*LingoValue*/: {
 			final Struct_LingoValue l1__tmp = (Struct_LingoValue)l0__tmp;
 			final Object l40_v = l1__tmp.f_value;
 			final Object l41_v = l1__tmp.f_value;
@@ -646,13 +646,13 @@ final class Module_grammar2code {
 			final public Struct invoke(final Struct ap) {
 				Struct l0__tmp = ap;
 				switch (l0__tmp.getTypeId()) {
-				case 90/*PegString*/: {
+				case 84/*PegString*/: {
 					final Struct_PegString l1__tmp = (Struct_PegString)l0__tmp;
 					final String l2_x = l1__tmp.f_x;
 					final String l3_x = l1__tmp.f_x;
 					return l1__tmp;
 				}
-				case 81/*PegRange*/: {
+				case 75/*PegRange*/: {
 					final Struct_PegRange l1__tmp = (Struct_PegRange)l0__tmp;
 					final String l4_l = l1__tmp.f_l;
 					final String l5_u = l1__tmp.f_u;
@@ -660,19 +660,19 @@ final class Module_grammar2code {
 					final String l7_u = l1__tmp.f_u;
 					return l1__tmp;
 				}
-				case 80/*PegJump*/: {
+				case 74/*PegJump*/: {
 					final Struct_PegJump l1__tmp = (Struct_PegJump)l0__tmp;
 					final int l8_l = l1__tmp.f_l;
 					final int l9_l = l1__tmp.f_l;
 					return (new Struct_PegJump(((int)l0_fix.invoke(((Integer)l9_l)))));
 				}
-				case 69/*PegChoice*/: {
+				case 63/*PegChoice*/: {
 					final Struct_PegChoice l1__tmp = (Struct_PegChoice)l0__tmp;
 					final int l10_l = l1__tmp.f_l;
 					final int l11_l = l1__tmp.f_l;
 					return (new Struct_PegChoice(((int)l0_fix.invoke(((Integer)l11_l)))));
 				}
-				case 91/*PegStringChoice*/: {
+				case 85/*PegStringChoice*/: {
 					final Struct_PegStringChoice l1__tmp = (Struct_PegStringChoice)l0__tmp;
 					final String l12_x = l1__tmp.f_x;
 					final int l13_l = l1__tmp.f_commit;
@@ -680,7 +680,7 @@ final class Module_grammar2code {
 					final int l15_l = l1__tmp.f_commit;
 					return (new Struct_PegStringChoice(l14_x, ((int)l0_fix.invoke(((Integer)l15_l)))));
 				}
-				case 82/*PegRangeChoice*/: {
+				case 76/*PegRangeChoice*/: {
 					final Struct_PegRangeChoice l1__tmp = (Struct_PegRangeChoice)l0__tmp;
 					final String l16_low = l1__tmp.f_l;
 					final String l17_up = l1__tmp.f_u;
@@ -690,13 +690,13 @@ final class Module_grammar2code {
 					final int l21_l = l1__tmp.f_commit;
 					return (new Struct_PegRangeChoice(l19_low, l20_up, ((int)l0_fix.invoke(((Integer)l21_l)))));
 				}
-				case 65/*PegCall*/: {
+				case 59/*PegCall*/: {
 					final Struct_PegCall l1__tmp = (Struct_PegCall)l0__tmp;
 					final int l22_l = l1__tmp.f_l;
 					final int l23_l = l1__tmp.f_l;
 					return (new Struct_PegCall(((int)l0_fix.invoke(((Integer)l23_l)))));
 				}
-				case 64/*PegCacheCall*/: {
+				case 58/*PegCacheCall*/: {
 					final Struct_PegCacheCall l1__tmp = (Struct_PegCacheCall)l0__tmp;
 					final int l24_l = l1__tmp.f_l;
 					final int l25_c = l1__tmp.f_cacheEntry;
@@ -704,67 +704,67 @@ final class Module_grammar2code {
 					final int l27_c = l1__tmp.f_cacheEntry;
 					return (new Struct_PegCacheCall(((int)l0_fix.invoke(((Integer)l26_l))), l27_c));
 				}
-				case 83/*PegReturn*/: {
+				case 77/*PegReturn*/: {
 					return ap;
 				}
-				case 74/*PegDrop*/: {
+				case 68/*PegDrop*/: {
 					return ap;
 				}
-				case 72/*PegCommit*/: {
+				case 66/*PegCommit*/: {
 					final Struct_PegCommit l1__tmp = (Struct_PegCommit)l0__tmp;
 					final int l28_l = l1__tmp.f_l;
 					final int l29_l = l1__tmp.f_l;
 					return (new Struct_PegCommit(((int)l0_fix.invoke(((Integer)l29_l)))));
 				}
-				case 89/*PegStartString*/: {
+				case 83/*PegStartString*/: {
 					return ap;
 				}
-				case 61/*PegBindString*/: {
+				case 55/*PegBindString*/: {
 					final Struct_PegBindString l1__tmp = (Struct_PegBindString)l0__tmp;
 					final String l30_v = l1__tmp.f_n;
 					final String l31_v = l1__tmp.f_n;
 					return l1__tmp;
 				}
-				case 88/*PegStartCaptureList*/: {
+				case 82/*PegStartCaptureList*/: {
 					return ap;
 				}
-				case 62/*PegBindValue*/: {
+				case 56/*PegBindValue*/: {
 					final Struct_PegBindValue l1__tmp = (Struct_PegBindValue)l0__tmp;
 					final String l32_v = l1__tmp.f_n;
 					final String l33_v = l1__tmp.f_n;
 					return l1__tmp;
 				}
-				case 60/*PegBindIndex*/: {
+				case 54/*PegBindIndex*/: {
 					final Struct_PegBindIndex l1__tmp = (Struct_PegBindIndex)l0__tmp;
 					final String l34_v = l1__tmp.f_n;
 					final String l35_v = l1__tmp.f_n;
 					return l1__tmp;
 				}
-				case 56/*PegAction*/: {
+				case 50/*PegAction*/: {
 					final Struct_PegAction l1__tmp = (Struct_PegAction)l0__tmp;
 					final Func1<Object,Struct_PegEnv> l36_v = l1__tmp.f_fn;
 					final Func1<Object,Struct_PegEnv> l37_v = l1__tmp.f_fn;
 					return l1__tmp;
 				}
-				case 57/*PegAction2*/: {
+				case 51/*PegAction2*/: {
 					final Struct_PegAction2 l1__tmp = (Struct_PegAction2)l0__tmp;
 					final Struct l38_e = l1__tmp.f_e;
 					final Struct l39_e = l1__tmp.f_e;
 					return l1__tmp;
 				}
-				case 58/*PegActionIndex*/: {
+				case 52/*PegActionIndex*/: {
 					return ap;
 				}
-				case 78/*PegFail*/: {
+				case 72/*PegFail*/: {
 					return ap;
 				}
-				case 75/*PegEnd*/: {
+				case 69/*PegEnd*/: {
 					return ap;
 				}
-				case 66/*PegCaptureList*/: {
+				case 60/*PegCaptureList*/: {
 					return ap;
 				}
-				case 70/*PegClearCache*/: {
+				case 64/*PegClearCache*/: {
 					return ap;
 				}
 				default:
@@ -838,7 +838,7 @@ final class Module_grammar2code {
 	Object[] f_surroundChoice(Struct_Grammar ag, Struct ap, int acommit) {
 		Struct l0__tmp = ap;
 		switch (l0__tmp.getTypeId()) {
-		case 115/*Term*/: {
+		case 109/*Term*/: {
 			final Struct_Term l1__tmp = (Struct_Term)l0__tmp;
 			final String l2_text = l1__tmp.f_name;
 			final String l3_text = l1__tmp.f_name;

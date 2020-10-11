@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.601710122765E12
+// timestamp: 1.602429435497E12
 
 package main;
 
@@ -36,17 +36,11 @@ public final class Structs {
 			SingletonStructs.str_EmptyList,
 			SingletonStructs.str_EmptyPopResult,
 			SingletonStructs.str_Epsilon,
-			new Struct_ExpExp(),
-			new Struct_ExpInt(),
-			new Struct_ExpVar(),
 			new Struct_Grammar(),
 			SingletonStructs.str_IllegalStruct,
-			new Struct_IntExp(),
-			new Struct_IntInt(),
 			new Struct_IntTreeNode(),
 			SingletonStructs.str_IntTreeNone,
 			new Struct_IntTreeValue(),
-			new Struct_IntVar(),
 			new Struct_JsonArray(),
 			new Struct_JsonBool(),
 			new Struct_JsonDouble(),
@@ -129,11 +123,8 @@ public final class Structs {
 			SingletonStructs.str_TreeEmpty,
 			new Struct_TreeNode(),
 			new Struct_Triple(),
-			new Struct_VarExp(),
-			new Struct_VarInt(),
 			new Struct_VarPair(),
 			new Struct_VarVal(),
-			new Struct_VarVar(),
 			new Struct_iRule()
 	};
 	static final Struct[] structList() {
