@@ -1,19 +1,20 @@
 import lingo/pegcode/driver;
 
 export {
-	ArExp ::= ArSum, ArMin, ArDiv, ArPow, ArMult, ArInt, ArVar;
+	ArExp ::= ArSum, ArMin, ArDiv, ArPow, ArMult, ArDouble, ArVar, ArLn;
 	ArSum(l:ArExp, r:ArExp);
 	ArMin(l:ArExp, r:ArExp);
 	ArDiv(up:ArExp, down:ArExp);
 	ArPow(l:ArExp, pow:ArExp);
 	ArMult(l:ArExp, r:ArExp);
-	ArInt(val:int);
+	ArLn(l:ArExp);
+	ArDouble(val:double);
 	ArVar(var:string);
 
 	s2ar(s:string) -> ArExp;
 	ar2s(ar:ArExp) -> string;
 }
-
+ 
 s2ar(s:string) -> ArExp {
 	gram="#include syntax_tree_exp.lingo";
 	parsic(compilePegGrammar(gram), s, defaultPegActions);
@@ -31,8 +32,10 @@ ar2s(ar:ArExp) -> string {
 			concatStrings(["(", ar2s(l), " + ", ar2s(r), ")"]);
 		ArMult(l, r): 
 			concatStrings(["(", ar2s(l), " * ", ar2s(r), ")"]);
-		ArInt(val): 
-			i2s(val);
+		ArLn(v):
+			concatStrings(["ln(", ar2s(v), ")"]);
+		ArDouble(val): 
+			d2s(val);
 		ArVar(var):
 			var;
 	}

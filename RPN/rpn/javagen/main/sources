@@ -33,9 +33,10 @@
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Module_driver.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Module_syntax_tree.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Module_var_parse.java
-/home/maxim/git/workflow/RPN/rpn/javagen/main/Module_rpn.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Module_simplifier.java
+/home/maxim/git/workflow/RPN/rpn/javagen/main/Module_rpn.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Module_alg.java
+/home/maxim/git/workflow/RPN/rpn/javagen/main/Module_derivative.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Module_main.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_Action.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_Action2.java
@@ -45,7 +46,8 @@
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ActionConstantString.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ActionVar.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ArDiv.java
-/home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ArInt.java
+/home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ArDouble.java
+/home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ArLn.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ArMin.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ArMult.java
 /home/maxim/git/workflow/RPN/rpn/javagen/main/Struct_ArPow.java

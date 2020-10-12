@@ -16,7 +16,7 @@ final class Module_inttree {
 		final Struct l0_t = atree.value;
 		Struct l1__tmp = l0_t;
 		switch (l1__tmp.getTypeId()) {
-		case 28/*IntTreeNode*/: {
+		case 29/*IntTreeNode*/: {
 			final Struct_IntTreeNode l2__tmp = (Struct_IntTreeNode)l1__tmp;
 			final Object[] l3_children = l2__tmp.f_children;
 			final Object[] l4_children = l2__tmp.f_children;
@@ -30,7 +30,7 @@ final class Module_inttree {
 			((Reference<Struct>)(l4_children[l5_nibble])).value = f_addOrUpdateIntTree(((Reference<Struct>)(l4_children[l5_nibble])), l6_rest, avalue);
 			return l2__tmp;
 		}
-		case 30/*IntTreeValue*/: {
+		case 31/*IntTreeValue*/: {
 			final Struct_IntTreeValue l2__tmp = (Struct_IntTreeValue)l1__tmp;
 			final int l7_k = l2__tmp.f_key;
 			final Object l8_v = l2__tmp.f_value;
@@ -62,7 +62,7 @@ final class Module_inttree {
 				}
 			}
 		}
-		case 29/*IntTreeNone*/: {
+		case 30/*IntTreeNone*/: {
 			return (new Struct_IntTreeValue(akey, avalue));
 		}
 		default:
@@ -74,7 +74,7 @@ final class Module_inttree {
 		final Struct l0_t = atree.value;
 		Struct l1__tmp = l0_t;
 		switch (l1__tmp.getTypeId()) {
-		case 28/*IntTreeNode*/: {
+		case 29/*IntTreeNode*/: {
 			final Struct_IntTreeNode l2__tmp = (Struct_IntTreeNode)l1__tmp;
 			final Object[] l3_children = l2__tmp.f_children;
 			final Object[] l4_children = l2__tmp.f_children;
@@ -88,7 +88,7 @@ final class Module_inttree {
 			};
 			return runtime.h_Native.iteri(l4_children, ((Func2<Object,Integer, Object>)(Func2)l6_$5));
 		}
-		case 30/*IntTreeValue*/: {
+		case 31/*IntTreeValue*/: {
 			final Struct_IntTreeValue l2__tmp = (Struct_IntTreeValue)l1__tmp;
 			final int l10_k = l2__tmp.f_key;
 			final Object l11_v = l2__tmp.f_value;
@@ -96,7 +96,7 @@ final class Module_inttree {
 			final Object l13_v = l2__tmp.f_value;
 			return afn.invoke(((Integer)((l12_k*alevel)+alobits)), l13_v);
 		}
-		case 29/*IntTreeNone*/: {
+		case 30/*IntTreeNone*/: {
 			return null;
 		}
 		default:
@@ -111,7 +111,7 @@ final class Module_inttree {
 		final Struct l0_t = atree.value;
 		Struct l1__tmp = l0_t;
 		switch (l1__tmp.getTypeId()) {
-		case 28/*IntTreeNode*/: {
+		case 29/*IntTreeNode*/: {
 			final Struct_IntTreeNode l2__tmp = (Struct_IntTreeNode)l1__tmp;
 			final Object[] l3_children = l2__tmp.f_children;
 			final Object[] l4_children = l2__tmp.f_children;
@@ -130,7 +130,7 @@ final class Module_inttree {
 				continue TAIL_CALL;
 			}
 		}
-		case 30/*IntTreeValue*/: {
+		case 31/*IntTreeValue*/: {
 			final Struct_IntTreeValue l2__tmp = (Struct_IntTreeValue)l1__tmp;
 			final int l9_k = l2__tmp.f_key;
 			final Object l10_v = l2__tmp.f_value;
@@ -142,7 +142,7 @@ final class Module_inttree {
 				return ((Struct)SingletonStructs.str_None);
 			}
 		}
-		case 29/*IntTreeNone*/: {
+		case 30/*IntTreeNone*/: {
 			return ((Struct)SingletonStructs.str_None);
 		}
 		default:

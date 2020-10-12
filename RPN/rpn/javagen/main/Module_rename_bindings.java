@@ -85,73 +85,73 @@ final class Module_rename_bindings {
 	Struct_Pair f_renameBindingsInParsing(Struct apar, Struct arenamings) {
 		Struct l0__tmp = apar;
 		switch (l0__tmp.getTypeId()) {
-		case 42/*LingoValue*/: {
+		case 43/*LingoValue*/: {
 			final Struct_LingoValue l1__tmp = (Struct_LingoValue)l0__tmp;
 			final Object l2_v = l1__tmp.f_value;
 			final Object l3_v = l1__tmp.f_value;
 			return ((Struct_Pair)(new Struct_Pair(l1__tmp, arenamings)));
 		}
-		case 108/*Star*/: {
+		case 109/*Star*/: {
 			final Struct_Star l1__tmp = (Struct_Star)l0__tmp;
 			final Struct l4_p = l1__tmp.f_p;
 			final Struct l5_p = l1__tmp.f_p;
 			final Struct_Pair l6_r = f_renameBindingsInParsing(l5_p, arenamings);
 			return (new Struct_Pair((new Struct_Star(((Struct)l6_r.f_first))), l6_r.f_second));
 		}
-		case 93/*Plus*/: {
+		case 94/*Plus*/: {
 			final Struct_Plus l1__tmp = (Struct_Plus)l0__tmp;
 			final Struct l7_p = l1__tmp.f_p;
 			final Struct l8_p = l1__tmp.f_p;
 			final Struct_Pair l9_r = f_renameBindingsInParsing(l8_p, arenamings);
 			return (new Struct_Pair((new Struct_Plus(((Struct)l9_r.f_first))), l9_r.f_second));
 		}
-		case 46/*Opt*/: {
+		case 47/*Opt*/: {
 			final Struct_Opt l1__tmp = (Struct_Opt)l0__tmp;
 			final Struct l10_p = l1__tmp.f_p;
 			final Struct l11_p = l1__tmp.f_p;
 			final Struct_Pair l12_r = f_renameBindingsInParsing(l11_p, arenamings);
 			return (new Struct_Pair((new Struct_Opt(((Struct)l12_r.f_first))), l12_r.f_second));
 		}
-		case 43/*Negation*/: {
+		case 44/*Negation*/: {
 			final Struct_Negation l1__tmp = (Struct_Negation)l0__tmp;
 			final Struct l13_p = l1__tmp.f_p;
 			final Struct l14_p = l1__tmp.f_p;
 			final Struct_Pair l15_r = f_renameBindingsInParsing(l14_p, arenamings);
 			return (new Struct_Pair((new Struct_Negation(((Struct)l15_r.f_first))), l15_r.f_second));
 		}
-		case 22/*CutUp*/: {
+		case 23/*CutUp*/: {
 			final Struct_CutUp l1__tmp = (Struct_CutUp)l0__tmp;
 			final Struct l16_p = l1__tmp.f_p;
 			final Struct l17_p = l1__tmp.f_p;
 			final Struct_Pair l18_r = f_renameBindingsInParsing(l17_p, arenamings);
 			return (new Struct_Pair((new Struct_CutUp(((Struct)l18_r.f_first))), l18_r.f_second));
 		}
-		case 21/*CutDown*/: {
+		case 22/*CutDown*/: {
 			final Struct_CutDown l1__tmp = (Struct_CutDown)l0__tmp;
 			final Struct l19_p = l1__tmp.f_p;
 			final Struct l20_p = l1__tmp.f_p;
 			final Struct_Pair l21_r = f_renameBindingsInParsing(l20_p, arenamings);
 			return (new Struct_Pair((new Struct_CutDown(((Struct)l21_r.f_first))), l21_r.f_second));
 		}
-		case 101/*Rule*/: {
+		case 102/*Rule*/: {
 			final Struct_Rule l1__tmp = (Struct_Rule)l0__tmp;
 			final String l22_n = l1__tmp.f_name;
 			final String l23_n = l1__tmp.f_name;
 			return (new Struct_Pair(l1__tmp, arenamings));
 		}
-		case 115/*iRule*/: {
+		case 116/*iRule*/: {
 			final Struct_iRule l1__tmp = (Struct_iRule)l0__tmp;
 			final int l24_n = l1__tmp.f_i;
 			final int l25_n = l1__tmp.f_i;
 			return (new Struct_Pair(l1__tmp, arenamings));
 		}
-		case 109/*Term*/: {
+		case 110/*Term*/: {
 			final Struct_Term l1__tmp = (Struct_Term)l0__tmp;
 			final String l26_s = l1__tmp.f_name;
 			final String l27_s = l1__tmp.f_name;
 			return (new Struct_Pair(l1__tmp, arenamings));
 		}
-		case 18/*CharRange*/: {
+		case 19/*CharRange*/: {
 			final Struct_CharRange l1__tmp = (Struct_CharRange)l0__tmp;
 			final String l28_l = l1__tmp.f_first;
 			final String l29_h = l1__tmp.f_last;
@@ -159,7 +159,7 @@ final class Module_rename_bindings {
 			final String l31_h = l1__tmp.f_last;
 			return (new Struct_Pair(l1__tmp, arenamings));
 		}
-		case 25/*Epsilon*/: {
+		case 26/*Epsilon*/: {
 			return (new Struct_Pair(apar, arenamings));
 		}
 		case 0/*Action*/: {
@@ -177,7 +177,7 @@ final class Module_rename_bindings {
 		case 6/*ActionIndex*/: {
 			return (new Struct_Pair(apar, arenamings));
 		}
-		case 17/*BindResult*/: {
+		case 18/*BindResult*/: {
 			final Struct_BindResult l1__tmp = (Struct_BindResult)l0__tmp;
 			final String l36_n = l1__tmp.f_name;
 			final Struct l37_p = l1__tmp.f_v;
@@ -188,7 +188,7 @@ final class Module_rename_bindings {
 			final Struct_Pair l42_r = f_renameBindingsInParsing(l39_p, l41_rena);
 			return (new Struct_Pair((new Struct_BindResult(l40_newId, ((Struct)l42_r.f_first))), l42_r.f_second));
 		}
-		case 16/*BindMatched*/: {
+		case 17/*BindMatched*/: {
 			final Struct_BindMatched l1__tmp = (Struct_BindMatched)l0__tmp;
 			final String l43_n = l1__tmp.f_name;
 			final Struct l44_p = l1__tmp.f_v;
@@ -199,7 +199,7 @@ final class Module_rename_bindings {
 			final Struct_Pair l49_r = f_renameBindingsInParsing(l46_p, l48_rena);
 			return (new Struct_Pair((new Struct_BindMatched(l47_newId, ((Struct)l49_r.f_first))), l49_r.f_second));
 		}
-		case 104/*Seq*/: {
+		case 105/*Seq*/: {
 			final Struct_Seq l1__tmp = (Struct_Seq)l0__tmp;
 			final Object[] l50_s = l1__tmp.f_seq;
 			final Object[] l51_s = l1__tmp.f_seq;
@@ -213,7 +213,7 @@ final class Module_rename_bindings {
 			final Struct_Pair l56_r = ((Struct_Pair)runtime.h_Native.fold(l51_s, l54_$53, ((Func2<Object,Object, Object>)(Func2)l55_$52)));
 			return (new Struct_Pair((new Struct_Seq(((Object[])l56_r.f_first))), l56_r.f_second));
 		}
-		case 19/*Choices*/: {
+		case 20/*Choices*/: {
 			final Struct_Choices l1__tmp = (Struct_Choices)l0__tmp;
 			final Object[] l57_s = l1__tmp.f_p;
 			final Object[] l58_s = l1__tmp.f_p;

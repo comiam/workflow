@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.602429435486E12
+// timestamp: 1.602527166305E12
 
 package main;
 
@@ -13,7 +13,7 @@ public class Struct_CutDown extends Struct {
 		f_p = a_p;
 	}
 
-	public int getTypeId() { return 21; }
+	public int getTypeId() { return 22; }
 	public String getTypeName() { return "CutDown"; }
 
 	private static final String[] field_names = new String[] {
@@ -40,7 +40,7 @@ public class Struct_CutDown extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 21) return 21-tmp;
+		if (tmp != 22) return 22-tmp;
 		Struct_CutDown other = (Struct_CutDown)other_gen;
 		tmp = f_p.compareTo(other.f_p);
 		return tmp;

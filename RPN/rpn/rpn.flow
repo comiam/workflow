@@ -3,20 +3,19 @@ import syntax_tree;
 export {
 	ArRpn(rpn:[RpnNode]);
 	RpnNode ::= RpnOp, RpnArg, RpnVar;
-	RpnOp(id:string, op: (int,int)-> int);
-	RpnArg(val:int);
+	RpnOp(id:string, op: (double,double)-> double);
+	RpnArg(val:double);
 	RpnVar(var:string);
 
 	ar2rpn(ar:ArExp) -> ArRpn;
 	s2rpn(s:string) -> ArRpn;
 	rpn2s(ar:ArRpn, index:int) -> string;
-	
 }
 
 ar2rpn(ar:ArExp) -> ArRpn {
 	switch(ar) {
 		ArPow(l, power): 
-			ArRpn(concat([RpnOp("^", \i,i2 -> pow(i,i2))], concat(ar2rpn(l).rpn, ar2rpn(power).rpn)));
+			ArRpn(concat([RpnOp("^", \i,i2 -> dpow(i,i2))], concat(ar2rpn(l).rpn, ar2rpn(power).rpn)));
 		ArDiv(up, down): 
 			ArRpn(concat([RpnOp("/", \i,i2 -> i/i2)], concat(ar2rpn(up).rpn, ar2rpn(down).rpn)));
 		ArMin(l, r): 
@@ -25,7 +24,9 @@ ar2rpn(ar:ArExp) -> ArRpn {
 			ArRpn(concat([RpnOp("+", \i,i2 -> i+i2)], concat(ar2rpn(l).rpn, ar2rpn(r).rpn)));
 		ArMult(l, r): 
 			ArRpn(concat([RpnOp("*", \i,i2 -> i*i2)], concat(ar2rpn(l).rpn, ar2rpn(r).rpn)));
-		ArInt(val): 
+		ArLn(v):
+			ArRpn(concat([RpnOp("ln", \i,i2 -> log(i))], ar2rpn(v).rpn));	
+		ArDouble(val): 
 			ArRpn([RpnArg(val)]);
 		ArVar(var):
 			ArRpn([RpnVar(var)]);
@@ -49,9 +50,9 @@ rpn2s(ar:ArRpn, index:int) -> string {
 					concatStrings([rpn2s(ar, index+1),id]);
 			RpnArg(val):
 				if(index + 1 >= length(ar.rpn))
-					i2s(val)
+					d2s(val)
 				else	
-					concatStrings([rpn2s(ar, index+1),i2s(val)]);
+					concatStrings([rpn2s(ar, index+1),d2s(val)]);
 			RpnVar(var):
 				if(index + 1 >= length(ar.rpn))
 					var

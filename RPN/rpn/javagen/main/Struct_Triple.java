@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.602429435494E12
+// timestamp: 1.602527166313E12
 
 package main;
 
@@ -21,7 +21,7 @@ public class Struct_Triple extends Struct implements Field_first<Object>, Field_
 	public Object get_second() { return f_second; }
 	public void set_second(Object value) { f_second = value; }
 
-	public int getTypeId() { return 112; }
+	public int getTypeId() { return 113; }
 	public String getTypeName() { return "Triple"; }
 
 	private static final String[] field_names = new String[] {
@@ -50,7 +50,7 @@ public class Struct_Triple extends Struct implements Field_first<Object>, Field_
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 112) return 112-tmp;
+		if (tmp != 113) return 113-tmp;
 		Struct_Triple other = (Struct_Triple)other_gen;
 		tmp = FlowRuntime.compareByValue(f_first, other.f_first);
 		if (tmp != 0) return tmp;

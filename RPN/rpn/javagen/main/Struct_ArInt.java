@@ -1,15 +1,15 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.602429435484E12
+// timestamp: 1.602519867889E12
 
 package main;
 
 import com.area9innovation.flow.*;
 
 public class Struct_ArInt extends Struct {
-	public int f_val;
+	public double f_val;
 
 	public Struct_ArInt() {}
-	public Struct_ArInt(int a_val) {
+	public Struct_ArInt(double a_val) {
 		f_val = a_val;
 	}
 
@@ -20,7 +20,7 @@ public class Struct_ArInt extends Struct {
 		"val"
 	};
 	private static final RuntimeType[] field_types = new RuntimeType[] {
-		RuntimeType.INT
+		RuntimeType.DOUBLE
 	};
 	public String[] getFieldNames() { return field_names; }
 	public RuntimeType[] getFieldTypes() { return field_types; }
@@ -34,7 +34,7 @@ public class Struct_ArInt extends Struct {
 	public void setFields(Object[] values) {
 		if (values.length != 1)
 			throw new IndexOutOfBoundsException("Invalid field count in ArInt");
-		f_val = (Integer)values[0];
+		f_val = (Double)values[0];
 	}
 
 	public int compareTo(Struct other_gen) {

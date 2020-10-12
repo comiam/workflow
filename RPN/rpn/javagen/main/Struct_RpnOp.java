@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.602429435493E12
+// timestamp: 1.602527166311E12
 
 package main;
 
@@ -7,15 +7,15 @@ import com.area9innovation.flow.*;
 
 public class Struct_RpnOp extends Struct {
 	public String f_id;
-	public Func2<Integer,Integer, Integer> f_op;
+	public Func2<Double,Double, Double> f_op;
 
 	public Struct_RpnOp() {}
-	public Struct_RpnOp(String a_id, Func2<Integer,Integer, Integer> a_op) {
+	public Struct_RpnOp(String a_id, Func2<Double,Double, Double> a_op) {
 		f_id = a_id;
 		f_op = a_op;
 	}
 
-	public int getTypeId() { return 99; }
+	public int getTypeId() { return 100; }
 	public String getTypeName() { return "RpnOp"; }
 
 	private static final String[] field_names = new String[] {
@@ -37,13 +37,13 @@ public class Struct_RpnOp extends Struct {
 		if (values.length != 2)
 			throw new IndexOutOfBoundsException("Invalid field count in RpnOp");
 		f_id = (String)values[0];
-		f_op = (Func2<Integer,Integer, Integer>)values[1];
+		f_op = (Func2<Double,Double, Double>)values[1];
 	}
 
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 99) return 99-tmp;
+		if (tmp != 100) return 100-tmp;
 		Struct_RpnOp other = (Struct_RpnOp)other_gen;
 		tmp = f_id.compareTo(other.f_id);
 		if (tmp != 0) return tmp;

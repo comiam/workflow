@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.602429435497E12
+// timestamp: 1.602527166315E12
 
 package main;
 
@@ -19,7 +19,8 @@ public final class Structs {
 			SingletonStructs.str_ActionIndex,
 			new Struct_ActionVar(),
 			new Struct_ArDiv(),
-			new Struct_ArInt(),
+			new Struct_ArDouble(),
+			new Struct_ArLn(),
 			new Struct_ArMin(),
 			new Struct_ArMult(),
 			new Struct_ArPow(),
