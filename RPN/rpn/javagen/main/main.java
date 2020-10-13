@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.602527166313E12
+// timestamp: 1.602569743688E12
 
 package main;
 
@@ -47,7 +47,6 @@ public final class main extends FlowRuntime {
 	final Module_simplifier m_simplifier = new Module_simplifier(this);
 	final Module_rpn m_rpn = new Module_rpn(this);
 	final Module_alg m_alg = new Module_alg(this);
-	final Module_derivative m_derivative = new Module_derivative(this);
 	final Module_main m_main = new Module_main(this);
 	public main(String[] args) {
 		super(Structs.structList(), args);

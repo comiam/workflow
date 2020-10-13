@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.602527163E12
+// timestamp: 1.60256974E12
 
 package main;
 
@@ -417,10 +417,14 @@ final class Module_simplifier {
 			}
 		} else {
 			if ((((int)l0_it.f_first)==(-1))) {
-				{
-					final Struct l1___tmp = (new Struct_ArMult((new Struct_ArDouble((-1.0))), ((Struct)l0_it.f_second)));
-					aar = l1___tmp;
-					continue TAIL_CALL;
+				if (((boolean)f_getD(((Struct)l0_it.f_second)).f_first)) {
+					return (new Struct_ArDouble((((double)f_getD(((Struct)l0_it.f_second)).f_second)*(-1.0))));
+				} else {
+					{
+						final Struct l1___tmp = (new Struct_ArMult((new Struct_ArDouble((-1.0))), ((Struct)l0_it.f_second)));
+						aar = l1___tmp;
+						continue TAIL_CALL;
+					}
 				}
 			} else {
 				{

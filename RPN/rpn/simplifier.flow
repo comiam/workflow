@@ -33,10 +33,15 @@ foldSigns(ar:ArExp) -> ArExp {
 	}else
 	{
 		if(it.first == -1)
-			foldSigns(ArMult(ArDouble(-1.0), it.second))
+		{
+			if(getD(it.second).first)
+				ArDouble(getD(it.second).second * -1.0)
+			else
+				foldSigns(ArMult(ArDouble(-1.0), it.second));
+		}
 		else
 			foldSigns(it.second);
-	} //(((0-36)+(-36))+(awd^((c^5)-(c^((5-3)-(0-3))))))
+	}
 }
 
 foldExpressions(ar:ArExp) -> ArExp {
