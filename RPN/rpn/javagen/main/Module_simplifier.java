@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.60256974E12
+// timestamp: 1.602571475E12
 
 package main;
 
@@ -10,6 +10,33 @@ final class Module_simplifier {
 	final main runtime;
 	Module_simplifier(main runtime) {
 		this.runtime = runtime;
+	}
+	double f_convVals(String aop, double ad0, double ad1) {
+		if ((aop).equals("+")) {
+			return (ad0+ad1);
+		} else {
+			if ((aop).equals("-")) {
+				return (ad0-ad1);
+			} else {
+				if ((aop).equals("*")) {
+					return (ad0*ad1);
+				} else {
+					if ((aop).equals("/")) {
+						return (ad0/ad1);
+					} else {
+						if ((aop).equals("^")) {
+							return runtime.m_math.f_dpow(ad0, ad1);
+						} else {
+							if ((aop).equals("ln")) {
+								return runtime.h_Native.log(ad0);
+							} else {
+								return ad0;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 	Struct f_createStruct(String aop, Struct al, Struct ar) {
 		if ((aop).equals("+")) {
@@ -27,7 +54,11 @@ final class Module_simplifier {
 						if ((aop).equals("^")) {
 							return (new Struct_ArPow(al, ar));
 						} else {
-							return al;
+							if ((aop).equals("ln")) {
+								return (new Struct_ArLn(al));
+							} else {
+								return al;
+							}
 						}
 					}
 				}
@@ -247,8 +278,8 @@ final class Module_simplifier {
 	Struct f_foldExpressions(Struct aar) {
 	 TAIL_CALL: for(;;) {
 		final Func2<Struct,String, Struct> l1_$0 = new Func2<Struct,String,Struct>() {
-			final public Struct invoke(final String aop, final Struct aar0) {
-				final Object[] l0_args = f_extractArgs(aar0);
+			final public Struct invoke(final String aop, final Struct amAr) {
+				final Object[] l0_args = f_extractArgs(amAr);
 				if ((runtime.h_Native.length(l0_args)==2)) {
 					final Struct l1_p0 = f_foldSigns(((Struct)(l0_args[0])));
 					final Struct l2_p1 = f_foldSigns(((Struct)(l0_args[1])));
@@ -264,7 +295,7 @@ final class Module_simplifier {
 								if (FlowRuntime.compareEqual(((Struct)(l6_arg1[1])),((Struct)(l5_arg0[1])))) {
 									return (new Struct_ArSum(((Struct)(l5_arg0[0])), ((Struct)(l6_arg1[0]))));
 								} else {
-									return aar0;
+									return amAr;
 								}
 							}
 						} else {
@@ -275,7 +306,7 @@ final class Module_simplifier {
 									if (FlowRuntime.compareEqual(((Struct)(l5_arg0[1])),((Struct)(l6_arg1[1])))) {
 										return (new Struct_ArSum(((Struct)(l5_arg0[0])), ((Struct)(l6_arg1[0]))));
 									} else {
-										return aar0;
+										return amAr;
 									}
 								}
 							} else {
@@ -283,7 +314,7 @@ final class Module_simplifier {
 									if (FlowRuntime.compareEqual(((Struct)(l5_arg0[0])),((Struct)(l6_arg1[1])))) {
 										return (new Struct_ArMin(((Struct)(l6_arg1[0])), ((Struct)(l5_arg0[1]))));
 									} else {
-										return aar0;
+										return amAr;
 									}
 								} else {
 									if ((f_isAtom(((Struct)(l6_arg1[0])))||f_isAtom(((Struct)(l5_arg0[0]))))) {
@@ -293,11 +324,11 @@ final class Module_simplifier {
 											if (((l4_op1).equals("-")&&FlowRuntime.compareEqual(((Struct)(l6_arg1[1])),((Struct)(l5_arg0[0]))))) {
 												return ((Struct)(l6_arg1[0]));
 											} else {
-												return aar0;
+												return amAr;
 											}
 										}
 									} else {
-										return aar0;
+										return amAr;
 									}
 								}
 							}
@@ -311,7 +342,7 @@ final class Module_simplifier {
 									if (FlowRuntime.compareEqual(((Struct)(l6_arg1[0])),((Struct)(l5_arg0[1])))) {
 										return (new Struct_ArSum(((Struct)(l5_arg0[0])), ((Struct)(l6_arg1[1]))));
 									} else {
-										return aar0;
+										return amAr;
 									}
 								}
 							} else {
@@ -322,7 +353,7 @@ final class Module_simplifier {
 										if (FlowRuntime.compareEqual(((Struct)(l5_arg0[0])),((Struct)(l6_arg1[0])))) {
 											return (new Struct_ArMult((new Struct_ArDouble((-1.0))), (new Struct_ArSum(((Struct)(l5_arg0[1])), ((Struct)(l6_arg1[1]))))));
 										} else {
-											return aar0;
+											return amAr;
 										}
 									}
 								} else {
@@ -330,7 +361,7 @@ final class Module_simplifier {
 										if (FlowRuntime.compareEqual(((Struct)(l5_arg0[1])),((Struct)(l6_arg1[1])))) {
 											return (new Struct_ArMin(((Struct)(l5_arg0[0])), ((Struct)(l6_arg1[0]))));
 										} else {
-											return aar0;
+											return amAr;
 										}
 									} else {
 										if (((l3_op0).equals("+")&&(l4_op1).equals("+"))) {
@@ -346,7 +377,7 @@ final class Module_simplifier {
 														if (FlowRuntime.compareEqual(((Struct)(l5_arg0[1])),((Struct)(l6_arg1[0])))) {
 															return (new Struct_ArMin(((Struct)(l5_arg0[0])), ((Struct)(l6_arg1[1]))));
 														} else {
-															return aar0;
+															return amAr;
 														}
 													}
 												}
@@ -371,7 +402,7 @@ final class Module_simplifier {
 																	if (((l4_op1).equals("-")&&FlowRuntime.compareEqual(((Struct)(l5_arg0[0])),((Struct)(l6_arg1[0]))))) {
 																		return ((Struct)(l6_arg1[1]));
 																	} else {
-																		return aar0;
+																		return amAr;
 																	}
 																}
 															}
@@ -379,18 +410,18 @@ final class Module_simplifier {
 													}
 												}
 											} else {
-												return aar0;
+												return amAr;
 											}
 										}
 									}
 								}
 							}
 						} else {
-							return aar0;
+							return amAr;
 						}
 					}
 				} else {
-					return aar0;
+					return amAr;
 				}
 			}
 		};
@@ -472,125 +503,118 @@ final class Module_simplifier {
 	}
 	Struct f_removeTrivialExp(Struct aar) {
 	 TAIL_CALL: for(;;) {
-		final Func2<Struct,String, Struct> l1_$0 = new Func2<Struct,String,Struct>() {
-			final public Struct invoke(final String aop, final Struct aar0) {
-				final Object[] l0_args = f_extractArgs(aar0);
+		final Func1<Boolean,Struct> l0_isZero = new Func1<Boolean,Struct>() {
+			final public Boolean invoke(final Struct aar0) {
+				return ((Boolean)(((boolean)f_getD(aar0).f_first)&&(((double)f_getD(aar0).f_second)==0.0)));
+			}
+		};
+		final Func1<Boolean,Struct> l1_isOne = new Func1<Boolean,Struct>() {
+			final public Boolean invoke(final Struct aar0) {
+				return ((Boolean)(((boolean)f_getD(aar0).f_first)&&(((double)f_getD(aar0).f_second)==1.0)));
+			}
+		};
+		final Func1<Double,Struct> l2_getVal = new Func1<Double,Struct>() {
+			final public Double invoke(final Struct aar0) {
+				return ((Double)f_getD(aar0).f_second);
+			}
+		};
+		final Func2<Struct,String, Struct> l4_$3 = new Func2<Struct,String,Struct>() {
+			final public Struct invoke(final String aop, final Struct amAr) {
+				final Object[] l0_args = f_extractArgs(amAr);
 				if ((runtime.h_Native.length(l0_args)==2)) {
 					final boolean l1_flag0 = ((boolean)f_getD(((Struct)(l0_args[0]))).f_first);
 					final boolean l2_flag1 = ((boolean)f_getD(((Struct)(l0_args[1]))).f_first);
-					final double l3_l0 = ((double)f_getD(((Struct)(l0_args[0]))).f_second);
-					final double l4_r0 = ((double)f_getD(((Struct)(l0_args[1]))).f_second);
-					if ((aop).equals("^")) {
-						if ((l4_r0==0.0)) {
-							return (new Struct_ArDouble(1.0));
-						} else {
-							if ((l4_r0==0.1)) {
-								return ((Struct)(l0_args[0]));
-							} else {
-								if ((l3_l0==0.1)) {
-									return (new Struct_ArDouble(1.0));
-								} else {
-									if ((((l3_l0==0.0)&&((boolean)f_getD(((Struct)(l0_args[1]))).f_first))&&(l4_r0!=0.1))) {
-										return (new Struct_ArDouble(0.0));
-									} else {
-										if ((l1_flag0&&l2_flag1)) {
-											return (new Struct_ArDouble(runtime.m_math.f_dpow(l3_l0, l4_r0)));
-										} else {
-											return aar0;
-										}
-									}
-								}
-							}
-						}
+					if ((l2_flag1&&l1_flag0)) {
+						return (new Struct_ArDouble(f_convVals(aop, ((double)l2_getVal.invoke(((Struct)(l0_args[0])))), ((double)l2_getVal.invoke(((Struct)(l0_args[1])))))));
 					} else {
-						if ((aop).equals("*")) {
-							if (((l4_r0==0.0)||(l3_l0==0.0))) {
-								return (new Struct_ArDouble(0.0));
+						if ((aop).equals("^")) {
+							if ((((boolean)l0_isZero.invoke(((Struct)(l0_args[1]))))||((boolean)l1_isOne.invoke(((Struct)(l0_args[0])))))) {
+								return (new Struct_ArDouble(1.0));
 							} else {
-								if ((l4_r0==1.0)) {
+								if (((boolean)l1_isOne.invoke(((Struct)(l0_args[1]))))) {
 									return ((Struct)(l0_args[0]));
 								} else {
-									if ((l3_l0==1.0)) {
-										return ((Struct)(l0_args[1]));
+									if (((((boolean)l0_isZero.invoke(((Struct)(l0_args[0]))))&&((boolean)f_getD(((Struct)(l0_args[1]))).f_first))&&((boolean)l1_isOne.invoke(((Struct)(l0_args[1])))))) {
+										return (new Struct_ArDouble(0.0));
 									} else {
-										if (FlowRuntime.compareEqual(((Struct)(l0_args[0])),((Struct)(l0_args[1])))) {
-											return (new Struct_ArPow(((Struct)(l0_args[0])), (new Struct_ArDouble(2.0))));
-										} else {
-											if ((l1_flag0&&l2_flag1)) {
-												return (new Struct_ArDouble((l3_l0*l4_r0)));
-											} else {
-												return aar0;
-											}
-										}
+										return amAr;
 									}
 								}
 							}
 						} else {
-							if ((aop).equals("/")) {
-								if ((l3_l0==0.0)) {
+							if ((aop).equals("*")) {
+								if ((((boolean)l0_isZero.invoke(((Struct)(l0_args[1]))))||((boolean)l0_isZero.invoke(((Struct)(l0_args[0])))))) {
 									return (new Struct_ArDouble(0.0));
 								} else {
-									if ((l4_r0==1.0)) {
+									if (((boolean)l1_isOne.invoke(((Struct)(l0_args[1]))))) {
 										return ((Struct)(l0_args[0]));
 									} else {
-										if (FlowRuntime.compareEqual(((Struct)(l0_args[0])),((Struct)(l0_args[1])))) {
-											return (new Struct_ArDouble(1.0));
+										if (((boolean)l1_isOne.invoke(((Struct)(l0_args[0]))))) {
+											return ((Struct)(l0_args[1]));
 										} else {
-											if ((l1_flag0&&l2_flag1)) {
-												return (new Struct_ArDouble((l3_l0/l4_r0)));
+											if (FlowRuntime.compareEqual(((Struct)(l0_args[0])),((Struct)(l0_args[1])))) {
+												return (new Struct_ArPow(((Struct)(l0_args[0])), (new Struct_ArDouble(2.0))));
 											} else {
-												return aar0;
+												return amAr;
 											}
 										}
 									}
 								}
 							} else {
-								if ((aop).equals("-")) {
-									if (FlowRuntime.compareEqual(((Struct)(l0_args[0])),((Struct)(l0_args[1])))) {
+								if ((aop).equals("/")) {
+									if (((boolean)l0_isZero.invoke(((Struct)(l0_args[0]))))) {
 										return (new Struct_ArDouble(0.0));
 									} else {
-										if ((l4_r0==0.0)) {
+										if (((boolean)l1_isOne.invoke(((Struct)(l0_args[1]))))) {
 											return ((Struct)(l0_args[0]));
 										} else {
-											if ((l1_flag0&&l2_flag1)) {
-												return (new Struct_ArDouble((l3_l0-l4_r0)));
+											if (FlowRuntime.compareEqual(((Struct)(l0_args[0])),((Struct)(l0_args[1])))) {
+												return (new Struct_ArDouble(1.0));
 											} else {
-												return aar0;
+												return amAr;
 											}
 										}
 									}
 								} else {
-									if ((aop).equals("+")) {
-										if ((l3_l0==0.0)) {
-											return ((Struct)(l0_args[1]));
+									if ((aop).equals("-")) {
+										if (FlowRuntime.compareEqual(((Struct)(l0_args[0])),((Struct)(l0_args[1])))) {
+											return (new Struct_ArDouble(0.0));
 										} else {
-											if ((l4_r0==0.0)) {
+											if (((boolean)l0_isZero.invoke(((Struct)(l0_args[1]))))) {
 												return ((Struct)(l0_args[0]));
 											} else {
-												if (FlowRuntime.compareEqual(((Struct)(l0_args[0])),((Struct)(l0_args[1])))) {
-													return (new Struct_ArMult((new Struct_ArDouble(2.0)), ((Struct)(l0_args[0]))));
+												return amAr;
+											}
+										}
+									} else {
+										if ((aop).equals("+")) {
+											if (((boolean)l0_isZero.invoke(((Struct)(l0_args[0]))))) {
+												return ((Struct)(l0_args[1]));
+											} else {
+												if (((boolean)l0_isZero.invoke(((Struct)(l0_args[1]))))) {
+													return ((Struct)(l0_args[0]));
 												} else {
-													if ((l1_flag0&&l2_flag1)) {
-														return (new Struct_ArDouble((l3_l0+l4_r0)));
+													if (FlowRuntime.compareEqual(((Struct)(l0_args[0])),((Struct)(l0_args[1])))) {
+														return (new Struct_ArMult((new Struct_ArDouble(2.0)), ((Struct)(l0_args[0]))));
 													} else {
-														return aar0;
+														return amAr;
 													}
 												}
 											}
-										}
-									} else {
-										if ((aop).equals("ln")) {
-											if ((l3_l0==1.0)) {
-												return (new Struct_ArDouble(0.0));
-											} else {
-												if ((l3_l0==runtime.m_math.g_E_CONST)) {
-													return (new Struct_ArDouble(1.0));
-												} else {
-													return aar0;
-												}
-											}
 										} else {
-											return aar0;
+											if ((aop).equals("ln")) {
+												if (((boolean)l1_isOne.invoke(((Struct)(l0_args[0]))))) {
+													return (new Struct_ArDouble(0.0));
+												} else {
+													if ((((double)l2_getVal.invoke(((Struct)(l0_args[0]))))==runtime.m_math.g_E_CONST)) {
+														return (new Struct_ArDouble(1.0));
+													} else {
+														return amAr;
+													}
+												}
+											} else {
+												return amAr;
+											}
 										}
 									}
 								}
@@ -598,17 +622,17 @@ final class Module_simplifier {
 						}
 					}
 				} else {
-					return aar0;
+					return amAr;
 				}
 			}
 		};
-		final Struct l2_it = f_execSimplifier(aar, l1_$0);
-		if (FlowRuntime.compareEqual(l2_it,aar)) {
-			return l2_it;
+		final Struct l5_it = f_execSimplifier(aar, l4_$3);
+		if (FlowRuntime.compareEqual(l5_it,aar)) {
+			return l5_it;
 		} else {
 			{
-				final Struct l3___tmp = l2_it;
-				aar = l3___tmp;
+				final Struct l6___tmp = l5_it;
+				aar = l6___tmp;
 				continue TAIL_CALL;
 			}
 		}
