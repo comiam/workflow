@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.602527163E12
+// timestamp: 1.602567275E12
 
 package main;
 
@@ -194,6 +194,8 @@ final class Module_simplifier {
 			}
 		} else {
 			final String l1_op = f_detectType(aar);
+			runtime.m_runtime.f_println(l1_op);
+			runtime.m_runtime.f_println(aar);
 			final Struct_Pair l2_newL = f_extractSign(((Struct)(l0_arr[0])));
 			final Struct_Pair l3_newR = f_extractSign(((Struct)(l0_arr[1])));
 			final Func2<Integer,Integer, Integer> l4_signMul = new Func2<Integer,Integer,Integer>() {
