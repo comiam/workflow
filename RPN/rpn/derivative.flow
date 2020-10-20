@@ -1,53 +1,41 @@
 import simplifier;
 
 export {
-	ar2diff(ar:ArExp, var: string) -> ArExp;
+	ar2diff(ar:AlgExp, var: string) -> AlgExp;
 }
 
-ar2diff(ar:ArExp, var: string) -> ArExp {
-	simplifyTree(diffArImpl(ar, var));
+ar2diff(ar:AlgExp, var: string) -> AlgExp {
+	simplifyTree(diffAlgImpl(ar, var));
 }
 
-diffArImpl(ar:ArExp, var: string) -> ArExp {
+diffAlgImpl(ar:AlgExp, var: string) -> AlgExp {
 	switch (ar) {
-		ArPow(l, power): 
-			if(containsVariable(l) && containsVariable(power))// (x^x)'
-				diffArImpl(ArPow(ArDouble(E_CONST), ArMult(power, l)), var)
-			else if(containsVariable(l) && !containsVariable(power)) // (x^n)'
-				ArMult(diffArImpl(l, var), ArMult(power, ArPow(l,ArMin(power, ArDouble(1.0)))))
-			else if(!containsVariable(l) && containsVariable(power)) // (n^x)'
-				ArMult(diffArImpl(power, var), ArMult(ar, ArLn(l)))
-			else ArDouble(0.0);	//const'
-		ArDiv(up, down): 
+		AlgDiv(up, down): 
 			if(containsVariable(up) || containsVariable(down))//(f(x)/g(x))'
-				ArDiv(ArMin(ArMult(diffArImpl(up, var), down), ArMult(up, diffArImpl(down, var))), ArMult(down,down))
-			else ArDouble(0.0);//const
-		ArMin(l, r): 
-			ArMin(diffArImpl(l, var), diffArImpl(r, var));
-		ArSum(l, r): 
-			ArSum(diffArImpl(l, var), diffArImpl(r, var));
-		ArMult(l, r): 
-			ArSum(ArMult(diffArImpl(l, var), r), ArMult(diffArImpl(r, var), l));
-		ArLn(val):
-			ArMult(ArDiv(ArDouble(1.0), val), diffArImpl(val, var));
-		ArDouble(val): 
-			ArDouble(0.0);
-		ArVar(var0):
-			if(var0 == var) ArDouble(1.0) else ArDouble(0.0);	
+				AlgDiv(AlgMin(AlgMult(diffAlgImpl(up, var), down), AlgMult(up, diffAlgImpl(down, var))), AlgMult(down,down))
+			else AlgDouble(0.0);//const
+		AlgMin(l, r): 
+			AlgMin(diffAlgImpl(l, var), diffAlgImpl(r, var));
+		AlgSum(l, r): 
+			AlgSum(diffAlgImpl(l, var), diffAlgImpl(r, var));
+		AlgMult(l, r): 
+			AlgSum(AlgMult(diffAlgImpl(l, var), r), AlgMult(diffAlgImpl(r, var), l));
+		AlgDouble(val): 
+			AlgDouble(0.0);
+		AlgVar(var0):
+			if(var0 == var) AlgDouble(1.0) else AlgDouble(0.0);	
 	}
 }
 
-containsVariable(ar:ArExp) -> bool {
+containsVariable(ar:AlgExp) -> bool {
 	switch(ar) {
-		ArVar(var):
+		AlgVar(var):
 			true;
-		ArDouble(val):
+		AlgDouble(val):
 			false;
 		default:{
 			arr = extractArgs(ar);
 			containsVariable(arr[0]) || containsVariable(arr[1]);
 		}	
-	}
-
-			
+	}	
 }

@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.602567278215E12
+// timestamp: 1.603122528166E12
 
 package main;
 
@@ -18,15 +18,13 @@ public final class Structs {
 			new Struct_ActionConstantString(),
 			SingletonStructs.str_ActionIndex,
 			new Struct_ActionVar(),
-			new Struct_ArDiv(),
-			new Struct_ArDouble(),
-			new Struct_ArLn(),
-			new Struct_ArMin(),
-			new Struct_ArMult(),
-			new Struct_ArPow(),
-			new Struct_ArRpn(),
-			new Struct_ArSum(),
-			new Struct_ArVar(),
+			new Struct_AlgDiv(),
+			new Struct_AlgDouble(),
+			new Struct_AlgMin(),
+			new Struct_AlgMult(),
+			new Struct_AlgRpn(),
+			new Struct_AlgSum(),
+			new Struct_AlgVar(),
 			new Struct_BindMatched(),
 			new Struct_BindResult(),
 			new Struct_CharRange(),
@@ -54,6 +52,7 @@ public final class Structs {
 			new Struct_LineColumn(),
 			new Struct_LineResolver(),
 			new Struct_LingoValue(),
+			new Struct_Mono(),
 			new Struct_Negation(),
 			SingletonStructs.str_None,
 			new Struct_OWASP(),
@@ -105,11 +104,13 @@ public final class Structs {
 			new Struct_PegVmCacheItem(),
 			SingletonStructs.str_PegVoid,
 			new Struct_Plus(),
+			new Struct_Poly(),
 			new Struct_PopResult(),
 			new Struct_PopSetResult(),
 			new Struct_Production(),
 			new Struct_Quadruple(),
-			new Struct_RpnArg(),
+			new Struct_RatFun(),
+			new Struct_RpnAlgg(),
 			new Struct_RpnOp(),
 			new Struct_RpnVar(),
 			new Struct_Rule(),

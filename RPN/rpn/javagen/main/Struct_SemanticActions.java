@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.602567278211E12
+// timestamp: 1.603122528162E12
 
 package main;
 
@@ -13,7 +13,7 @@ public class Struct_SemanticActions extends Struct {
 		f_t = a_t;
 	}
 
-	public int getTypeId() { return 104; }
+	public int getTypeId() { return 105; }
 	public String getTypeName() { return "SemanticActions"; }
 
 	private static final String[] field_names = new String[] {
@@ -40,7 +40,7 @@ public class Struct_SemanticActions extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 104) return 104-tmp;
+		if (tmp != 105) return 105-tmp;
 		Struct_SemanticActions other = (Struct_SemanticActions)other_gen;
 		tmp = f_t.compareTo(other.f_t);
 		return tmp;

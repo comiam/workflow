@@ -39,6 +39,14 @@ final class Module_runtime {
 		}
 	 }
 	}
+	Func1<Boolean,Object> f_eq(Object av1) {
+		final Object l0_v1 = av1;
+		return new Func1<Boolean,Object>() {
+			final public Boolean invoke(final Object av2) {
+				return FlowRuntime.compareEqual(l0_v1,av2);
+			}
+		};
+	}
 	Object[] f_generate(int astart, int aend, Func1<Object,Integer> afn) {
 		if ((astart>=aend)) {
 			return SingletonStructs.arr_empty;

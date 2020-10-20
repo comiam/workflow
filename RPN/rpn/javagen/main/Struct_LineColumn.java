@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.602567278205E12
+// timestamp: 1.603122528155E12
 
 package main;
 
@@ -21,7 +21,7 @@ public class Struct_LineColumn extends Struct {
 		f_lineResolver = a_lineResolver;
 	}
 
-	public int getTypeId() { return 41; }
+	public int getTypeId() { return 39; }
 	public String getTypeName() { return "LineColumn"; }
 
 	private static final String[] field_names = new String[] {
@@ -52,7 +52,7 @@ public class Struct_LineColumn extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 41) return 41-tmp;
+		if (tmp != 39) return 39-tmp;
 		Struct_LineColumn other = (Struct_LineColumn)other_gen;
 		tmp = f_line.compareTo(other.f_line);
 		if (tmp != 0) return tmp;

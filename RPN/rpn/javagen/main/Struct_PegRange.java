@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.602567278208E12
+// timestamp: 1.603122528158E12
 
 package main;
 
@@ -15,7 +15,7 @@ public class Struct_PegRange extends Struct {
 		f_u = a_u;
 	}
 
-	public int getTypeId() { return 76; }
+	public int getTypeId() { return 75; }
 	public String getTypeName() { return "PegRange"; }
 
 	private static final String[] field_names = new String[] {
@@ -43,7 +43,7 @@ public class Struct_PegRange extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 76) return 76-tmp;
+		if (tmp != 75) return 75-tmp;
 		Struct_PegRange other = (Struct_PegRange)other_gen;
 		tmp = f_l.compareTo(other.f_l);
 		if (tmp != 0) return tmp;

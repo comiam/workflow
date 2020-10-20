@@ -11,10 +11,6 @@ final class Module_math {
 	Module_math(main runtime) {
 		this.runtime = runtime;
 	}
-	public double g_E_CONST;
-	public void init_E_CONST() {
-		g_E_CONST=2.7182818284590446;
-	}
 	double f_abs(double ax) {
 		if ((ax<0.0)) {
 			return (-ax);
@@ -31,9 +27,6 @@ final class Module_math {
 	}
 	double f_dfloor(double ad) {
 		return (ad-(ad%1.0));
-	}
-	double f_dpow(double ax, double am) {
-		return (runtime.h_Native.exp((am*runtime.h_Native.log(f_abs(ax))))*(((ax<0.0)&&((f_floor(f_abs(am))%2)==1))?(-1.0):1.0));
 	}
 	double f_dround(double ax) {
 		return f_dfloor((ax+((ax<0.0)?(-0.5):0.5)));

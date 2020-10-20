@@ -3,11 +3,11 @@ import ds/tree;
 import sys/system;
 
 export {
-	calcSimpleRpn(ar:ArRpn) -> double;
-	calcVarRpn(ar:ArRpn, vars: Tree<string, double>) -> double;
+	calcSimpleRpn(ar:AlgRpn) -> double;
+	calcVarRpn(ar:AlgRpn, vars: Tree<string, double>) -> double;
 }
 
-calcVarRpn(ar:ArRpn, vars: Tree<string, double>) -> double {
+calcVarRpn(ar:AlgRpn, vars: Tree<string, double>) -> double {
 	val = foldr(ar.rpn, [0.0], \acc, rpnn -> {
 		len = length(acc);
 
@@ -38,19 +38,9 @@ calcVarRpn(ar:ArRpn, vars: Tree<string, double>) -> double {
 							concat(take(acc, len-1), [1.0])
 						else 
 							concat([op(acc[0],acc[1])], tailFrom(acc, 2));
-					}else if(id == "^") {
-						if(len < 2)
-							concat(take(acc, len-1), [1.0])
-						else 
-							concat([op(acc[0],acc[1])], tailFrom(acc, 2));
-					}else if(id == "ln") {
-						if(len < 1)
-							concat(take(acc, len-1), [1.0])
-						else 
-							concat([op(acc[0],0.0)], tailFrom(acc, 1));
 					}else acc;
 				}
-				RpnArg(val):
+				RpnAlgg(val):
 					concat([val], acc);
 				RpnVar(var): {
 					res = lookupTree(vars, var);
@@ -77,7 +67,7 @@ calcVarRpn(ar:ArRpn, vars: Tree<string, double>) -> double {
 		val[0];
 }	
 
-calcSimpleRpn(ar:ArRpn) -> double {
+calcSimpleRpn(ar:AlgRpn) -> double {
 	val = foldr(ar.rpn, [0.0], \acc, rpnn -> {
 		len = length(acc);
 
@@ -120,7 +110,7 @@ calcSimpleRpn(ar:ArRpn) -> double {
 							concat([op(acc[0],0.0)], tailFrom(acc, 1));
 					}else acc;
 				}
-				RpnArg(val):
+				RpnAlgg(val):
 					concat([val], acc);
 				RpnVar(var):
 					concat(take(acc, len-1), [2.0]);

@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.602567278208E12
+// timestamp: 1.603122528158E12
 
 package main;
 
@@ -13,7 +13,7 @@ public class Struct_PegRuleType extends Struct {
 		f_rule = a_rule;
 	}
 
-	public int getTypeId() { return 79; }
+	public int getTypeId() { return 78; }
 	public String getTypeName() { return "PegRuleType"; }
 
 	private static final String[] field_names = new String[] {
@@ -40,7 +40,7 @@ public class Struct_PegRuleType extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 79) return 79-tmp;
+		if (tmp != 78) return 78-tmp;
 		Struct_PegRuleType other = (Struct_PegRuleType)other_gen;
 		tmp = f_rule.compareTo(other.f_rule);
 		return tmp;

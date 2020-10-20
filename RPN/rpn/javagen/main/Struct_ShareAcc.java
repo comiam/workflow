@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.602567278211E12
+// timestamp: 1.603122528162E12
 
 package main;
 
@@ -17,7 +17,7 @@ public class Struct_ShareAcc extends Struct {
 		f_suffix2 = a_suffix2;
 	}
 
-	public int getTypeId() { return 107; }
+	public int getTypeId() { return 108; }
 	public String getTypeName() { return "ShareAcc"; }
 
 	private static final String[] field_names = new String[] {
@@ -46,7 +46,7 @@ public class Struct_ShareAcc extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 107) return 107-tmp;
+		if (tmp != 108) return 108-tmp;
 		Struct_ShareAcc other = (Struct_ShareAcc)other_gen;
 		tmp = FlowRuntime.compareByValue(f_prefix, other.f_prefix);
 		if (tmp != 0) return tmp;

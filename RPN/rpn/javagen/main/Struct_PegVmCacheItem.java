@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.602567278209E12
+// timestamp: 1.60312252816E12
 
 package main;
 
@@ -15,7 +15,7 @@ public class Struct_PegVmCacheItem extends Struct {
 		f_capture = a_capture;
 	}
 
-	public int getTypeId() { return 92; }
+	public int getTypeId() { return 91; }
 	public String getTypeName() { return "PegVmCacheItem"; }
 
 	private static final String[] field_names = new String[] {
@@ -43,7 +43,7 @@ public class Struct_PegVmCacheItem extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 92) return 92-tmp;
+		if (tmp != 91) return 91-tmp;
 		Struct_PegVmCacheItem other = (Struct_PegVmCacheItem)other_gen;
 		if (f_pos != other.f_pos)
 			return (f_pos > other.f_pos) ? 1 : -1;

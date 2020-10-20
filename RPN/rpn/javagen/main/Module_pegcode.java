@@ -18,7 +18,7 @@ final class Module_pegcode {
 	String f_pegcode2string(int apc, Struct ac, Func1<String,Integer> afn) {
 		Struct l0__tmp = ac;
 		switch (l0__tmp.getTypeId()) {
-		case 86/*PegStringChoice*/: {
+		case 85/*PegStringChoice*/: {
 			final Struct_PegStringChoice l1__tmp = (Struct_PegStringChoice)l0__tmp;
 			final String l2_x = l1__tmp.f_x;
 			final int l3_d = l1__tmp.f_commit;
@@ -26,7 +26,7 @@ final class Module_pegcode {
 			final int l5_d = l1__tmp.f_commit;
 			return (((((("PegStringChoice("+((Func1<String,String>)(Func1)runtime.gfw_toString).invoke(l4_x))+", ")+runtime.m_string.f_i2s(l5_d))+" -> ")+runtime.m_string.f_i2s((apc+l5_d)))+")");
 		}
-		case 77/*PegRangeChoice*/: {
+		case 76/*PegRangeChoice*/: {
 			final Struct_PegRangeChoice l1__tmp = (Struct_PegRangeChoice)l0__tmp;
 			final String l6_low = l1__tmp.f_l;
 			final String l7_up = l1__tmp.f_u;
@@ -36,25 +36,25 @@ final class Module_pegcode {
 			final int l11_d = l1__tmp.f_commit;
 			return (((((((("PegRangeChoice("+((Func1<String,String>)(Func1)runtime.gfw_toString).invoke(l9_low))+", ")+((Func1<String,String>)(Func1)runtime.gfw_toString).invoke(l10_up))+", ")+runtime.m_string.f_i2s(l11_d))+" -> ")+runtime.m_string.f_i2s((apc+l11_d)))+")");
 		}
-		case 64/*PegChoice*/: {
+		case 63/*PegChoice*/: {
 			final Struct_PegChoice l1__tmp = (Struct_PegChoice)l0__tmp;
 			final int l12_d = l1__tmp.f_l;
 			final int l13_d = l1__tmp.f_l;
 			return (((("PegChoice(+"+runtime.m_string.f_i2s(l13_d))+" -> ")+runtime.m_string.f_i2s((apc+l13_d)))+")");
 		}
-		case 67/*PegCommit*/: {
+		case 66/*PegCommit*/: {
 			final Struct_PegCommit l1__tmp = (Struct_PegCommit)l0__tmp;
 			final int l14_d = l1__tmp.f_l;
 			final int l15_d = l1__tmp.f_l;
 			return (((("PegCommit(+"+runtime.m_string.f_i2s(l15_d))+" -> ")+runtime.m_string.f_i2s((apc+l15_d)))+")");
 		}
-		case 60/*PegCall*/: {
+		case 59/*PegCall*/: {
 			final Struct_PegCall l1__tmp = (Struct_PegCall)l0__tmp;
 			final int l16_d = l1__tmp.f_l;
 			final int l17_d = l1__tmp.f_l;
 			return (((("PegCall("+runtime.m_string.f_i2s(l17_d))+" : ")+afn.invoke(((Integer)l17_d)))+")");
 		}
-		case 59/*PegCacheCall*/: {
+		case 58/*PegCacheCall*/: {
 			final Struct_PegCacheCall l1__tmp = (Struct_PegCacheCall)l0__tmp;
 			final int l18_d = l1__tmp.f_l;
 			final int l19_ce = l1__tmp.f_cacheEntry;
@@ -157,7 +157,7 @@ final class Module_pegcode {
 			final public Integer invoke(final Integer aacc, final Struct aop) {
 				Struct l0__tmp = aop;
 				switch (l0__tmp.getTypeId()) {
-				case 59/*PegCacheCall*/: {
+				case 58/*PegCacheCall*/: {
 					final Struct_PegCacheCall l1__tmp = (Struct_PegCacheCall)l0__tmp;
 					final int l2_l = l1__tmp.f_l;
 					final int l3_c = l1__tmp.f_cacheEntry;
@@ -219,11 +219,11 @@ final class Module_pegcode {
 		if ((apc<0)) {
 			Struct l0__tmp = astack;
 			switch (l0__tmp.getTypeId()) {
-			case 24/*EmptyList*/: {
+			case 22/*EmptyList*/: {
 				runtime.m_pegcode_lib.f_pegAddress2rule(apca.f_fns, apc);
 				return (new Struct_ParseResult(ai, ((Struct)SingletonStructs.str_None)));
 			}
-			case 21/*Cons*/: {
+			case 19/*Cons*/: {
 				final Struct_Cons l1__tmp = (Struct_Cons)l0__tmp;
 				final Object l2_h = l1__tmp.f_head;
 				final Struct l3_t = l1__tmp.f_tail;
@@ -231,7 +231,7 @@ final class Module_pegcode {
 				final Struct l5_t = l1__tmp.f_tail;
 				Struct l6__tmp = l4_h;
 				switch (l6__tmp.getTypeId()) {
-				case 81/*PegStackPc*/: {
+				case 80/*PegStackPc*/: {
 					final Struct_PegStackPc l7__tmp = (Struct_PegStackPc)l6__tmp;
 					final int l8_pc0 = l7__tmp.f_pc;
 					final Struct l9_cl = l7__tmp.f_capture;
@@ -247,7 +247,7 @@ final class Module_pegcode {
 						continue TAIL_CALL;
 					}
 				}
-				case 82/*PegStackPcCache*/: {
+				case 81/*PegStackPcCache*/: {
 					final Struct_PegStackPcCache l7__tmp = (Struct_PegStackPcCache)l6__tmp;
 					final int l15_pc0 = l7__tmp.f_pc;
 					final int l16_ce = l7__tmp.f_ce;
@@ -269,7 +269,7 @@ final class Module_pegcode {
 						continue TAIL_CALL;
 					}
 				}
-				case 80/*PegStackChoice*/: {
+				case 79/*PegStackChoice*/: {
 					final Struct_PegStackChoice l7__tmp = (Struct_PegStackChoice)l6__tmp;
 					final int l27_pc0 = l7__tmp.f_pc;
 					final int l28_i0 = l7__tmp.f_i;
@@ -300,7 +300,7 @@ final class Module_pegcode {
 			final Struct l37_gsymswitch0 = ((Struct)(apca.f_program[apc]));
 			Struct l38__tmp = l37_gsymswitch0;
 			switch (l38__tmp.getTypeId()) {
-			case 85/*PegString*/: {
+			case 84/*PegString*/: {
 				final Struct_PegString l39__tmp = (Struct_PegString)l38__tmp;
 				final String l40_x = l39__tmp.f_x;
 				final String l41_x = l39__tmp.f_x;
@@ -320,7 +320,7 @@ final class Module_pegcode {
 					}
 				}
 			}
-			case 76/*PegRange*/: {
+			case 75/*PegRange*/: {
 				final Struct_PegRange l39__tmp = (Struct_PegRange)l38__tmp;
 				final String l45_low = l39__tmp.f_l;
 				final String l46_up = l39__tmp.f_u;
@@ -343,7 +343,7 @@ final class Module_pegcode {
 					}
 				}
 			}
-			case 75/*PegJump*/: {
+			case 74/*PegJump*/: {
 				final Struct_PegJump l39__tmp = (Struct_PegJump)l38__tmp;
 				final int l53_l = l39__tmp.f_l;
 				final int l54_l = l39__tmp.f_l;
@@ -353,7 +353,7 @@ final class Module_pegcode {
 					continue TAIL_CALL;
 				}
 			}
-			case 64/*PegChoice*/: {
+			case 63/*PegChoice*/: {
 				final Struct_PegChoice l39__tmp = (Struct_PegChoice)l38__tmp;
 				final int l56_l = l39__tmp.f_l;
 				final int l57_l = l39__tmp.f_l;
@@ -365,7 +365,7 @@ final class Module_pegcode {
 					continue TAIL_CALL;
 				}
 			}
-			case 86/*PegStringChoice*/: {
+			case 85/*PegStringChoice*/: {
 				final Struct_PegStringChoice l39__tmp = (Struct_PegStringChoice)l38__tmp;
 				final String l60_x = l39__tmp.f_x;
 				final int l61_l = l39__tmp.f_commit;
@@ -387,7 +387,7 @@ final class Module_pegcode {
 					}
 				}
 			}
-			case 77/*PegRangeChoice*/: {
+			case 76/*PegRangeChoice*/: {
 				final Struct_PegRangeChoice l39__tmp = (Struct_PegRangeChoice)l38__tmp;
 				final String l67_low = l39__tmp.f_l;
 				final String l68_up = l39__tmp.f_u;
@@ -412,7 +412,7 @@ final class Module_pegcode {
 					}
 				}
 			}
-			case 60/*PegCall*/: {
+			case 59/*PegCall*/: {
 				final Struct_PegCall l39__tmp = (Struct_PegCall)l38__tmp;
 				final int l77_l = l39__tmp.f_l;
 				final int l78_l = l39__tmp.f_l;
@@ -428,7 +428,7 @@ final class Module_pegcode {
 					continue TAIL_CALL;
 				}
 			}
-			case 59/*PegCacheCall*/: {
+			case 58/*PegCacheCall*/: {
 				final Struct_PegCacheCall l39__tmp = (Struct_PegCacheCall)l38__tmp;
 				final int l83_l = l39__tmp.f_l;
 				final int l84_ce = l39__tmp.f_cacheEntry;
@@ -437,7 +437,7 @@ final class Module_pegcode {
 				final Struct l87_c = runtime.m_inttree.f_lookupIntTree(((Reference<Struct>)(apca.f_cache.f_caches[l86_ce])), ai);
 				Struct l88__tmp = l87_c;
 				switch (l88__tmp.getTypeId()) {
-				case 45/*None*/: {
+				case 44/*None*/: {
 					{
 						final int l90___tmp = l85_l;
 						final Struct l91___tmp = (new Struct_Cons((new Struct_PegStackPcCache((apc+1), l86_ce, ai, acapture)), astack));
@@ -450,7 +450,7 @@ final class Module_pegcode {
 						continue TAIL_CALL;
 					}
 				}
-				case 108/*Some*/: {
+				case 109/*Some*/: {
 					final Struct_Some l89__tmp = (Struct_Some)l88__tmp;
 					final Object l94_r = l89__tmp.f_value;
 					final Struct_PegVmCacheItem l95_r = ((Struct_PegVmCacheItem)l89__tmp.f_value);
@@ -476,13 +476,13 @@ final class Module_pegcode {
 					throw new RuntimeException("Unexpected struct in switch: "+l88__tmp.getTypeName());
 				}
 			}
-			case 78/*PegReturn*/: {
+			case 77/*PegReturn*/: {
 				Struct l100__tmp = astack;
 				switch (l100__tmp.getTypeId()) {
-				case 24/*EmptyList*/: {
+				case 22/*EmptyList*/: {
 					return (new Struct_ParseResult((-1), ((Struct)SingletonStructs.str_None)));
 				}
-				case 21/*Cons*/: {
+				case 19/*Cons*/: {
 					final Struct_Cons l101__tmp = (Struct_Cons)l100__tmp;
 					final Object l102_h = l101__tmp.f_head;
 					final Struct l103_t = l101__tmp.f_tail;
@@ -490,7 +490,7 @@ final class Module_pegcode {
 					final Struct l105_t = l101__tmp.f_tail;
 					Struct l106__tmp = l104_h;
 					switch (l106__tmp.getTypeId()) {
-					case 81/*PegStackPc*/: {
+					case 80/*PegStackPc*/: {
 						final Struct_PegStackPc l107__tmp = (Struct_PegStackPc)l106__tmp;
 						final int l108_pc0 = l107__tmp.f_pc;
 						final Struct l109_tl = l107__tmp.f_capture;
@@ -508,7 +508,7 @@ final class Module_pegcode {
 							continue TAIL_CALL;
 						}
 					}
-					case 82/*PegStackPcCache*/: {
+					case 81/*PegStackPcCache*/: {
 						final Struct_PegStackPcCache l107__tmp = (Struct_PegStackPcCache)l106__tmp;
 						final int l116_pc0 = l107__tmp.f_pc;
 						final int l117_ce = l107__tmp.f_ce;
@@ -521,7 +521,7 @@ final class Module_pegcode {
 						final Struct l124_res = ((Func2<Struct,Struct, Struct>)(Func2)runtime.n_headList).invoke(acapture, apca.f_capture);
 						Struct l125__tmp = l124_res;
 						switch (l125__tmp.getTypeId()) {
-						case 103/*RuleResult*/: {
+						case 104/*RuleResult*/: {
 							final Struct_RuleResult l126__tmp = (Struct_RuleResult)l125__tmp;
 							final Struct l127_r = l126__tmp.f_result;
 							final Object l128___ = l126__tmp.f_input;
@@ -548,7 +548,7 @@ final class Module_pegcode {
 							continue TAIL_CALL;
 						}
 					}
-					case 80/*PegStackChoice*/: {
+					case 79/*PegStackChoice*/: {
 						final Struct_PegStackChoice l107__tmp = (Struct_PegStackChoice)l106__tmp;
 						final int l137_pc0 = l107__tmp.f_pc;
 						final int l138_i0 = l107__tmp.f_i;
@@ -570,7 +570,7 @@ final class Module_pegcode {
 					throw new RuntimeException("Unexpected struct in switch: "+l100__tmp.getTypeName());
 				}
 			}
-			case 69/*PegDrop*/: {
+			case 68/*PegDrop*/: {
 				{
 					final int l144___tmp = (apc+1);
 					final Struct l145___tmp = runtime.n_tailList.invoke(acapture);
@@ -579,7 +579,7 @@ final class Module_pegcode {
 					continue TAIL_CALL;
 				}
 			}
-			case 67/*PegCommit*/: {
+			case 66/*PegCommit*/: {
 				final Struct_PegCommit l39__tmp = (Struct_PegCommit)l38__tmp;
 				final int l146_l = l39__tmp.f_l;
 				final int l147_l = l39__tmp.f_l;
@@ -591,7 +591,7 @@ final class Module_pegcode {
 					continue TAIL_CALL;
 				}
 			}
-			case 84/*PegStartString*/: {
+			case 83/*PegStartString*/: {
 				{
 					final int l150___tmp = (apc+1);
 					final Struct l151___tmp = (new Struct_Cons((new Struct_PegCaptureStringStart(ai)), acapture));
@@ -600,20 +600,20 @@ final class Module_pegcode {
 					continue TAIL_CALL;
 				}
 			}
-			case 56/*PegBindString*/: {
+			case 55/*PegBindString*/: {
 				final Struct_PegBindString l39__tmp = (Struct_PegBindString)l38__tmp;
 				final String l152_v = l39__tmp.f_n;
 				final String l153_v = l39__tmp.f_n;
 				Struct l154__tmp = acapture;
 				switch (l154__tmp.getTypeId()) {
-				case 24/*EmptyList*/: {
+				case 22/*EmptyList*/: {
 					{
 						final int l156___tmp = (apc+1);
 						apc = l156___tmp;
 						continue TAIL_CALL;
 					}
 				}
-				case 21/*Cons*/: {
+				case 19/*Cons*/: {
 					final Struct_Cons l155__tmp = (Struct_Cons)l154__tmp;
 					final Object l157_h = l155__tmp.f_head;
 					final Struct l158_t = l155__tmp.f_tail;
@@ -621,7 +621,7 @@ final class Module_pegcode {
 					final Struct l160_t = l155__tmp.f_tail;
 					Struct l161__tmp = l159_h;
 					switch (l161__tmp.getTypeId()) {
-					case 63/*PegCaptureStringStart*/: {
+					case 62/*PegCaptureStringStart*/: {
 						final Struct_PegCaptureStringStart l162__tmp = (Struct_PegCaptureStringStart)l161__tmp;
 						final int l163_start = l162__tmp.f_start;
 						final int l164_start = l162__tmp.f_start;
@@ -652,7 +652,7 @@ final class Module_pegcode {
 					throw new RuntimeException("Unexpected struct in switch: "+l154__tmp.getTypeName());
 				}
 			}
-			case 83/*PegStartCaptureList*/: {
+			case 82/*PegStartCaptureList*/: {
 				{
 					final int l173___tmp = (apc+1);
 					final Struct l174___tmp = (new Struct_Cons(SingletonStructs.str_PegCaptureStartList, acapture));
@@ -661,18 +661,18 @@ final class Module_pegcode {
 					continue TAIL_CALL;
 				}
 			}
-			case 57/*PegBindValue*/: {
+			case 56/*PegBindValue*/: {
 				final Struct_PegBindValue l39__tmp = (Struct_PegBindValue)l38__tmp;
 				final String l175_v = l39__tmp.f_n;
 				final String l176_v = l39__tmp.f_n;
 				Struct l177_result;
 				Struct l178__tmp = acapture;
 				switch (l178__tmp.getTypeId()) {
-				case 24/*EmptyList*/: {
+				case 22/*EmptyList*/: {
 					l177_result=((Struct)SingletonStructs.str_None);
 					break;
 				}
-				case 21/*Cons*/: {
+				case 19/*Cons*/: {
 					final Struct_Cons l179__tmp = (Struct_Cons)l178__tmp;
 					final Object l180_h = l179__tmp.f_head;
 					final Struct l181_t = l179__tmp.f_tail;
@@ -680,7 +680,7 @@ final class Module_pegcode {
 					final Struct l183_t = l179__tmp.f_tail;
 					Struct l184__tmp = l182_h;
 					switch (l184__tmp.getTypeId()) {
-					case 103/*RuleResult*/: {
+					case 104/*RuleResult*/: {
 						final Struct_RuleResult l185__tmp = (Struct_RuleResult)l184__tmp;
 						final Struct l186_result = l185__tmp.f_result;
 						final Object l187___ = l185__tmp.f_input;
@@ -711,7 +711,7 @@ final class Module_pegcode {
 					continue TAIL_CALL;
 				}
 			}
-			case 55/*PegBindIndex*/: {
+			case 54/*PegBindIndex*/: {
 				final Struct_PegBindIndex l39__tmp = (Struct_PegBindIndex)l38__tmp;
 				final String l196_v = l39__tmp.f_n;
 				final String l197_v = l39__tmp.f_n;
@@ -726,7 +726,7 @@ final class Module_pegcode {
 					continue TAIL_CALL;
 				}
 			}
-			case 51/*PegAction*/: {
+			case 50/*PegAction*/: {
 				final Struct_PegAction l39__tmp = (Struct_PegAction)l38__tmp;
 				final Func1<Object,Struct_PegEnv> l203_fn = l39__tmp.f_fn;
 				final Func1<Object,Struct_PegEnv> l204_fn = l39__tmp.f_fn;
@@ -740,7 +740,7 @@ final class Module_pegcode {
 					continue TAIL_CALL;
 				}
 			}
-			case 52/*PegAction2*/: {
+			case 51/*PegAction2*/: {
 				final Struct_PegAction2 l39__tmp = (Struct_PegAction2)l38__tmp;
 				final Struct l209_e = l39__tmp.f_e;
 				final Struct l210_e = l39__tmp.f_e;
@@ -754,7 +754,7 @@ final class Module_pegcode {
 					continue TAIL_CALL;
 				}
 			}
-			case 53/*PegActionIndex*/: {
+			case 52/*PegActionIndex*/: {
 				final Struct_RuleResult l215_rr = (new Struct_RuleResult(runtime.m_dynamic.f_flow(apca.f_input), ai, 0, (new Struct_Some(runtime.m_dynamic.f_flow(ai)))));
 				{
 					final int l216___tmp = (apc+1);
@@ -764,17 +764,17 @@ final class Module_pegcode {
 					continue TAIL_CALL;
 				}
 			}
-			case 73/*PegFail*/: {
+			case 72/*PegFail*/: {
 				{
 					final int l218___tmp = (-1);
 					apc = l218___tmp;
 					continue TAIL_CALL;
 				}
 			}
-			case 70/*PegEnd*/: {
+			case 69/*PegEnd*/: {
 				return (new Struct_ParseResult(ai, runtime.m_pegcode_lib.f_pegResultFromCapture(acapture)));
 			}
-			case 61/*PegCaptureList*/: {
+			case 60/*PegCaptureList*/: {
 				final Struct_Pair l219_listAndRest = runtime.m_pegcode_lib.f_grabUntilMarker(runtime.m_list.f_makeList(), acapture);
 				final Struct l223_$221 = ((Struct)l219_listAndRest.f_first);
 				final Struct l224_$222 = runtime.m_list.f_makeList();
@@ -782,7 +782,7 @@ final class Module_pegcode {
 					final public Struct invoke(final Struct aacc, final Struct ap) {
 						Struct l0__tmp = ap;
 						switch (l0__tmp.getTypeId()) {
-						case 103/*RuleResult*/: {
+						case 104/*RuleResult*/: {
 							final Struct_RuleResult l1__tmp = (Struct_RuleResult)l0__tmp;
 							final Struct l2_result = l1__tmp.f_result;
 							final Object l3___ = l1__tmp.f_input;
@@ -791,10 +791,10 @@ final class Module_pegcode {
 							final Struct l6_result = l1__tmp.f_result;
 							Struct l7__tmp = l6_result;
 							switch (l7__tmp.getTypeId()) {
-							case 45/*None*/: {
+							case 44/*None*/: {
 								return aacc;
 							}
-							case 108/*Some*/: {
+							case 109/*Some*/: {
 								final Struct_Some l8__tmp = (Struct_Some)l7__tmp;
 								final Object l9_va = l8__tmp.f_value;
 								final Object l10_va = l8__tmp.f_value;
@@ -821,7 +821,7 @@ final class Module_pegcode {
 					continue TAIL_CALL;
 				}
 			}
-			case 65/*PegClearCache*/: {
+			case 64/*PegClearCache*/: {
 				final Object[] l233_$232 = apca.f_cache.f_caches;
 				final Func1<Object,Reference<Struct>> l234_$231 = new Func1<Object,Reference<Struct>>() {
 					final public Object invoke(final Reference<Struct> ac) {
