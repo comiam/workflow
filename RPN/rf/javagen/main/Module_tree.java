@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.599535537E12
+// timestamp: 1.599279091E12
 
 package main;
 
@@ -187,6 +187,9 @@ final class Module_tree {
 		default:
 			throw new RuntimeException("Unexpected struct in switch: "+l0__tmp.getTypeName());
 		}
+	}
+	boolean f_isEmptyTree(Struct at) {
+		return ((Struct)at).getTypeId() == 108;
 	}
 	boolean f_largeTree(Struct atree) {
 		Struct l0__tmp = atree;

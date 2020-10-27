@@ -12,7 +12,6 @@ simplifyTree(ar:AlgExp) -> AlgExp {
 	//Find simple expression like a^1, a+0, a*0, a-0 etc
 	it1 = removeTrivialExp(it0);
 	it2 = foldSigns(it1);
-	println("trird");
 	//Simplify more complex expression like (x-y) + (x+y) = 2x
 	it3 = foldExpressions(it2);
 
@@ -25,35 +24,26 @@ simplifyTree(ar:AlgExp) -> AlgExp {
 foldSigns(ar:AlgExp) -> AlgExp {
 	it = extractSign(ar);
 
-	println(alg2s(it.second) + "\n" + alg2s(ar));
-	if(alg2s(it.second) == alg2s(ar)) {
-	{
-		if(it.first == -1)
-			AlgMult(AlgDouble(-1.0), it.second)
-		else
-			it.second;	
-	}
-	}else {
+	if(alg2s(it.second) == alg2s(ar)) 
+		ar
+	else {
 		if(it.first == -1) {
 			if(getD(it.second).first)
 				AlgDouble(getD(it.second).second * -1.0)
 			else {
-
-				if(detectType(it.second) == "*") {
+				if(detectType(it.second) == "*" || detectType(it.second) == "/") {
 					arr = extractArgs(it.second);
-					if(getD(arr[0]).first) {
-						if(getD(arr[0]).second > 0.0)
-							foldSigns(AlgMult(AlgDouble(getD(arr[0]).second * -1.0), arr[1]))
-						else
-							foldSigns(it.second);
-					}
+					if(getD(arr[0]).first) 
+						createStruct("*", AlgDouble(getD(arr[0]).second * (-1.0)), arr[1])
+					else if(getD(arr[1]).first) 
+						createStruct("*", AlgDouble(getD(arr[1]).second * (-1.0)), arr[0])
 					else
-						foldSigns(AlgMult(AlgDouble(-1.0), it.second));	
+						AlgMult(AlgDouble(-1.0), it.second);
 				}else
-					foldSigns(AlgMult(AlgDouble(-1.0), it.second));
+					AlgMult(AlgDouble(-1.0), it.second);
 			}
 		}else
-			foldSigns(it.second);
+			it.second;	
 	}
 }
 
@@ -257,8 +247,6 @@ extractSign(ar:AlgExp) -> Pair<int, AlgExp> {
 	}else 
 	{
 		op = detectType(ar);
-
-		//println(ar);
 
 		newL = extractSign(arr[0]);
 		newR = extractSign(arr[1]);

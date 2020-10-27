@@ -12,7 +12,7 @@ export {
 
 rf2alg(rf:RatFun) -> AlgExp {
 	simplifyTree(AlgDiv(poly2alg(rf.num), poly2alg(rf.denum)));
-}
+} //((((9*(x*x))-4)/((3*x)+2))-(3*x))
 
 alg2rf(ar:AlgExp) -> RatFun {
 	div = ar2CommonDenum(ar);
@@ -148,9 +148,27 @@ tryDivideRF(rf:RatFun) -> RatFun {
 	num = rf.num;
 	denum = rf.denum;
 
-	if(sizeTree(denum.sum) != 1) 
-		rf
-	else {
+	if(sizeTree(denum.sum) != 1) {
+		cm0 = getCommonMultiplier(num);
+		cm1 = getCommonMultiplier(denum);
+
+		//println(cm0);
+		//println(cm1);
+
+		gcd0 = gcd(cm0.first, cm1.first);
+		pEq = \p0,p1,c0,c1 -> polyEquals(dividePoly(p0, Mono(c0.second), i2d(c0.first)), dividePoly(p1, Mono(c1.second), i2d(c1.first)));
+
+		if(pEq(num,denum,cm0,cm1))
+			RatFun(Poly(makeTree1(differenceMonos(Mono(cm0.second), Mono(cm1.second)), i2d(cm0.first) / i2d(cm1.first))), polyOne())
+		else {
+			newMult = removeCommonVars(Mono(cm0.second), Mono(cm1.second));
+
+			//println(newMult);
+
+			RatFun(multiplePolynoms(dividePoly(num, Mono(cm0.second), i2d(cm0.first)), Poly(makeTree1(newMult.first, i2d(cm0.first) / i2d(cm1.first)))), 
+				multiplePolynoms(dividePoly(denum, Mono(cm1.second), i2d(cm1.first)), Poly(makeTree1(newMult.second, 1.0))));
+		}
+	} else {
 		oneMono = tree2pairs(denum.sum)[0].first;
 		oneCoeff = tree2pairs(denum.sum)[0].second;
 
@@ -160,6 +178,26 @@ tryDivideRF(rf:RatFun) -> RatFun {
 	}
 }
 
+getCommonMultiplier(p:Poly) -> Pair<int, Tree<string, double>> {
+	gcd0 = foldTree(p.sum, Pair(0,0), \monom, coeff, acc0 -> {
+		if(acc0.first == 0 && acc0.second == 0) 
+			Pair(ceil(coeff), 1)
+		else
+			Pair(gcd(acc0.first, ceil(coeff)), 1);
+	});
+
+	varGCD = foldTree(p.sum, getAllVariablesWithMinDegree(p), \monom, coeff, acc0 -> {
+		foldTree(acc0, makeTree(), \var, deg, acc1 -> {
+			if(either(lookupTree(monom.prod, var), -1.0) >= deg)
+				setTree(acc1, var, deg)
+			else
+				acc1;	
+		});
+	});
+
+	Pair(gcd0.first, varGCD);
+}
+
 dividePoly(poly:Poly, sub:Mono, subCoeff: double) -> Poly {
 	Poly(foldTree(poly.sum, makeTree(), \monom, coeff, acc0 -> {
 		if(intersectMonos(monom,sub))
@@ -167,6 +205,15 @@ dividePoly(poly:Poly, sub:Mono, subCoeff: double) -> Poly {
 		else
 			acc0;	
 	}))
+}
+
+//test data
+//(((4*(x*x))-9)*((1/((2*x)-3))-(1/((2*x)+3))))
+//((((9*(x*x))-4)/((3*x)+2))-(3*x))
+//(((6*(x*x))-(2*x))/((2*(x*(x*x)))-(8*x)))
+
+removeCommonVars(m0:Mono, m1:Mono) -> Pair<Mono,Mono> {
+	Pair(differenceMonos(m0,m1), differenceMonos(m1,m0));
 }
 
 getIntersection(poly:Poly, sub:Mono, subCoeff: double) -> Poly {
@@ -187,15 +234,43 @@ intersectMonos(a:Mono, sub:Mono) -> bool {
 		else
 			false;	
 	});
-}
+} 
 
 differenceMonos(a:Mono, b:Mono) -> Mono {
-	Mono(mapTree2(a.prod, \var, deg0 -> {
+	m = Mono(mapTree2(a.prod, \var, deg0 -> {
 		if(containsKeyTree(b.prod, var)) 
 			deg0 - either(lookupTree(b.prod, var), -1.0)
 		else
 			deg0;
 	}));
+
+	if(isEmptyTree(m.prod))
+		Mono(makeTree1("1.0", 1.0))
+	else
+		m;	
+}
+
+getAllVariablesWithMinDegree(p:Poly) -> Tree<string,double> {
+	foldTree(p.sum, makeTree(), \monom, coeff, acc0 -> {
+		foldTree(monom.prod, acc0, \var, deg, acc1 -> {
+			//println(deg);
+			setTree(acc1, var, min3(doubleMax, either(lookupTree(acc1, var), doubleMax), deg));
+		});
+	});
+}
+
+polyEquals(p0:Poly, p1:Poly) -> bool {
+	foldTree(p0.sum, true, \monom0, coeff0, acc0 -> {
+		if(!acc0)
+			false
+		else
+			foldTree(p1.sum, false, \monom1, coeff1, acc1 -> {
+				if(acc1)
+					true
+				else 
+					coeff0 == coeff1 && equalTrees(monom0.prod, monom1.prod);
+			});	
+	})
 }
 
 simplifyPoly(poly:Poly) -> Poly {

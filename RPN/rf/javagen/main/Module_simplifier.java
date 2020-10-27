@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.603191287E12
+// timestamp: 1.603763039E12
 
 package main;
 
@@ -394,60 +394,33 @@ final class Module_simplifier {
 	 }
 	}
 	Struct f_foldSigns(Struct aar) {
-	 TAIL_CALL: for(;;) {
 		final Struct_Pair l0_it = f_extractSign(aar);
-		runtime.m_runtime.f_println(((runtime.m_syntax_tree.f_alg2s(((Struct)l0_it.f_second))+"\n")+runtime.m_syntax_tree.f_alg2s(aar)));
 		if ((runtime.m_syntax_tree.f_alg2s(((Struct)l0_it.f_second))).equals(runtime.m_syntax_tree.f_alg2s(aar))) {
-			if ((((int)l0_it.f_first)==(-1))) {
-				return (new Struct_AlgMult((new Struct_AlgDouble((-1.0))), ((Struct)l0_it.f_second)));
-			} else {
-				return ((Struct)l0_it.f_second);
-			}
+			return aar;
 		} else {
 			if ((((int)l0_it.f_first)==(-1))) {
 				if (((boolean)f_getD(((Struct)l0_it.f_second)).f_first)) {
 					return (new Struct_AlgDouble((((double)f_getD(((Struct)l0_it.f_second)).f_second)*(-1.0))));
 				} else {
-					if ((f_detectType(((Struct)l0_it.f_second))).equals("*")) {
+					if (((f_detectType(((Struct)l0_it.f_second))).equals("*")||(f_detectType(((Struct)l0_it.f_second))).equals("/"))) {
 						final Object[] l1_arr = f_extractArgs(((Struct)l0_it.f_second));
 						if (((boolean)f_getD(((Struct)(l1_arr[0]))).f_first)) {
-							if ((((double)f_getD(((Struct)(l1_arr[0]))).f_second)>0.0)) {
-								{
-									final Struct l2___tmp = (new Struct_AlgMult((new Struct_AlgDouble((((double)f_getD(((Struct)(l1_arr[0]))).f_second)*(-1.0)))), ((Struct)(l1_arr[1]))));
-									aar = l2___tmp;
-									continue TAIL_CALL;
-								}
-							} else {
-								{
-									final Struct l3___tmp = ((Struct)l0_it.f_second);
-									aar = l3___tmp;
-									continue TAIL_CALL;
-								}
-							}
+							return f_createStruct("*", (new Struct_AlgDouble((((double)f_getD(((Struct)(l1_arr[0]))).f_second)*(-1.0)))), ((Struct)(l1_arr[1])));
 						} else {
-							{
-								final Struct l4___tmp = (new Struct_AlgMult((new Struct_AlgDouble((-1.0))), ((Struct)l0_it.f_second)));
-								aar = l4___tmp;
-								continue TAIL_CALL;
+							if (((boolean)f_getD(((Struct)(l1_arr[1]))).f_first)) {
+								return f_createStruct("*", (new Struct_AlgDouble((((double)f_getD(((Struct)(l1_arr[1]))).f_second)*(-1.0)))), ((Struct)(l1_arr[0])));
+							} else {
+								return (new Struct_AlgMult((new Struct_AlgDouble((-1.0))), ((Struct)l0_it.f_second)));
 							}
 						}
 					} else {
-						{
-							final Struct l5___tmp = (new Struct_AlgMult((new Struct_AlgDouble((-1.0))), ((Struct)l0_it.f_second)));
-							aar = l5___tmp;
-							continue TAIL_CALL;
-						}
+						return (new Struct_AlgMult((new Struct_AlgDouble((-1.0))), ((Struct)l0_it.f_second)));
 					}
 				}
 			} else {
-				{
-					final Struct l6___tmp = ((Struct)l0_it.f_second);
-					aar = l6___tmp;
-					continue TAIL_CALL;
-				}
+				return ((Struct)l0_it.f_second);
 			}
 		}
-	 }
 	}
 	Struct_Pair f_getD(Struct aa) {
 		Struct l0__tmp = aa;
@@ -594,7 +567,6 @@ final class Module_simplifier {
 		final Struct l0_it0 = f_foldSigns(aar);
 		final Struct l1_it1 = f_removeTrivialExp(l0_it0);
 		final Struct l2_it2 = f_foldSigns(l1_it1);
-		runtime.m_runtime.f_println("trird");
 		final Struct l3_it3 = f_foldExpressions(l2_it2);
 		if (FlowRuntime.compareEqual(aar,l3_it3)) {
 			return aar;

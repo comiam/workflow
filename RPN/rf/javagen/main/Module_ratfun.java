@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.603188005E12
+// timestamp: 1.603774356E12
 
 package main;
 
@@ -170,7 +170,12 @@ final class Module_ratfun {
 				}
 			}
 		};
-		return (new Struct_Mono(runtime.m_tree.f_mapTree2(l2_$1, ((Func2<Object,Object, Object>)(Func2)l3_$0))));
+		final Struct_Mono l5_m = (new Struct_Mono(runtime.m_tree.f_mapTree2(l2_$1, ((Func2<Object,Object, Object>)(Func2)l3_$0))));
+		if (runtime.m_tree.f_isEmptyTree(l5_m.f_prod)) {
+			return (new Struct_Mono(runtime.m_tree.f_makeTree1("1.0", 1.0)));
+		} else {
+			return l5_m;
+		}
 	}
 	Struct_Poly f_dividePoly(Struct_Poly apoly, Struct_Mono asub, double asubCoeff) {
 		final Struct l3_$1 = apoly.f_sum;
@@ -198,6 +203,55 @@ final class Module_ratfun {
 				return (new Struct_AlgMult(aar, f_foldDegree(aar, (adeg-1))));
 			}
 		}
+	}
+	Struct f_getAllVariablesWithMinDegree(Struct_Poly ap) {
+		final Struct l3_$1 = ap.f_sum;
+		final Struct l4_$2 = runtime.m_tree.f_makeTree();
+		final Func3<Struct,Struct_Mono, Double, Struct> l5_$0 = new Func3<Struct,Struct_Mono,Double,Struct>() {
+			final public Struct invoke(final Struct_Mono amonom, final Double acoeff, final Struct aacc0) {
+				final Struct l2_$1 = amonom.f_prod;
+				final Func3<Struct,String, Double, Struct> l3_$0 = new Func3<Struct,String,Double,Struct>() {
+					final public Struct invoke(final String avar, final Double adeg, final Struct aacc1) {
+						return ((Func3<Struct,Struct, String, Double>)(Func3)runtime.n_setTree).invoke(aacc1, avar, ((Double)runtime.m_math.f_min3(runtime.m_math.g_doubleMax, runtime.m_maybe.f_either(((Func2<Struct,Struct, String>)(Func2)runtime.n_lookupTree).invoke(aacc1, avar), runtime.m_math.g_doubleMax), adeg)));
+					}
+				};
+				return ((Struct)runtime.m_tree.f_foldTree(l2_$1, aacc0, ((Func3<Object,Object, Object, Object>)(Func3)l3_$0)));
+			}
+		};
+		return ((Struct)runtime.m_tree.f_foldTree(l3_$1, l4_$2, ((Func3<Object,Object, Object, Object>)(Func3)l5_$0)));
+	}
+	Struct_Pair f_getCommonMultiplier(Struct_Poly ap) {
+		final Struct l3_$1 = ap.f_sum;
+		final Struct_Pair l4_$2 = (new Struct_Pair(0, 0));
+		final Func3<Struct_Pair,Struct_Mono, Double, Struct_Pair> l5_$0 = new Func3<Struct_Pair,Struct_Mono,Double,Struct_Pair>() {
+			final public Struct_Pair invoke(final Struct_Mono amonom, final Double acoeff, final Struct_Pair aacc0) {
+				if (((((int)aacc0.f_first)==0)&&(((int)aacc0.f_second)==0))) {
+					return (new Struct_Pair(runtime.m_math.f_ceil(((double)acoeff)), 1));
+				} else {
+					return (new Struct_Pair(runtime.m_math.f_gcd(((int)aacc0.f_first), runtime.m_math.f_ceil(((double)acoeff))), 1));
+				}
+			}
+		};
+		final Struct_Pair l6_gcd0 = ((Struct_Pair)runtime.m_tree.f_foldTree(l3_$1, l4_$2, ((Func3<Object,Object, Object, Object>)(Func3)l5_$0)));
+		final Struct l10_$8 = ap.f_sum;
+		final Struct l11_$9 = f_getAllVariablesWithMinDegree(ap);
+		final Func3<Struct,Struct_Mono, Double, Struct> l12_$7 = new Func3<Struct,Struct_Mono,Double,Struct>() {
+			final public Struct invoke(final Struct_Mono amonom, final Double acoeff, final Struct aacc0) {
+				final Struct l2_$1 = runtime.m_tree.f_makeTree();
+				final Func3<Struct,String, Double, Struct> l3_$0 = new Func3<Struct,String,Double,Struct>() {
+					final public Struct invoke(final String avar, final Double adeg, final Struct aacc1) {
+						if ((((double)runtime.m_maybe.f_either(((Func2<Struct,Struct, String>)(Func2)runtime.n_lookupTree).invoke(amonom.f_prod, avar), (-1.0)))>=((double)adeg))) {
+							return ((Func3<Struct,Struct, String, Double>)(Func3)runtime.n_setTree).invoke(aacc1, avar, adeg);
+						} else {
+							return aacc1;
+						}
+					}
+				};
+				return ((Struct)runtime.m_tree.f_foldTree(aacc0, l2_$1, ((Func3<Object,Object, Object, Object>)(Func3)l3_$0)));
+			}
+		};
+		final Struct l13_varGCD = ((Struct)runtime.m_tree.f_foldTree(l10_$8, l11_$9, ((Func3<Object,Object, Object, Object>)(Func3)l12_$7)));
+		return (new Struct_Pair(l6_gcd0.f_first, l13_varGCD));
 	}
 	Struct_Poly f_getIntersection(Struct_Poly apoly, Struct_Mono asub, double asubCoeff) {
 		final Struct l3_$1 = apoly.f_sum;
@@ -367,8 +421,35 @@ final class Module_ratfun {
 		};
 		return ((String)runtime.m_tree.f_foldTree(l2_$1, "", ((Func3<Object,Object, Object, Object>)(Func3)l3_$0)));
 	}
+	boolean f_polyEquals(Struct_Poly ap0, Struct_Poly ap1) {
+		final Struct l2_$1 = ap0.f_sum;
+		final Struct_Poly l4_p1 = ap1;
+		final Func3<Boolean,Struct_Mono, Double, Boolean> l3_$0 = new Func3<Boolean,Struct_Mono,Double,Boolean>() {
+			final public Boolean invoke(final Struct_Mono amonom0, final Double acoeff0, final Boolean aacc0) {
+				if (!((boolean)aacc0)) {
+					return ((Boolean)false);
+				} else {
+					final Struct l2_$1 = l4_p1.f_sum;
+					final Func3<Boolean,Struct_Mono, Double, Boolean> l3_$0 = new Func3<Boolean,Struct_Mono,Double,Boolean>() {
+						final public Boolean invoke(final Struct_Mono amonom1, final Double acoeff1, final Boolean aacc1) {
+							if (((boolean)aacc1)) {
+								return ((Boolean)true);
+							} else {
+								return ((Boolean)((((double)acoeff0)==((double)acoeff1))&&runtime.m_tree.f_equalTrees(amonom0.f_prod, amonom1.f_prod)));
+							}
+						}
+					};
+					return ((Boolean)runtime.m_tree.f_foldTree(l2_$1, false, ((Func3<Object,Object, Object, Object>)(Func3)l3_$0)));
+				}
+			}
+		};
+		return ((boolean)runtime.m_tree.f_foldTree(l2_$1, true, ((Func3<Object,Object, Object, Object>)(Func3)l3_$0)));
+	}
 	Struct_Poly f_polyOne() {
 		return (new Struct_Poly(runtime.m_tree.f_makeTree1((new Struct_Mono(runtime.m_tree.f_makeTree1("1.0", 1.0))), 1.0)));
+	}
+	Struct_Pair f_removeCommonVars(Struct_Mono am0, Struct_Mono am1) {
+		return (new Struct_Pair(f_differenceMonos(am0, am1), f_differenceMonos(am1, am0)));
 	}
 	Struct f_rf2alg(Struct_RatFun arf) {
 		return runtime.m_simplifier.f_simplifyTree((new Struct_AlgDiv(f_poly2alg(arf.f_num), f_poly2alg(arf.f_denum))));
@@ -484,12 +565,25 @@ final class Module_ratfun {
 		final Struct_Poly l0_num = arf.f_num;
 		final Struct_Poly l1_denum = arf.f_denum;
 		if ((runtime.m_tree.f_sizeTree(l1_denum.f_sum)!=1)) {
-			return arf;
+			final Struct_Pair l2_cm0 = f_getCommonMultiplier(l0_num);
+			final Struct_Pair l3_cm1 = f_getCommonMultiplier(l1_denum);
+			final int l4_gcd0 = runtime.m_math.f_gcd(((int)l2_cm0.f_first), ((int)l3_cm1.f_first));
+			final Func4<Boolean,Struct_Poly, Struct_Poly, Struct_Pair, Struct_Pair> l5_pEq = new Func4<Boolean,Struct_Poly,Struct_Poly,Struct_Pair,Struct_Pair>() {
+				final public Boolean invoke(final Struct_Poly ap0, final Struct_Poly ap1, final Struct_Pair ac0, final Struct_Pair ac1) {
+					return ((Boolean)f_polyEquals(f_dividePoly(ap0, (new Struct_Mono(((Struct)ac0.f_second))), runtime.m_math.f_i2d(((int)ac0.f_first))), f_dividePoly(ap1, (new Struct_Mono(((Struct)ac1.f_second))), runtime.m_math.f_i2d(((int)ac1.f_first)))));
+				}
+			};
+			if (((boolean)l5_pEq.invoke(l0_num, l1_denum, l2_cm0, l3_cm1))) {
+				return (new Struct_RatFun((new Struct_Poly(runtime.m_tree.f_makeTree1(f_differenceMonos((new Struct_Mono(((Struct)l2_cm0.f_second))), (new Struct_Mono(((Struct)l3_cm1.f_second)))), (runtime.m_math.f_i2d(((int)l2_cm0.f_first))/runtime.m_math.f_i2d(((int)l3_cm1.f_first)))))), f_polyOne()));
+			} else {
+				final Struct_Pair l6_newMult = f_removeCommonVars((new Struct_Mono(((Struct)l2_cm0.f_second))), (new Struct_Mono(((Struct)l3_cm1.f_second))));
+				return (new Struct_RatFun(f_multiplePolynoms(f_dividePoly(l0_num, (new Struct_Mono(((Struct)l2_cm0.f_second))), runtime.m_math.f_i2d(((int)l2_cm0.f_first))), (new Struct_Poly(runtime.m_tree.f_makeTree1(l6_newMult.f_first, (runtime.m_math.f_i2d(((int)l2_cm0.f_first))/runtime.m_math.f_i2d(((int)l3_cm1.f_first))))))), f_multiplePolynoms(f_dividePoly(l1_denum, (new Struct_Mono(((Struct)l3_cm1.f_second))), runtime.m_math.f_i2d(((int)l3_cm1.f_first))), (new Struct_Poly(runtime.m_tree.f_makeTree1(l6_newMult.f_second, 1.0))))));
+			}
 		} else {
-			final Struct_Mono l2_oneMono = ((Struct_Mono)((Struct_Pair)(runtime.m_tree.f_tree2pairs(l1_denum.f_sum)[0])).f_first);
-			final double l3_oneCoeff = ((double)((Struct_Pair)(runtime.m_tree.f_tree2pairs(l1_denum.f_sum)[0])).f_second);
-			if ((runtime.m_tree.f_sizeTree(f_getIntersection(l0_num, l2_oneMono, l3_oneCoeff).f_sum)==runtime.m_tree.f_sizeTree(l0_num.f_sum))) {
-				return (new Struct_RatFun(f_simplifyPoly(f_dividePoly(l0_num, l2_oneMono, l3_oneCoeff)), f_polyOne()));
+			final Struct_Mono l7_oneMono = ((Struct_Mono)((Struct_Pair)(runtime.m_tree.f_tree2pairs(l1_denum.f_sum)[0])).f_first);
+			final double l8_oneCoeff = ((double)((Struct_Pair)(runtime.m_tree.f_tree2pairs(l1_denum.f_sum)[0])).f_second);
+			if ((runtime.m_tree.f_sizeTree(f_getIntersection(l0_num, l7_oneMono, l8_oneCoeff).f_sum)==runtime.m_tree.f_sizeTree(l0_num.f_sum))) {
+				return (new Struct_RatFun(f_simplifyPoly(f_dividePoly(l0_num, l7_oneMono, l8_oneCoeff)), f_polyOne()));
 			} else {
 				return arf;
 			}

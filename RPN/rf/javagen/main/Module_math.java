@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.599535537E12
+// timestamp: 1.599279091E12
 
 package main;
 
@@ -10,6 +10,10 @@ final class Module_math {
 	final main runtime;
 	Module_math(main runtime) {
 		this.runtime = runtime;
+	}
+	public double g_doubleMax;
+	public void init_doubleMax() {
+		g_doubleMax=1.7976931348623145E307;
 	}
 	double f_abs(double ax) {
 		if ((ax<0.0)) {
@@ -25,6 +29,9 @@ final class Module_math {
 			return 0;
 		}
 	}
+	int f_ceil(double ad) {
+		return (-f_floor((-ad)));
+	}
 	double f_dfloor(double ad) {
 		return (ad-(ad%1.0));
 	}
@@ -36,6 +43,21 @@ final class Module_math {
 	}
 	int f_floor(double ad) {
 		return f_trunc(((ad>=0.0)?ad:((((-ad)-f_i2d(f_trunc((-ad))))>0.0)?(ad-1.0):ad)));
+	}
+	int f_gcd(int aa, int ab) {
+	 TAIL_CALL: for(;;) {
+		if ((ab==0)) {
+			return aa;
+		} else {
+			{
+				final int l0___tmp = ab;
+				final int l1___tmp = (aa%ab);
+				aa = l0___tmp;
+				ab = l1___tmp;
+				continue TAIL_CALL;
+			}
+		}
+	 }
 	}
 	int f_getDigitCode(int ac) {
 		if (((48<=ac)&&(ac<=57))) {
@@ -49,6 +71,17 @@ final class Module_math {
 	}
 	boolean f_isNanOrInf(double ad) {
 		return (((ad==(2.0*ad))&&(ad!=0.0))||(ad!=ad));
+	}
+	Object f_min3(Object aa, Object ab, Object ac) {
+		if ((FlowRuntime.compareByValue(aa,ab)<0)) {
+			if ((FlowRuntime.compareByValue(aa,ac)<0)) {
+				return aa;
+			} else {
+				return ac;
+			}
+		} else {
+			return runtime.m_runtime.f_min(ab, ac);
+		}
 	}
 	int f_pow(int ai, int an) {
 		if ((an>0)) {
