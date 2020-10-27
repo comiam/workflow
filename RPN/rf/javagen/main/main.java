@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.603167929066E12
+// timestamp: 1.603191290702E12
 
 package main;
 
@@ -322,7 +322,6 @@ public final class main extends FlowRuntime {
 		m_securitymode.init_loggingEnabled();
 		m_securitymode.init_securityModes();
 		m_runtime.init_localStorageEnabled();
-		m_math.init_E_CONST();
 		m_bits.init_pots2();
 		m_peg.init_lastParsing();
 		m_peg.init_parseCacheHits();

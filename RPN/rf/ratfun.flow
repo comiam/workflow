@@ -17,6 +17,8 @@ rf2alg(rf:RatFun) -> AlgExp {
 alg2rf(ar:AlgExp) -> RatFun {
 	div = ar2CommonDenum(ar);
 
+	//println(alg2s(div));
+
 	if(isDiv(div))
 	{
 		args = extractArgs(div);
@@ -38,10 +40,7 @@ alg2poly(ar:AlgExp) -> Poly {
 		AlgMult(l,r): 
 			multiplePolynoms(alg2poly(l), alg2poly(r));
 		AlgDouble(val): 
-			if(val != 0.0)
-				Poly(makeTree1(Mono(makeTree1("1.0",1.0)), val))
-			else
-				Poly(makeTree1(Mono(makeTree1("0.0",1.0)), val));
+			Poly(makeTree1(Mono(makeTree1("1.0",1.0)), val))
 		AlgVar(var):
 			Poly(makeTree1(Mono(makeTree1(var,1.0)), 1.0));
 		default:
@@ -57,15 +56,17 @@ multiplePolynoms(a:Poly, b:Poly) -> Poly {
 	tr0 = a.sum;
 	tr1 = b.sum;
 
-	Poly(foldTree(tr0, makeTree(), \mono0, coeff0, acc0 -> {
+	p = Poly(foldTree(tr0, makeTree(), \mono0, coeff0, acc0 -> {
 		foldTree(tr1, acc0, \mono1, coeff1, acc1 -> {
 			mergeTreeCustom(acc1, makeTree1(mergeMonoms(mono0, mono1), coeff0 * coeff1), \v,c0,c1 -> c0 + c1);
 		});
 	}));
+	//println(poly2s(a) + " * " + poly2s(b) + " = " + poly2s(p));
+	p;
 }
 
 mergeMonoms(a:Mono, b:Mono) -> Mono {
-	Mono(mergeTreeCustom(a.prod, b.prod, \v, deg0, deg1 -> deg0 + deg1));
+	Mono(mergeTreeCustom(a.prod, b.prod, \v, deg0, deg1 -> if(v != "1.0") deg0 + deg1 else 1.0));
 }
 
 ar2CommonDenum(ar:AlgExp) -> AlgExp {

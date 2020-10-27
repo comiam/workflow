@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.599279091E12
+// timestamp: 1.599535537E12
 
 package main;
 
@@ -10,10 +10,6 @@ final class Module_math {
 	final main runtime;
 	Module_math(main runtime) {
 		this.runtime = runtime;
-	}
-	public double g_E_CONST;
-	public void init_E_CONST() {
-		g_E_CONST=2.7182818284590446;
 	}
 	double f_abs(double ax) {
 		if ((ax<0.0)) {

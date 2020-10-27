@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.603167881E12
+// timestamp: 1.603188005E12
 
 package main;
 
@@ -56,11 +56,7 @@ final class Module_ratfun {
 			final Struct_AlgDouble l1__tmp = (Struct_AlgDouble)l0__tmp;
 			final double l26_val = l1__tmp.f_val;
 			final double l27_val = l1__tmp.f_val;
-			if ((l27_val!=0.0)) {
-				return (new Struct_Poly(runtime.m_tree.f_makeTree1((new Struct_Mono(runtime.m_tree.f_makeTree1("1.0", 1.0))), l27_val)));
-			} else {
-				return (new Struct_Poly(runtime.m_tree.f_makeTree1((new Struct_Mono(runtime.m_tree.f_makeTree1("0.0", 1.0))), l27_val)));
-			}
+			return (new Struct_Poly(runtime.m_tree.f_makeTree1((new Struct_Mono(runtime.m_tree.f_makeTree1("1.0", 1.0))), l27_val)));
 		}
 		case 13/*AlgVar*/: {
 			final Struct_AlgVar l1__tmp = (Struct_AlgVar)l0__tmp;
@@ -258,7 +254,11 @@ final class Module_ratfun {
 		final Struct l4_$2 = ab.f_prod;
 		final Func3<Double,String, Double, Double> l5_$0 = new Func3<Double,String,Double,Double>() {
 			final public Double invoke(final String av, final Double adeg0, final Double adeg1) {
-				return ((Double)(((double)adeg0)+((double)adeg1)));
+				if ((!(av).equals("1.0"))) {
+					return ((Double)(((double)adeg0)+((double)adeg1)));
+				} else {
+					return ((Double)1.0);
+				}
 			}
 		};
 		return (new Struct_Mono(runtime.m_tree.f_mergeTreeCustom(l3_$1, l4_$2, ((Func3<Object,Object, Object, Object>)(Func3)l5_$0))));
@@ -297,7 +297,8 @@ final class Module_ratfun {
 				return ((Struct)runtime.m_tree.f_foldTree(l1_tr1, aacc0, ((Func3<Object,Object, Object, Object>)(Func3)l1_$0)));
 			}
 		};
-		return (new Struct_Poly(((Struct)runtime.m_tree.f_foldTree(l0_tr0, l4_$3, ((Func3<Object,Object, Object, Object>)(Func3)l5_$2)))));
+		final Struct_Poly l6_p = (new Struct_Poly(((Struct)runtime.m_tree.f_foldTree(l0_tr0, l4_$3, ((Func3<Object,Object, Object, Object>)(Func3)l5_$2)))));
+		return l6_p;
 	}
 	Struct_Poly f_negPoly(Struct_Poly aa) {
 		final Struct l2_$1 = aa.f_sum;
