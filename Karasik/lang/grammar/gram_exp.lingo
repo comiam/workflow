@@ -30,9 +30,11 @@ un_op = un_op_type$s '(' ws expression:exp ws ')' {UnOp($s, :exp)};
 //COMMAND SECTOR==================================================================================================
 command = If_op | annotated_While | WhileSimple | sequence | choice | annotated_loop | loop | var_arrredefine | var_redefine | test | print;
 
-If_op = "if" ws test:t ws "then" ws command:c0 ws "else" ws command:c1 {If(:t, :c0, :c1)};
-annotated_While = "while" ws "<" ws formule:ann ws ">" ws test:t ws "do" ws command:c0 {While(:t, :c0, Some(Annotation(:ann)))};
-WhileSimple     = "while" ws                              test:t ws "do" ws command:c0 {While(:t, :c0, None())};
+op_cond = "(" ws expression:ex0 ws test_op$s ws expression:ex1 ws ")" {Test($s, :ex0, :ex1)};
+
+If_op = "if" ws op_cond:t ws "then" ws command:c0 ws "else" ws command:c1 {If(:t, :c0, :c1)};
+annotated_While = "while" ws op_cond:t ws "<" ws formule:ann ws ">" ws "do" ws command:c0 {While(:t, :c0, Some(Annotation(:ann)))};
+WhileSimple     = "while" ws op_cond:t ws                              "do" ws command:c0 {While(:t, :c0, None())};
 sequence = "(" ws command:c0 ws ";" ws command:c1 ws ")" {Sequence(:c0, :c1)};
 choice = "(" ws command:c0 ws "U" ws command:c1 ws")" {Choise(:c0, :c1)};
 annotated_loop = "*" ws "<" ws formule:ann ws ">" ws command:c {Loop(:c, Some(Annotation(:ann)))};

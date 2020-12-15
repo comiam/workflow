@@ -280,4 +280,7 @@ final class Module_string {
 	String f_trim(String as) {
 		return f_rtrim(f_ltrim(as));
 	}
+	String f_trim2(String as, String augly) {
+		return f_rtrim2(f_ltrim2(as, augly), augly);
+	}
 }

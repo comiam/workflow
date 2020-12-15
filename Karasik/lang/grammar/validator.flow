@@ -1,5 +1,6 @@
 import lang/types;
 import ds/tree;
+import string;
 
 export {
 	checkStructure(ps:ProgramSequence) -> Pair<bool, string>;	
@@ -9,7 +10,7 @@ checkStructure(ps:ProgramSequence) -> Pair<bool, string> {
 	p0 = checkVariables(ps, makeTree());
 	p1 = checkAnnotations(ps, 0, getProgramDepth(ps), false, p0.third);
 
-	Pair(p0.first && p1.first, p0.second + "\n" + p1.second);
+	Pair(p0.first && p1.first, trim2(p0.second + "\n" + p1.second, "\n"));
 }
 
 checkAnnotations(ps:ProgramSequence, level: int, size: int, containsAnnotation: bool, vars: Tree<string, TypeValue>) -> Pair<bool, string> {
@@ -18,7 +19,7 @@ checkAnnotations(ps:ProgramSequence, level: int, size: int, containsAnnotation: 
 	switch (ps.next) {
 		Some(ps1):{
 			p1 = checkAnnotations(ps1, level + 1, size, p.second, vars);
-			Pair(p.first && p1.first, p.third + "\n" + p1.second);
+			Pair(p.first && p1.first, trim2(p.third + "\n" + p1.second, "\n"));
 		}
 		None(): Pair(p.first, p.third);
 	}
@@ -30,7 +31,7 @@ checkVariables(ps:ProgramSequence, vars: Tree<string, TypeValue>) -> Triple<bool
 	switch (ps.next) {
 		Some(ps1):{
 			p1 = checkVariables(ps1, p.third);
-			Triple(p.first && p1.first, p.second + "\n" + p1.second, mergeTree(p1.third, p.third));
+			Triple(p.first && p1.first, trim2(p.second + "\n" + p1.second, "\n"), mergeTree(p1.third, p.third));
 		}
 		None(): 
 			p;
@@ -124,7 +125,7 @@ checkVariblesOfCommands(op:Operation, vars: Tree<string, TypeValue>) -> Triple<b
 			p0 = checkVariablesOfTypes(f, vars);
 			p1 = checkVariablesOfTypes(s, vars);
 
-			Triple(p0.first && p1.first, p0.second + "\n" + p1.second, vars);
+			Triple(p0.first && p1.first, trim2(p0.second + "\n" + p1.second, "\n"), vars);
 		}
 		Print(str): {
 			p = checkVariablesOfTypes(str, vars);
@@ -140,7 +141,7 @@ checkVariblesOfCommands(op:Operation, vars: Tree<string, TypeValue>) -> Triple<b
 			if(containsKeyTree(tree, "err0r"))
 				Triple(false, "Variable redefine in sequence!", vars)
 			else
-				Triple(p0.first && p1.first, p0.second + "\n" + p1.second, tree);
+				Triple(p0.first && p1.first, trim2(p0.second + "\n" + p1.second, "\n"), vars);
 		}
 		Choice(f, s): {
 			p0 = checkVariblesOfCommands(f, vars);
@@ -151,7 +152,7 @@ checkVariblesOfCommands(op:Operation, vars: Tree<string, TypeValue>) -> Triple<b
 			if(containsKeyTree(tree, "err0r"))
 				Triple(false, "Variable redefine in choice!", vars)
 			else
-				Triple(p0.first && p1.first, p0.second + "\n" + p1.second, tree);
+				Triple(p0.first && p1.first, trim2(p0.second + "\n" + p1.second, "\n"), vars);
 		}
 		Loop(f, a): {
 			switch (a) {
@@ -161,7 +162,7 @@ checkVariblesOfCommands(op:Operation, vars: Tree<string, TypeValue>) -> Triple<b
 					p0 = checkVariblesOfCommands(f, vars);
 					p1 = checkVariblesOfFormules(ann.formule, vars);
 
-					Triple(p0.first && p1.first, p0.second + "\n" + p1.second, vars);
+					Triple(p0.first && p1.first, trim2(p0.second + "\n" + p1.second, "\n"), vars);
 				}	
 			}
 		}	
@@ -169,7 +170,7 @@ checkVariblesOfCommands(op:Operation, vars: Tree<string, TypeValue>) -> Triple<b
 			p0 = checkVariblesOfCommands(c0, vars);
 			p1 = checkVariblesOfCommands(c1, vars);
 
-			Triple(p0.first && p1.first, p0.second + "\n" + p1.second, vars);
+			Triple(p0.first && p1.first, trim2(p0.second + "\n" + p1.second, "\n"), vars);
 		}	
 		While(t,c0, a): 
 			checkVariblesOfCommands(c0, vars);
@@ -186,19 +187,19 @@ checkVariblesOfFormules(formule:Formule, vars: Tree<string, TypeValue>) -> Pair<
 			p0 = checkVariablesOfLTypes(f, vars);
 			p1 = checkVariablesOfLTypes(s, vars);
 
-			Pair(p0.first && p1.first, p0.second + "\n" + p1.second);
+			Pair(p0.first && p1.first, trim2(p0.second + "\n" + p1.second, "\n"));
 		}
 		Or(f, s): {
 			p0 = checkVariblesOfFormules(f, vars);
 			p1 = checkVariblesOfFormules(s, vars);
 
-			Pair(p0.first && p1.first, p0.second + "\n" + p1.second);
+			Pair(p0.first && p1.first, trim2(p0.second + "\n" + p1.second, "\n"));
 		}
 	    And(f, s): {
 			p0 = checkVariblesOfFormules(f, vars);
 			p1 = checkVariblesOfFormules(s, vars);
 
-			Pair(p0.first && p1.first, p0.second + "\n" + p1.second);
+			Pair(p0.first && p1.first, trim2(p0.second + "\n" + p1.second, "\n"));
 		}
 	    Neg(f): 
 	      	checkVariblesOfFormules(f, vars);
@@ -206,7 +207,7 @@ checkVariblesOfFormules(formule:Formule, vars: Tree<string, TypeValue>) -> Pair<
 			p0 = checkVariblesOfFormules(f, vars);
 			p1 = checkVariblesOfFormules(s, vars);
 
-			Pair(p0.first && p1.first, p0.second + "\n" + p1.second);
+			Pair(p0.first && p1.first, trim2(p0.second + "\n" + p1.second, "\n"));
 		}
 	}
 }
@@ -224,7 +225,7 @@ checkVariablesOfLTypes(t:LogicTypeValue, vars: Tree<string, TypeValue>) -> Pair<
 			p0 = checkVariablesOfLTypes(f, vars);
 			p1 = checkVariablesOfLTypes(s, vars);
 
-			Pair(p0.first && p1.first, p0.second + "\n" + p1.second);
+			Pair(p0.first && p1.first, trim2(p0.second + "\n" + p1.second, "\n"));
 		}
 	}
 }
@@ -244,7 +245,7 @@ checkVariablesOfTypes(t:TypeValue, vars: Tree<string, TypeValue>) -> Pair<bool, 
 			p0 = checkVariablesOfTypes(f, vars);
 			p1 = checkVariablesOfTypes(s, vars);
 
-			Pair(p0.first && p1.first, p0.second + "\n" + p1.second);
+			Pair(p0.first && p1.first, trim2(p0.second + "\n" + p1.second, "\n"));
 		}
 		UnOp(op, f):
 			checkVariablesOfTypes(f, vars);

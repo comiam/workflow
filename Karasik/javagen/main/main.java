@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608021993776E12
+// timestamp: 1.608026618963E12
 
 package main;
 
@@ -24,8 +24,8 @@ public final class main extends FlowRuntime {
 	final Module_tree m_tree = new Module_tree(this);
 	final Module_string m_string = new Module_string(this);
 	final Module_system m_system = new Module_system(this);
-	final Module_set m_set = new Module_set(this);
 	final Module_validator m_validator = new Module_validator(this);
+	final Module_set m_set = new Module_set(this);
 	final Module_linecolumn m_linecolumn = new Module_linecolumn(this);
 	final Module_pegtype m_pegtype = new Module_pegtype(this);
 	final Module_math m_math = new Module_math(this);
