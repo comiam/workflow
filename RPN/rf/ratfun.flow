@@ -12,7 +12,7 @@ export {
 
 rf2alg(rf:RatFun) -> AlgExp {
 	simplifyTree(AlgDiv(poly2alg(rf.num), poly2alg(rf.denum)));
-} //((((9*(x*x))-4)/((3*x)+2))-(3*x))
+}
 
 alg2rf(ar:AlgExp) -> RatFun {
 	div = ar2CommonDenum(ar);
@@ -144,6 +144,11 @@ foldDegree(ar:AlgExp, deg: int) -> AlgExp {
 		AlgMult(ar, foldDegree(ar, deg-1));
 }
 
+//test data
+//(((4*(x*x))-9)*((1/((2*x)-3))-(1/((2*x)+3))))
+//((((9*(x*x))-4)/((3*x)+2))-(3*x))
+//(((6*(x*x))-(2*x))/((2*(x*(x*x)))-(8*x)))
+
 tryDivideRF(rf:RatFun) -> RatFun {
 	num = rf.num;
 	denum = rf.denum;
@@ -206,11 +211,6 @@ dividePoly(poly:Poly, sub:Mono, subCoeff: double) -> Poly {
 			acc0;	
 	}))
 }
-
-//test data
-//(((4*(x*x))-9)*((1/((2*x)-3))-(1/((2*x)+3))))
-//((((9*(x*x))-4)/((3*x)+2))-(3*x))
-//(((6*(x*x))-(2*x))/((2*(x*(x*x)))-(8*x)))
 
 removeCommonVars(m0:Mono, m1:Mono) -> Pair<Mono,Mono> {
 	Pair(differenceMonos(m0,m1), differenceMonos(m1,m0));

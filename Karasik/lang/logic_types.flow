@@ -1,0 +1,13 @@
+export {
+	Formule ::= Atom, Or, And, Neg, Implication;
+	Atom(test:string, f:LogicTypeValue, s:LogicTypeValue);
+	Or(f:Formule, s:Formule);
+	And(f:Formule, s:Formule);
+	Neg(f:Formule);
+	Implication(f:Formule, s:Formule);
+	
+	LogicTypeValue ::= LInt, LVariable, LBinOp;
+	LVariable(name:string);
+	LInt(v:int);
+	LBinOp(op:string, f:LogicTypeValue, s:LogicTypeValue);
+}
