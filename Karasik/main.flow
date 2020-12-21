@@ -15,8 +15,8 @@ main() -> void {
 	//a = execVM(prog);
 
 	prog = s2pseq(alg);
-	println("VC AC");
+	println("VC AC:");
 	println(formulesToStr(getACVCConditions(prog)));
-	println("\nZ3 code");
+	println("\nZ3 code:");
 	println(generateZ3(prog));
 }
