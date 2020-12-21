@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608026616E12
+// timestamp: 1.60856187E12
 
 package main;
 
@@ -13,17 +13,17 @@ final class Module_validator {
 	}
 	Struct_Pair f_checkAnnotations(Struct_ProgramSequence aps, int alevel, int asize, boolean acontainsAnnotation, Struct avars) {
 		final Struct_Triple l0_p = f_checkFormules(aps.f_op, alevel, asize, acontainsAnnotation, avars);
-		final Struct l1_gsymswitch0 = aps.f_next;
-		Struct l2__tmp = l1_gsymswitch0;
+		final Struct l1_gsymswitch1 = aps.f_next;
+		Struct l2__tmp = l1_gsymswitch1;
 		switch (l2__tmp.getTypeId()) {
-		case 128/*Some*/: {
+		case 131/*Some*/: {
 			final Struct_Some l3__tmp = (Struct_Some)l2__tmp;
 			final Object l4_ps1 = l3__tmp.f_value;
 			final Struct_ProgramSequence l5_ps1 = ((Struct_ProgramSequence)l3__tmp.f_value);
 			final Struct_Pair l6_p1 = f_checkAnnotations(l5_ps1, (alevel+1), asize, ((boolean)l0_p.f_second), avars);
 			return (new Struct_Pair((((boolean)l0_p.f_first)&&((boolean)l6_p1.f_first)), runtime.m_string.f_trim2(((((String)l0_p.f_third)+"\n")+((String)l6_p1.f_second)), "\n")));
 		}
-		case 64/*None*/: {
+		case 67/*None*/: {
 			return (new Struct_Pair(l0_p.f_first, l0_p.f_third));
 		}
 		default:
@@ -33,7 +33,7 @@ final class Module_validator {
 	Struct_Triple f_checkFormules(Struct aop, int alevel, int asize, boolean acontainsAnnotation, Struct avars) {
 		Struct l0__tmp = aop;
 		switch (l0__tmp.getTypeId()) {
-		case 10/*Annotation*/: {
+		case 11/*Annotation*/: {
 			final Struct_Annotation l1__tmp = (Struct_Annotation)l0__tmp;
 			final Struct l2_formule = l1__tmp.f_formule;
 			final Struct l3_formule = l1__tmp.f_formule;
@@ -48,7 +48,7 @@ final class Module_validator {
 				}
 			}
 		}
-		case 144/*While*/: {
+		case 147/*While*/: {
 			final Struct_While l1__tmp = (Struct_While)l0__tmp;
 			final Struct_Test l5_t = l1__tmp.f_test;
 			final Struct l6_a = l1__tmp.f_a;
@@ -58,14 +58,14 @@ final class Module_validator {
 			final Struct l10_i = l1__tmp.f_invariant;
 			Struct l11__tmp = l10_i;
 			switch (l11__tmp.getTypeId()) {
-			case 64/*None*/: {
+			case 67/*None*/: {
 				if (acontainsAnnotation) {
 					return (new Struct_Triple(false, true, "I haven't invariant, but have begin annotation!"));
 				} else {
 					return (new Struct_Triple(true, false, ""));
 				}
 			}
-			case 128/*Some*/: {
+			case 131/*Some*/: {
 				final Struct_Some l12__tmp = (Struct_Some)l11__tmp;
 				final Object l13_ann = l12__tmp.f_value;
 				final Struct_Annotation l14_ann = ((Struct_Annotation)l12__tmp.f_value);
@@ -80,7 +80,7 @@ final class Module_validator {
 				throw new RuntimeException("Unexpected struct in switch: "+l11__tmp.getTypeName());
 			}
 		}
-		case 59/*Loop*/: {
+		case 62/*Loop*/: {
 			final Struct_Loop l1__tmp = (Struct_Loop)l0__tmp;
 			final Struct l16_c = l1__tmp.f_f;
 			final Struct l17_i = l1__tmp.f_invariant;
@@ -88,14 +88,14 @@ final class Module_validator {
 			final Struct l19_i = l1__tmp.f_invariant;
 			Struct l20__tmp = l19_i;
 			switch (l20__tmp.getTypeId()) {
-			case 64/*None*/: {
+			case 67/*None*/: {
 				if (acontainsAnnotation) {
 					return (new Struct_Triple(false, true, "I haven't invariant, but have begin annotation!"));
 				} else {
 					return (new Struct_Triple(true, false, ""));
 				}
 			}
-			case 128/*Some*/: {
+			case 131/*Some*/: {
 				final Struct_Some l21__tmp = (Struct_Some)l20__tmp;
 				final Object l22_ann = l21__tmp.f_value;
 				final Struct_Annotation l23_ann = ((Struct_Annotation)l21__tmp.f_value);
@@ -122,17 +122,17 @@ final class Module_validator {
 	}
 	Struct_Triple f_checkVariables(Struct_ProgramSequence aps, Struct avars) {
 		final Struct_Triple l0_p = f_checkVariblesOfCommands(aps.f_op, avars);
-		final Struct l1_gsymswitch1 = aps.f_next;
-		Struct l2__tmp = l1_gsymswitch1;
+		final Struct l1_gsymswitch2 = aps.f_next;
+		Struct l2__tmp = l1_gsymswitch2;
 		switch (l2__tmp.getTypeId()) {
-		case 128/*Some*/: {
+		case 131/*Some*/: {
 			final Struct_Some l3__tmp = (Struct_Some)l2__tmp;
 			final Object l4_ps1 = l3__tmp.f_value;
 			final Struct_ProgramSequence l5_ps1 = ((Struct_ProgramSequence)l3__tmp.f_value);
 			final Struct_Triple l6_p1 = f_checkVariables(l5_ps1, ((Struct)l0_p.f_third));
 			return (new Struct_Triple((((boolean)l0_p.f_first)&&((boolean)l6_p1.f_first)), runtime.m_string.f_trim2(((((String)l0_p.f_second)+"\n")+((String)l6_p1.f_second)), "\n"), runtime.m_tree.f_mergeTree(((Struct)l6_p1.f_third), ((Struct)l0_p.f_third))));
 		}
-		case 64/*None*/: {
+		case 67/*None*/: {
 			return l0_p;
 		}
 		default:
@@ -142,13 +142,13 @@ final class Module_validator {
 	Struct_Pair f_checkVariablesOfLTypes(Struct at, Struct avars) {
 		Struct l0__tmp = at;
 		switch (l0__tmp.getTypeId()) {
-		case 54/*LInt*/: {
+		case 57/*LInt*/: {
 			final Struct_LInt l1__tmp = (Struct_LInt)l0__tmp;
 			final int l2_val = l1__tmp.f_v;
 			final int l3_val = l1__tmp.f_v;
 			return (new Struct_Pair(true, ""));
 		}
-		case 55/*LVariable*/: {
+		case 58/*LVariable*/: {
 			final Struct_LVariable l1__tmp = (Struct_LVariable)l0__tmp;
 			final String l4_var = l1__tmp.f_name;
 			final String l5_var = l1__tmp.f_name;
@@ -158,7 +158,7 @@ final class Module_validator {
 				return (new Struct_Pair(false, (("Variable "+l5_var)+" doesnt exists!")));
 			}
 		}
-		case 53/*LBinOp*/: {
+		case 56/*LBinOp*/: {
 			final Struct_LBinOp l1__tmp = (Struct_LBinOp)l0__tmp;
 			final String l6_op = l1__tmp.f_op;
 			final Struct l7_f = l1__tmp.f_f;
@@ -178,13 +178,13 @@ final class Module_validator {
 	 TAIL_CALL: for(;;) {
 		Struct l0__tmp = at;
 		switch (l0__tmp.getTypeId()) {
-		case 40/*Int*/: {
+		case 43/*Int*/: {
 			final Struct_Int l1__tmp = (Struct_Int)l0__tmp;
 			final int l2_val = l1__tmp.f_v;
 			final int l3_val = l1__tmp.f_v;
 			return (new Struct_Pair(true, ""));
 		}
-		case 142/*Variable*/: {
+		case 145/*Variable*/: {
 			final Struct_Variable l1__tmp = (Struct_Variable)l0__tmp;
 			final String l4_var = l1__tmp.f_name;
 			final String l5_var = l1__tmp.f_name;
@@ -194,13 +194,13 @@ final class Module_validator {
 				return (new Struct_Pair(false, (("Variable "+l5_var)+" doesnt exists!")));
 			}
 		}
-		case 11/*Array*/: {
+		case 12/*Array*/: {
 			final Struct_Array l1__tmp = (Struct_Array)l0__tmp;
 			final int l6_type = l1__tmp.f_size;
 			final int l7_type = l1__tmp.f_size;
 			return (new Struct_Pair(true, ""));
 		}
-		case 14/*BinOp*/: {
+		case 15/*BinOp*/: {
 			final Struct_BinOp l1__tmp = (Struct_BinOp)l0__tmp;
 			final String l8_op = l1__tmp.f_op;
 			final Struct l9_f = l1__tmp.f_f;
@@ -212,7 +212,7 @@ final class Module_validator {
 			final Struct_Pair l15_p1 = f_checkVariablesOfTypes(l13_s, avars);
 			return (new Struct_Pair((((boolean)l14_p0.f_first)&&((boolean)l15_p1.f_first)), runtime.m_string.f_trim2(((((String)l14_p0.f_second)+"\n")+((String)l15_p1.f_second)), "\n")));
 		}
-		case 136/*UnOp*/: {
+		case 139/*UnOp*/: {
 			final Struct_UnOp l1__tmp = (Struct_UnOp)l0__tmp;
 			final String l16_op = l1__tmp.f_op;
 			final Struct l17_f = l1__tmp.f_u;
@@ -224,7 +224,7 @@ final class Module_validator {
 				continue TAIL_CALL;
 			}
 		}
-		case 12/*ArrayAccess*/: {
+		case 13/*ArrayAccess*/: {
 			final Struct_ArrayAccess l1__tmp = (Struct_ArrayAccess)l0__tmp;
 			final Struct_Variable l21_var = l1__tmp.f_var;
 			final Struct l22_ind = l1__tmp.f_ind;
@@ -240,7 +240,7 @@ final class Module_validator {
 				return (new Struct_Pair(false, (("Variable "+l23_var.f_name)+" doesnt exists!")));
 			}
 		}
-		case 28/*EmptyType*/: {
+		case 30/*EmptyType*/: {
 			return (new Struct_Pair(true, ""));
 		}
 		default: {
@@ -253,7 +253,7 @@ final class Module_validator {
 	 TAIL_CALL: for(;;) {
 		Struct l0__tmp = aop;
 		switch (l0__tmp.getTypeId()) {
-		case 140/*VarDefine*/: {
+		case 143/*VarDefine*/: {
 			final Struct_VarDefine l1__tmp = (Struct_VarDefine)l0__tmp;
 			final String l2_name = l1__tmp.f_name;
 			final Struct l3_type = l1__tmp.f_type;
@@ -275,7 +275,7 @@ final class Module_validator {
 				}
 			}
 		}
-		case 141/*VarRedefine*/: {
+		case 144/*VarRedefine*/: {
 			final Struct_VarRedefine l1__tmp = (Struct_VarRedefine)l0__tmp;
 			final String l8_name = l1__tmp.f_name;
 			final Struct l9_val = l1__tmp.f_value;
@@ -287,7 +287,7 @@ final class Module_validator {
 				return (new Struct_Triple(true, "", avars));
 			}
 		}
-		case 139/*VarArrayRedefine*/: {
+		case 142/*VarArrayRedefine*/: {
 			final Struct_VarArrayRedefine l1__tmp = (Struct_VarArrayRedefine)l0__tmp;
 			final String l12_name = l1__tmp.f_name;
 			final Struct l13_index = l1__tmp.f_index;
@@ -305,7 +305,7 @@ final class Module_validator {
 				}
 			}
 		}
-		case 132/*Test*/: {
+		case 135/*Test*/: {
 			final Struct_Test l1__tmp = (Struct_Test)l0__tmp;
 			final String l18_t = l1__tmp.f_test;
 			final Struct l19_f = l1__tmp.f_f;
@@ -317,14 +317,14 @@ final class Module_validator {
 			final Struct_Pair l25_p1 = f_checkVariablesOfTypes(l23_s, avars);
 			return (new Struct_Triple((((boolean)l24_p0.f_first)&&((boolean)l25_p1.f_first)), runtime.m_string.f_trim2(((((String)l24_p0.f_second)+"\n")+((String)l25_p1.f_second)), "\n"), avars));
 		}
-		case 117/*Print*/: {
+		case 120/*Print*/: {
 			final Struct_Print l1__tmp = (Struct_Print)l0__tmp;
 			final Struct l26_str = l1__tmp.f_data;
 			final Struct l27_str = l1__tmp.f_data;
 			final Struct_Pair l28_p = f_checkVariablesOfTypes(l27_str, avars);
 			return (new Struct_Triple(l28_p.f_first, l28_p.f_second, avars));
 		}
-		case 125/*Sequence*/: {
+		case 128/*Sequence*/: {
 			final Struct_Sequence l1__tmp = (Struct_Sequence)l0__tmp;
 			final Struct l29_f = l1__tmp.f_f;
 			final Struct l30_s = l1__tmp.f_s;
@@ -346,7 +346,7 @@ final class Module_validator {
 				return (new Struct_Triple((((boolean)l33_p0.f_first)&&((boolean)l34_p1.f_first)), runtime.m_string.f_trim2(((((String)l33_p0.f_second)+"\n")+((String)l34_p1.f_second)), "\n"), avars));
 			}
 		}
-		case 18/*Choice*/: {
+		case 19/*Choice*/: {
 			final Struct_Choice l1__tmp = (Struct_Choice)l0__tmp;
 			final Struct l42_f = l1__tmp.f_f;
 			final Struct l43_s = l1__tmp.f_s;
@@ -368,7 +368,7 @@ final class Module_validator {
 				return (new Struct_Triple((((boolean)l46_p0.f_first)&&((boolean)l47_p1.f_first)), runtime.m_string.f_trim2(((((String)l46_p0.f_second)+"\n")+((String)l47_p1.f_second)), "\n"), avars));
 			}
 		}
-		case 59/*Loop*/: {
+		case 62/*Loop*/: {
 			final Struct_Loop l1__tmp = (Struct_Loop)l0__tmp;
 			final Struct l55_f = l1__tmp.f_f;
 			final Struct l56_a = l1__tmp.f_invariant;
@@ -376,14 +376,14 @@ final class Module_validator {
 			final Struct l58_a = l1__tmp.f_invariant;
 			Struct l59__tmp = l58_a;
 			switch (l59__tmp.getTypeId()) {
-			case 64/*None*/: {
+			case 67/*None*/: {
 				{
 					final Struct l61___tmp = l57_f;
 					aop = l61___tmp;
 					continue TAIL_CALL;
 				}
 			}
-			case 128/*Some*/: {
+			case 131/*Some*/: {
 				final Struct_Some l60__tmp = (Struct_Some)l59__tmp;
 				final Object l62_ann = l60__tmp.f_value;
 				final Struct_Annotation l63_ann = ((Struct_Annotation)l60__tmp.f_value);
@@ -395,7 +395,7 @@ final class Module_validator {
 				throw new RuntimeException("Unexpected struct in switch: "+l59__tmp.getTypeName());
 			}
 		}
-		case 35/*If*/: {
+		case 38/*If*/: {
 			final Struct_If l1__tmp = (Struct_If)l0__tmp;
 			final Struct_Test l66_t = l1__tmp.f_test;
 			final Struct l67_c0 = l1__tmp.f_a;
@@ -407,7 +407,7 @@ final class Module_validator {
 			final Struct_Triple l73_p1 = f_checkVariblesOfCommands(l71_c1, avars);
 			return (new Struct_Triple((((boolean)l72_p0.f_first)&&((boolean)l73_p1.f_first)), runtime.m_string.f_trim2(((((String)l72_p0.f_second)+"\n")+((String)l73_p1.f_second)), "\n"), avars));
 		}
-		case 144/*While*/: {
+		case 147/*While*/: {
 			final Struct_While l1__tmp = (Struct_While)l0__tmp;
 			final Struct_Test l74_t = l1__tmp.f_test;
 			final Struct l75_c0 = l1__tmp.f_a;
@@ -421,13 +421,13 @@ final class Module_validator {
 				continue TAIL_CALL;
 			}
 		}
-		case 10/*Annotation*/: {
+		case 11/*Annotation*/: {
 			final Struct_Annotation l1__tmp = (Struct_Annotation)l0__tmp;
 			final Struct l81_formule = l1__tmp.f_formule;
 			final Struct l82_formule = l1__tmp.f_formule;
 			return (new Struct_Triple(true, "", avars));
 		}
-		case 26/*EmptyOp*/: {
+		case 28/*EmptyOp*/: {
 			return (new Struct_Triple(true, "", avars));
 		}
 		default:
@@ -439,7 +439,7 @@ final class Module_validator {
 	 TAIL_CALL: for(;;) {
 		Struct l0__tmp = aformule;
 		switch (l0__tmp.getTypeId()) {
-		case 13/*Atom*/: {
+		case 14/*Atom*/: {
 			final Struct_Atom l1__tmp = (Struct_Atom)l0__tmp;
 			final String l2_t = l1__tmp.f_test;
 			final Struct l3_f = l1__tmp.f_f;
@@ -451,7 +451,7 @@ final class Module_validator {
 			final Struct_Pair l9_p1 = f_checkVariablesOfLTypes(l7_s, avars);
 			return (new Struct_Pair((((boolean)l8_p0.f_first)&&((boolean)l9_p1.f_first)), runtime.m_string.f_trim2(((((String)l8_p0.f_second)+"\n")+((String)l9_p1.f_second)), "\n")));
 		}
-		case 67/*Or*/: {
+		case 70/*Or*/: {
 			final Struct_Or l1__tmp = (Struct_Or)l0__tmp;
 			final Struct l10_f = l1__tmp.f_f;
 			final Struct l11_s = l1__tmp.f_s;
@@ -461,7 +461,7 @@ final class Module_validator {
 			final Struct_Pair l15_p1 = f_checkVariblesOfFormules(l13_s, avars);
 			return (new Struct_Pair((((boolean)l14_p0.f_first)&&((boolean)l15_p1.f_first)), runtime.m_string.f_trim2(((((String)l14_p0.f_second)+"\n")+((String)l15_p1.f_second)), "\n")));
 		}
-		case 9/*And*/: {
+		case 10/*And*/: {
 			final Struct_And l1__tmp = (Struct_And)l0__tmp;
 			final Struct l16_f = l1__tmp.f_f;
 			final Struct l17_s = l1__tmp.f_s;
@@ -471,7 +471,7 @@ final class Module_validator {
 			final Struct_Pair l21_p1 = f_checkVariblesOfFormules(l19_s, avars);
 			return (new Struct_Pair((((boolean)l20_p0.f_first)&&((boolean)l21_p1.f_first)), runtime.m_string.f_trim2(((((String)l20_p0.f_second)+"\n")+((String)l21_p1.f_second)), "\n")));
 		}
-		case 62/*Neg*/: {
+		case 65/*Neg*/: {
 			final Struct_Neg l1__tmp = (Struct_Neg)l0__tmp;
 			final Struct l22_f = l1__tmp.f_f;
 			final Struct l23_f = l1__tmp.f_f;
@@ -481,7 +481,7 @@ final class Module_validator {
 				continue TAIL_CALL;
 			}
 		}
-		case 37/*Implication*/: {
+		case 40/*Implication*/: {
 			final Struct_Implication l1__tmp = (Struct_Implication)l0__tmp;
 			final Struct l25_f = l1__tmp.f_f;
 			final Struct l26_s = l1__tmp.f_s;
@@ -491,22 +491,67 @@ final class Module_validator {
 			final Struct_Pair l30_p1 = f_checkVariblesOfFormules(l28_s, avars);
 			return (new Struct_Pair((((boolean)l29_p0.f_first)&&((boolean)l30_p1.f_first)), runtime.m_string.f_trim2(((((String)l29_p0.f_second)+"\n")+((String)l30_p1.f_second)), "\n")));
 		}
+		case 9/*AllQuantor*/: {
+			final Struct_AllQuantor l1__tmp = (Struct_AllQuantor)l0__tmp;
+			final String l31_var = l1__tmp.f_var;
+			final Struct l32_f = l1__tmp.f_f;
+			final String l33_var = l1__tmp.f_var;
+			final Struct l34_f = l1__tmp.f_f;
+			final Struct_Pair l35_p0 = f_checkVariablesOfLTypes((new Struct_LVariable(l33_var)), avars);
+			final Struct_Pair l36_p1 = f_checkVariblesOfFormules(l34_f, avars);
+			return (new Struct_Pair((((boolean)l35_p0.f_first)&&((boolean)l36_p1.f_first)), runtime.m_string.f_trim2(((((String)l35_p0.f_second)+"\n")+((String)l36_p1.f_second)), "\n")));
+		}
+		case 33/*ExiQuantor*/: {
+			final Struct_ExiQuantor l1__tmp = (Struct_ExiQuantor)l0__tmp;
+			final String l37_var = l1__tmp.f_var;
+			final Struct l38_f = l1__tmp.f_f;
+			final String l39_var = l1__tmp.f_var;
+			final Struct l40_f = l1__tmp.f_f;
+			final Struct_Pair l41_p0 = f_checkVariablesOfLTypes((new Struct_LVariable(l39_var)), avars);
+			final Struct_Pair l42_p1 = f_checkVariblesOfFormules(l40_f, avars);
+			return (new Struct_Pair((((boolean)l41_p0.f_first)&&((boolean)l42_p1.f_first)), runtime.m_string.f_trim2(((((String)l41_p0.f_second)+"\n")+((String)l42_p1.f_second)), "\n")));
+		}
+		case 26/*EmptyAtom*/: {
+			return (new Struct_Pair(true, ""));
+		}
 		default:
 			throw new RuntimeException("Unexpected struct in switch: "+l0__tmp.getTypeName());
 		}
 	 }
 	}
+	boolean f_containsArrays(Struct_ProgramSequence aps) {
+		final boolean l0_p = f_opContainsArrays(aps.f_op);
+		if (l0_p) {
+			return true;
+		} else {
+			final Struct l1_gsymswitch0 = aps.f_next;
+			Struct l2__tmp = l1_gsymswitch0;
+			switch (l2__tmp.getTypeId()) {
+			case 131/*Some*/: {
+				final Struct_Some l3__tmp = (Struct_Some)l2__tmp;
+				final Object l4_ps1 = l3__tmp.f_value;
+				final Struct_ProgramSequence l5_ps1 = ((Struct_ProgramSequence)l3__tmp.f_value);
+				return (f_opContainsArrays(l5_ps1.f_op)&&l0_p);
+			}
+			case 67/*None*/: {
+				return false;
+			}
+			default:
+				throw new RuntimeException("Unexpected struct in switch: "+l2__tmp.getTypeName());
+			}
+		}
+	}
 	int f_getProgramDepth(Struct_ProgramSequence aps) {
-		final Struct l0_gsymswitch2 = aps.f_next;
-		Struct l1__tmp = l0_gsymswitch2;
+		final Struct l0_gsymswitch3 = aps.f_next;
+		Struct l1__tmp = l0_gsymswitch3;
 		switch (l1__tmp.getTypeId()) {
-		case 128/*Some*/: {
+		case 131/*Some*/: {
 			final Struct_Some l2__tmp = (Struct_Some)l1__tmp;
 			final Object l3_p = l2__tmp.f_value;
 			final Struct_ProgramSequence l4_p = ((Struct_ProgramSequence)l2__tmp.f_value);
 			return (f_getProgramDepth(l4_p)+1);
 		}
-		case 64/*None*/: {
+		case 67/*None*/: {
 			return 1;
 		}
 		default:
@@ -516,11 +561,39 @@ final class Module_validator {
 	boolean f_isNonEmpty(Struct at0) {
 		Struct l0__tmp = at0;
 		switch (l0__tmp.getTypeId()) {
-		case 28/*EmptyType*/: {
+		case 30/*EmptyType*/: {
 			return false;
 		}
 		default: {
 			return true;
+		}
+		}
+	}
+	boolean f_opContainsArrays(Struct aop) {
+		Struct l0__tmp = aop;
+		switch (l0__tmp.getTypeId()) {
+		case 143/*VarDefine*/: {
+			final Struct_VarDefine l1__tmp = (Struct_VarDefine)l0__tmp;
+			final String l2_name = l1__tmp.f_name;
+			final Struct l3_type = l1__tmp.f_type;
+			final Struct l4_val = l1__tmp.f_value;
+			final String l5_name = l1__tmp.f_name;
+			final Struct l6_type = l1__tmp.f_type;
+			final Struct l7_val = l1__tmp.f_value;
+			return runtime.h_Native.isSameStructType(l6_type, (new Struct_Array(0)));
+		}
+		case 142/*VarArrayRedefine*/: {
+			final Struct_VarArrayRedefine l1__tmp = (Struct_VarArrayRedefine)l0__tmp;
+			final String l8_name = l1__tmp.f_name;
+			final Struct l9_index = l1__tmp.f_index;
+			final Struct l10_val = l1__tmp.f_value;
+			final String l11_name = l1__tmp.f_name;
+			final Struct l12_index = l1__tmp.f_index;
+			final Struct l13_val = l1__tmp.f_value;
+			return true;
+		}
+		default: {
+			return false;
 		}
 		}
 	}

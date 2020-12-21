@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608026618954E12
+// timestamp: 1.60857571968E12
 
 package main;
 
@@ -13,7 +13,7 @@ public class Struct_LingoValue extends Struct {
 		f_value = a_value;
 	}
 
-	public int getTypeId() { return 58; }
+	public int getTypeId() { return 61; }
 	public String getTypeName() { return "LingoValue"; }
 
 	private static final String[] field_names = new String[] {
@@ -40,7 +40,7 @@ public class Struct_LingoValue extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 58) return 58-tmp;
+		if (tmp != 61) return 61-tmp;
 		Struct_LingoValue other = (Struct_LingoValue)other_gen;
 		tmp = FlowRuntime.compareByValue(f_value, other.f_value);
 		return tmp;

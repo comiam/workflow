@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608026618957E12
+// timestamp: 1.608575719682E12
 
 package main;
 
@@ -13,7 +13,7 @@ public class Struct_PegCall extends Struct {
 		f_l = a_l;
 	}
 
-	public int getTypeId() { return 80; }
+	public int getTypeId() { return 83; }
 	public String getTypeName() { return "PegCall"; }
 
 	private static final String[] field_names = new String[] {
@@ -40,7 +40,7 @@ public class Struct_PegCall extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 80) return 80-tmp;
+		if (tmp != 83) return 83-tmp;
 		Struct_PegCall other = (Struct_PegCall)other_gen;
 		if (f_l != other.f_l)
 			return (f_l > other.f_l) ? 1 : -1;

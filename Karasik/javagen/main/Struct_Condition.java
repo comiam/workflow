@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.60802661895E12
+// timestamp: 1.608575719676E12
 
 package main;
 
@@ -21,7 +21,7 @@ public class Struct_Condition extends Struct {
 		f_gotoFalse = a_gotoFalse;
 	}
 
-	public int getTypeId() { return 20; }
+	public int getTypeId() { return 21; }
 	public String getTypeName() { return "Condition"; }
 
 	private static final String[] field_names = new String[] {
@@ -52,7 +52,7 @@ public class Struct_Condition extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 20) return 20-tmp;
+		if (tmp != 21) return 21-tmp;
 		Struct_Condition other = (Struct_Condition)other_gen;
 		tmp = f_test.compareTo(other.f_test);
 		if (tmp != 0) return tmp;

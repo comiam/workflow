@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608026618952E12
+// timestamp: 1.608575719677E12
 
 package main;
 
@@ -19,7 +19,7 @@ public class Struct_IndexArrayAccess extends Struct {
 		f_goto = a_goto;
 	}
 
-	public int getTypeId() { return 38; }
+	public int getTypeId() { return 41; }
 	public String getTypeName() { return "IndexArrayAccess"; }
 
 	private static final String[] field_names = new String[] {
@@ -49,7 +49,7 @@ public class Struct_IndexArrayAccess extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 38) return 38-tmp;
+		if (tmp != 41) return 41-tmp;
 		Struct_IndexArrayAccess other = (Struct_IndexArrayAccess)other_gen;
 		tmp = f_var.compareTo(other.f_var);
 		if (tmp != 0) return tmp;

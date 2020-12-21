@@ -45,7 +45,7 @@ var_arrredefine = var_name$s'[' ws expression:exp0 ws ']' ws eqv ws expression:e
 print  = "print" ws "(" ws expression:e ws ")" {Print(:e)};
 
 //FORMULE SECTION=================================================================================================
-formule = neg | atom | or | and | impl;
+formule = neg | atom | or | and | impl | allq | exq;
 logic_expression = lconst | lvar | lbin_op;
 
 lconst = digit$s {LInt(s2i($s))};
@@ -57,6 +57,8 @@ atom = "(" ws logic_expression:ex0 ws test_op$s ws logic_expression:ex1 ws ")" {
 or = "(" ws formule:a0 ws "|" ws formule:a1 ws ")" {Or(:a0, :a1)};
 and = "(" ws formule:a0 ws "&" ws formule:a1 ws ")" {And(:a0, :a1)};
 impl = "(" ws formule:a0 ws "->" ws formule:a1 ws ")" {Implication(:a0, :a1)};
+allq = "All" ws var_name$s ws formule:a1 {AllQuantor($s, :a1)};
+exq = "Exists" ws var_name$s ws formule:a1 {ExiQuantor($s, :a1)};
 
 //MISCELLANEOUS===================================================================================================
 test_op = "==" | "!=" | "<=" | ">=" | '<' | '>';

@@ -1,4 +1,5 @@
 import lang/vmruntime;
+import lang/formule_compiler;
 import lang/grammar/gram_engine;
 import runtime;
 import sys/system;
@@ -8,8 +9,14 @@ main() -> void {
 	alg = strReplace(readUntil("---"), "---", "");
 	//println(s2pseq(alg));
 
-	prog = compile(s2pseq(alg));
-	printVM(prog);
+	//prog = compile(s2pseq(alg));
+	//printVM(prog);
 
-	a = execVM(prog);
+	//a = execVM(prog);
+
+	prog = s2pseq(alg);
+	println("VC AC");
+	println(formulesToStr(getACVCConditions(prog)));
+	println("\nZ3 code");
+	println(generateZ3(prog));
 }

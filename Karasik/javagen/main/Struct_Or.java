@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608026618955E12
+// timestamp: 1.608575719681E12
 
 package main;
 
@@ -15,7 +15,7 @@ public class Struct_Or extends Struct {
 		f_s = a_s;
 	}
 
-	public int getTypeId() { return 67; }
+	public int getTypeId() { return 70; }
 	public String getTypeName() { return "Or"; }
 
 	private static final String[] field_names = new String[] {
@@ -43,7 +43,7 @@ public class Struct_Or extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 67) return 67-tmp;
+		if (tmp != 70) return 70-tmp;
 		Struct_Or other = (Struct_Or)other_gen;
 		tmp = f_f.compareTo(other.f_f);
 		if (tmp != 0) return tmp;

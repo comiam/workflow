@@ -14,10 +14,10 @@ final class Module_maybe {
 	Object f_either(Struct am, Object aalternative) {
 		Struct l0__tmp = am;
 		switch (l0__tmp.getTypeId()) {
-		case 64/*None*/: {
+		case 67/*None*/: {
 			return aalternative;
 		}
-		case 128/*Some*/: {
+		case 131/*Some*/: {
 			final Struct_Some l1__tmp = (Struct_Some)l0__tmp;
 			final Object l2_v = l1__tmp.f_value;
 			final Object l3_v = l1__tmp.f_value;
@@ -30,10 +30,10 @@ final class Module_maybe {
 	Object f_eitherFn(Struct am, Func1<Object,Object> afn, Func0<Object> aalternativeFn) {
 		Struct l0__tmp = am;
 		switch (l0__tmp.getTypeId()) {
-		case 64/*None*/: {
+		case 67/*None*/: {
 			return aalternativeFn.invoke();
 		}
-		case 128/*Some*/: {
+		case 131/*Some*/: {
 			final Struct_Some l1__tmp = (Struct_Some)l0__tmp;
 			final Object l2_v = l1__tmp.f_value;
 			final Object l3_v = l1__tmp.f_value;
@@ -46,10 +46,10 @@ final class Module_maybe {
 	Object f_eitherMap(Struct am, Func1<Object,Object> afn, Object aalternative) {
 		Struct l0__tmp = am;
 		switch (l0__tmp.getTypeId()) {
-		case 64/*None*/: {
+		case 67/*None*/: {
 			return aalternative;
 		}
-		case 128/*Some*/: {
+		case 131/*Some*/: {
 			final Struct_Some l1__tmp = (Struct_Some)l0__tmp;
 			final Object l2_v = l1__tmp.f_value;
 			final Object l3_v = l1__tmp.f_value;
@@ -62,10 +62,10 @@ final class Module_maybe {
 	boolean f_isNone(Struct am) {
 		Struct l0__tmp = am;
 		switch (l0__tmp.getTypeId()) {
-		case 64/*None*/: {
+		case 67/*None*/: {
 			return true;
 		}
-		case 128/*Some*/: {
+		case 131/*Some*/: {
 			final Struct_Some l1__tmp = (Struct_Some)l0__tmp;
 			final Object l2___ = l1__tmp.f_value;
 			return false;
@@ -77,10 +77,10 @@ final class Module_maybe {
 	boolean f_isSome(Struct am) {
 		Struct l0__tmp = am;
 		switch (l0__tmp.getTypeId()) {
-		case 64/*None*/: {
+		case 67/*None*/: {
 			return false;
 		}
-		case 128/*Some*/: {
+		case 131/*Some*/: {
 			final Struct_Some l1__tmp = (Struct_Some)l0__tmp;
 			final Object l2___ = l1__tmp.f_value;
 			return true;

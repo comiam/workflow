@@ -42,18 +42,6 @@ final class Module_string {
 	String f_cloneString(String as) {
 		return as;
 	}
-	String f_concatStrings(Object[] astrings) {
-		if ((runtime.h_Native.length(astrings)<35)) {
-			final Func2<String,String, String> l1_$0 = new Func2<String,String,String>() {
-				final public String invoke(final String aacc, final String aval) {
-					return (aacc+aval);
-				}
-			};
-			return ((String)runtime.h_Native.fold(astrings, "", ((Func2<Object,Object, Object>)(Func2)l1_$0)));
-		} else {
-			return runtime.h_Native.list2string(runtime.m_array.f_array2list(astrings));
-		}
-	}
 	String f_d2s(double ad) {
 		return FlowRuntime.doubleToString(ad);
 	}

@@ -11,10 +11,6 @@ final class Module_math {
 	Module_math(main runtime) {
 		this.runtime = runtime;
 	}
-	public int g_intMin;
-	public void init_intMin() {
-		g_intMin=(-2147483648);
-	}
 	double f_abs(double ax) {
 		if ((ax<0.0)) {
 			return (-ax);

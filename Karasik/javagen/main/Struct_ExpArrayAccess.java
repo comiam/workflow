@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608026618951E12
+// timestamp: 1.608575719677E12
 
 package main;
 
@@ -15,7 +15,7 @@ public class Struct_ExpArrayAccess extends Struct {
 		f_index = a_index;
 	}
 
-	public int getTypeId() { return 31; }
+	public int getTypeId() { return 34; }
 	public String getTypeName() { return "ExpArrayAccess"; }
 
 	private static final String[] field_names = new String[] {
@@ -43,7 +43,7 @@ public class Struct_ExpArrayAccess extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 31) return 31-tmp;
+		if (tmp != 34) return 34-tmp;
 		Struct_ExpArrayAccess other = (Struct_ExpArrayAccess)other_gen;
 		tmp = f_var.compareTo(other.f_var);
 		if (tmp != 0) return tmp;

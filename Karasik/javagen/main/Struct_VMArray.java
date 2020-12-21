@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608026618962E12
+// timestamp: 1.608575719688E12
 
 package main;
 
@@ -13,7 +13,7 @@ public class Struct_VMArray extends Struct {
 		f_a = a_a;
 	}
 
-	public int getTypeId() { return 137; }
+	public int getTypeId() { return 140; }
 	public String getTypeName() { return "VMArray"; }
 
 	private static final String[] field_names = new String[] {
@@ -40,7 +40,7 @@ public class Struct_VMArray extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 137) return 137-tmp;
+		if (tmp != 140) return 140-tmp;
 		Struct_VMArray other = (Struct_VMArray)other_gen;
 		tmp = FlowRuntime.compareByValue(f_a, other.f_a);
 		return tmp;

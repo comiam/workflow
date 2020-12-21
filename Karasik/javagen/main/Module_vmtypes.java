@@ -11,8 +11,4 @@ final class Module_vmtypes {
 	Module_vmtypes(main runtime) {
 		this.runtime = runtime;
 	}
-	public int g_emptyTree;
-	public void init_emptyTree() {
-		g_emptyTree=(-3);
-	}
 }

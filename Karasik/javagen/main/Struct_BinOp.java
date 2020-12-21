@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608026618949E12
+// timestamp: 1.608575719675E12
 
 package main;
 
@@ -17,7 +17,7 @@ public class Struct_BinOp extends Struct {
 		f_s = a_s;
 	}
 
-	public int getTypeId() { return 14; }
+	public int getTypeId() { return 15; }
 	public String getTypeName() { return "BinOp"; }
 
 	private static final String[] field_names = new String[] {
@@ -46,7 +46,7 @@ public class Struct_BinOp extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 14) return 14-tmp;
+		if (tmp != 15) return 15-tmp;
 		Struct_BinOp other = (Struct_BinOp)other_gen;
 		tmp = f_op.compareTo(other.f_op);
 		if (tmp != 0) return tmp;

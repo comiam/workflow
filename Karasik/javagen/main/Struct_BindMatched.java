@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608026618949E12
+// timestamp: 1.608575719675E12
 
 package main;
 
@@ -15,7 +15,7 @@ public class Struct_BindMatched extends Struct {
 		f_v = a_v;
 	}
 
-	public int getTypeId() { return 15; }
+	public int getTypeId() { return 16; }
 	public String getTypeName() { return "BindMatched"; }
 
 	private static final String[] field_names = new String[] {
@@ -43,7 +43,7 @@ public class Struct_BindMatched extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 15) return 15-tmp;
+		if (tmp != 16) return 16-tmp;
 		Struct_BindMatched other = (Struct_BindMatched)other_gen;
 		tmp = f_name.compareTo(other.f_name);
 		if (tmp != 0) return tmp;

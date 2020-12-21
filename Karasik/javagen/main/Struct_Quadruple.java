@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.60802661896E12
+// timestamp: 1.608575719686E12
 
 package main;
 
@@ -23,7 +23,7 @@ public class Struct_Quadruple extends Struct implements Field_first<Object>, Fie
 	public Object get_second() { return f_second; }
 	public void set_second(Object value) { f_second = value; }
 
-	public int getTypeId() { return 120; }
+	public int getTypeId() { return 123; }
 	public String getTypeName() { return "Quadruple"; }
 
 	private static final String[] field_names = new String[] {
@@ -53,7 +53,7 @@ public class Struct_Quadruple extends Struct implements Field_first<Object>, Fie
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 120) return 120-tmp;
+		if (tmp != 123) return 123-tmp;
 		Struct_Quadruple other = (Struct_Quadruple)other_gen;
 		tmp = FlowRuntime.compareByValue(f_first, other.f_first);
 		if (tmp != 0) return tmp;

@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608026618957E12
+// timestamp: 1.608575719683E12
 
 package main;
 
@@ -13,7 +13,7 @@ public class Struct_PegCommit extends Struct {
 		f_l = a_l;
 	}
 
-	public int getTypeId() { return 87; }
+	public int getTypeId() { return 90; }
 	public String getTypeName() { return "PegCommit"; }
 
 	private static final String[] field_names = new String[] {
@@ -40,7 +40,7 @@ public class Struct_PegCommit extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 87) return 87-tmp;
+		if (tmp != 90) return 90-tmp;
 		Struct_PegCommit other = (Struct_PegCommit)other_gen;
 		if (f_l != other.f_l)
 			return (f_l > other.f_l) ? 1 : -1;

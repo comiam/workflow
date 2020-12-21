@@ -1,10 +1,13 @@
 export {
-	Formule ::= Atom, Or, And, Neg, Implication;
+	Formule ::= Atom, Or, And, Neg, Implication, AllQuantor, ExiQuantor, EmptyAtom;
 	Atom(test:string, f:LogicTypeValue, s:LogicTypeValue);
+	EmptyAtom();
 	Or(f:Formule, s:Formule);
 	And(f:Formule, s:Formule);
 	Neg(f:Formule);
 	Implication(f:Formule, s:Formule);
+	AllQuantor(var: string, f: Formule);
+	ExiQuantor(var: string, f: Formule);
 	
 	LogicTypeValue ::= LInt, LVariable, LBinOp;
 	LVariable(name:string);

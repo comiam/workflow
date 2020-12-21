@@ -1,4 +1,5 @@
 import maybe;
+import runtime;
 import lang/logic_types;
 
 export {
@@ -32,4 +33,25 @@ export {
 	VarRedefine(name:string, value:TypeValue);
 	VarArrayRedefine(name: string, index: TypeValue, value:TypeValue);
 	Loop(f:Command, invariant:Maybe<Annotation>);
+
+	invertTest(t:Test) -> Test;
+}
+
+invertTest(t:Test) -> Test {
+	if(t.test == "==") 
+		Test("!=", t.f, t.s)
+	else if(t.test == "<=") 
+		Test(">", t.f, t.s)		
+	else if(t.test == ">=") 
+		Test("<", t.f, t.s)
+	else if(t.test == "!=") 
+		Test("==", t.f, t.s)	
+	else if(t.test == ">") 
+		Test("<=", t.f, t.s)
+	else if(t.test == "<") 
+		Test(">=", t.f, t.s)
+	else {
+		println("Unknown test: " + t.test + " !");
+		t;
+	}
 }

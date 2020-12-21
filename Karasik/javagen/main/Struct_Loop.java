@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608026618954E12
+// timestamp: 1.60857571968E12
 
 package main;
 
@@ -15,7 +15,7 @@ public class Struct_Loop extends Struct {
 		f_invariant = a_invariant;
 	}
 
-	public int getTypeId() { return 59; }
+	public int getTypeId() { return 62; }
 	public String getTypeName() { return "Loop"; }
 
 	private static final String[] field_names = new String[] {
@@ -43,7 +43,7 @@ public class Struct_Loop extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 59) return 59-tmp;
+		if (tmp != 62) return 62-tmp;
 		Struct_Loop other = (Struct_Loop)other_gen;
 		tmp = f_f.compareTo(other.f_f);
 		if (tmp != 0) return tmp;

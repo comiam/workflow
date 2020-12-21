@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.60802661896E12
+// timestamp: 1.608575719686E12
 
 package main;
 
@@ -15,7 +15,7 @@ public class Struct_ProgramSequence extends Struct {
 		f_next = a_next;
 	}
 
-	public int getTypeId() { return 119; }
+	public int getTypeId() { return 122; }
 	public String getTypeName() { return "ProgramSequence"; }
 
 	private static final String[] field_names = new String[] {
@@ -43,7 +43,7 @@ public class Struct_ProgramSequence extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 119) return 119-tmp;
+		if (tmp != 122) return 122-tmp;
 		Struct_ProgramSequence other = (Struct_ProgramSequence)other_gen;
 		tmp = f_op.compareTo(other.f_op);
 		if (tmp != 0) return tmp;

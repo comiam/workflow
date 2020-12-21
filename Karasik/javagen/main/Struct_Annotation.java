@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608026618948E12
+// timestamp: 1.608575719674E12
 
 package main;
 
@@ -13,7 +13,7 @@ public class Struct_Annotation extends Struct {
 		f_formule = a_formule;
 	}
 
-	public int getTypeId() { return 10; }
+	public int getTypeId() { return 11; }
 	public String getTypeName() { return "Annotation"; }
 
 	private static final String[] field_names = new String[] {
@@ -40,7 +40,7 @@ public class Struct_Annotation extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 10) return 10-tmp;
+		if (tmp != 11) return 11-tmp;
 		Struct_Annotation other = (Struct_Annotation)other_gen;
 		tmp = f_formule.compareTo(other.f_formule);
 		return tmp;

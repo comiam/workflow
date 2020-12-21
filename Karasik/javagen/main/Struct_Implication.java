@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608026618951E12
+// timestamp: 1.608575719677E12
 
 package main;
 
@@ -15,7 +15,7 @@ public class Struct_Implication extends Struct {
 		f_s = a_s;
 	}
 
-	public int getTypeId() { return 37; }
+	public int getTypeId() { return 40; }
 	public String getTypeName() { return "Implication"; }
 
 	private static final String[] field_names = new String[] {
@@ -43,7 +43,7 @@ public class Struct_Implication extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 37) return 37-tmp;
+		if (tmp != 40) return 40-tmp;
 		Struct_Implication other = (Struct_Implication)other_gen;
 		tmp = f_f.compareTo(other.f_f);
 		if (tmp != 0) return tmp;

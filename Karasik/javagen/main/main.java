@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608026618963E12
+// timestamp: 1.608575719689E12
 
 package main;
 
@@ -16,16 +16,16 @@ public final class main extends FlowRuntime {
 	final Module_maybe m_maybe = new Module_maybe(this);
 	final Module_url m_url = new Module_url(this);
 	final Module_list m_list = new Module_list(this);
-	final Module_types m_types = new Module_types(this);
 	final Module_array m_array = new Module_array(this);
 	final Module_flowstructs m_flowstructs = new Module_flowstructs(this);
 	final Module_securitymode m_securitymode = new Module_securitymode(this);
 	final Module_runtime m_runtime = new Module_runtime(this);
 	final Module_tree m_tree = new Module_tree(this);
+	final Module_types m_types = new Module_types(this);
 	final Module_string m_string = new Module_string(this);
 	final Module_system m_system = new Module_system(this);
-	final Module_validator m_validator = new Module_validator(this);
 	final Module_set m_set = new Module_set(this);
+	final Module_validator m_validator = new Module_validator(this);
 	final Module_linecolumn m_linecolumn = new Module_linecolumn(this);
 	final Module_pegtype m_pegtype = new Module_pegtype(this);
 	final Module_math m_math = new Module_math(this);
@@ -36,6 +36,7 @@ public final class main extends FlowRuntime {
 	final Module_stringmath m_stringmath = new Module_stringmath(this);
 	final Module_inttree m_inttree = new Module_inttree(this);
 	final Module_json m_json = new Module_json(this);
+	final Module_formule_compiler m_formule_compiler = new Module_formule_compiler(this);
 	final Module_vmruntime m_vmruntime = new Module_vmruntime(this);
 	final Module_peg m_peg = new Module_peg(this);
 	final Module_url_parameter m_url_parameter = new Module_url_parameter(this);
@@ -55,6 +56,16 @@ public final class main extends FlowRuntime {
 	}
 
 	// Wrappers
+	final Func1<String,Struct> gfw_acvcToStr = new Func1<String,Struct>() {
+		final public String invoke(Struct a0) {
+			return m_formule_compiler.f_acvcToStr(a0);
+		}
+	};
+	final Func1<String,String> gfw_declToZ3 = new Func1<String,String>() {
+		final public String invoke(String a0) {
+			return m_formule_compiler.f_declToZ3(a0);
+		}
+	};
 	final Func1<String,Struct> gfw_action2string = new Func1<String,Struct>() {
 		final public String invoke(Struct a0) {
 			return m_peg.f_action2string(a0);
@@ -188,7 +199,7 @@ public final class main extends FlowRuntime {
 	}
 
 	// Init code
-	final private void init_code_0() {
+	final private void init_code() {
 		try {
 			final java.lang.reflect.Method method = Native.class.getMethod("headList", Struct.class, Object.class);
 			n_headList = new Func2<Object,Struct, Object>() {
@@ -317,12 +328,10 @@ public final class main extends FlowRuntime {
 				}
 			};
 		} catch (ReflectiveOperationException e) {};
-		m_vmtypes.init_emptyTree();
 		m_url.init_redirectAdditionalFn();
 		m_securitymode.init_loggingEnabled();
 		m_securitymode.init_securityModes();
 		m_runtime.init_localStorageEnabled();
-		m_math.init_intMin();
 		m_bits.init_pots2();
 		m_peg.init_lastParsing();
 		m_peg.init_parseCacheHits();
@@ -333,9 +342,6 @@ public final class main extends FlowRuntime {
 		m_pegcode_lib.init_peg_fail_cache_item();
 		m_pegcode.init_profilePcs();
 		m_lingocode.init_pegOps4Lingo();
-	}
-	final private void init_code() {
-		init_code_0();
 	}
 	final private void init() {
 		init_hosts();

@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608026618963E12
+// timestamp: 1.608575719688E12
 
 package main;
 
@@ -17,7 +17,7 @@ public class Struct_While extends Struct {
 		f_invariant = a_invariant;
 	}
 
-	public int getTypeId() { return 144; }
+	public int getTypeId() { return 147; }
 	public String getTypeName() { return "While"; }
 
 	private static final String[] field_names = new String[] {
@@ -46,7 +46,7 @@ public class Struct_While extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 144) return 144-tmp;
+		if (tmp != 147) return 147-tmp;
 		Struct_While other = (Struct_While)other_gen;
 		tmp = f_test.compareTo(other.f_test);
 		if (tmp != 0) return tmp;

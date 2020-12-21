@@ -273,25 +273,6 @@ replaceStampInCommand(vm:VMCommand, findSt: int, repl: int) -> VMCommand {
 	}
 }
 
-invertTest(t:Test) -> Test {
-	if(t.test == "==") 
-		Test("!=", t.f, t.s)
-	else if(t.test == "<=") 
-		Test(">", t.f, t.s)		
-	else if(t.test == ">=") 
-		Test("<", t.f, t.s)
-	else if(t.test == "!=") 
-		Test("==", t.f, t.s)	
-	else if(t.test == ">") 
-		Test("<=", t.f, t.s)
-	else if(t.test == "<") 
-		Test(">=", t.f, t.s)
-	else {
-		println("Unknown test: " + t.test + " !");
-		t;
-	}
-}
-
 createArray(a:Array, acc: [int]) {
 	if(length(acc) == a.size)
 		VMArray(acc)

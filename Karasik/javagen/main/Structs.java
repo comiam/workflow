@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608026618966E12
+// timestamp: 1.608575719691E12
 
 package main;
 
@@ -19,6 +19,7 @@ public final class Structs {
 			new Struct_ActionConstantString(),
 			SingletonStructs.str_ActionIndex,
 			new Struct_ActionVar(),
+			new Struct_AllQuantor(),
 			new Struct_And(),
 			new Struct_Annotation(),
 			new Struct_Array(),
@@ -35,12 +36,14 @@ public final class Structs {
 			new Struct_CutDown(),
 			new Struct_CutUp(),
 			new Struct_Div(),
+			SingletonStructs.str_EmptyAtom,
 			SingletonStructs.str_EmptyList,
 			SingletonStructs.str_EmptyOp,
 			SingletonStructs.str_EmptyPopResult,
 			SingletonStructs.str_EmptyType,
 			SingletonStructs.str_Epsilon,
 			SingletonStructs.str_ErrorType,
+			new Struct_ExiQuantor(),
 			new Struct_ExpArrayAccess(),
 			new Struct_ExpInt(),
 			new Struct_ExpVar(),

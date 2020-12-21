@@ -49,15 +49,6 @@ final class Module_array {
 			return (new Struct_Some(((Object)(aa[l3_foundIndex]))));
 		}
 	}
-	Struct f_array2list(Object[] aa) {
-		final SingletonStruct l2_$1 = SingletonStructs.str_EmptyList;
-		final Func2<Struct_Cons,Struct, Object> l3_$0 = new Func2<Struct_Cons,Struct,Object>() {
-			final public Struct_Cons invoke(final Struct aac, final Object ae) {
-				return (new Struct_Cons(ae, aac));
-			}
-		};
-		return ((Struct)runtime.h_Native.fold(aa, l2_$1, ((Func2<Object,Object, Object>)(Func2)l3_$0)));
-	}
 	Object[] f_arrayPush(Object[] aarray, Object avalue) {
 		return runtime.h_Native.replace(aarray, runtime.h_Native.length(aarray), avalue);
 	}
