@@ -7,7 +7,7 @@ export {
 	VmPrint(data:VMExpr, goto:int);
 
 	VMObj ::= VMExpr, VMType;
-	VMExpr ::= Sum, Min, Div, Mult, ExpInt, ExpVar, ExpArrayAccess;
+	VMExpr ::= Sum, Min, Div, Mult, ExpInt, ExpVar, Access, IndexArrayAccess, ExpArrayAccess;
 	Sum(l:VMExpr, r:VMExpr);
 	Min(l:VMExpr, r:VMExpr);
 	Div(up:VMExpr, down:VMExpr);

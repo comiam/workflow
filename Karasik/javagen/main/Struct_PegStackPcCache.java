@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.6085759908E12
+// timestamp: 1.60918488836E12
 
 package main;
 
@@ -19,7 +19,7 @@ public class Struct_PegStackPcCache extends Struct {
 		f_capture = a_capture;
 	}
 
-	public int getTypeId() { return 105; }
+	public int getTypeId() { return 107; }
 	public String getTypeName() { return "PegStackPcCache"; }
 
 	private static final String[] field_names = new String[] {
@@ -49,7 +49,7 @@ public class Struct_PegStackPcCache extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 105) return 105-tmp;
+		if (tmp != 107) return 107-tmp;
 		Struct_PegStackPcCache other = (Struct_PegStackPcCache)other_gen;
 		if (f_pc != other.f_pc)
 			return (f_pc > other.f_pc) ? 1 : -1;

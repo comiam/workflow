@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608575990799E12
+// timestamp: 1.609184888358E12
 
 package main;
 
@@ -21,7 +21,7 @@ public class Struct_PegCodeConst extends Struct {
 		f_capture = a_capture;
 	}
 
-	public int getTypeId() { return 89; }
+	public int getTypeId() { return 91; }
 	public String getTypeName() { return "PegCodeConst"; }
 
 	private static final String[] field_names = new String[] {
@@ -52,7 +52,7 @@ public class Struct_PegCodeConst extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 89) return 89-tmp;
+		if (tmp != 91) return 91-tmp;
 		Struct_PegCodeConst other = (Struct_PegCodeConst)other_gen;
 		tmp = f_input.compareTo(other.f_input);
 		if (tmp != 0) return tmp;

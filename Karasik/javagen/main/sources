@@ -84,8 +84,10 @@
 /home/maxim/git/workflow/Karasik/javagen/main/Struct_JsonObject.java
 /home/maxim/git/workflow/Karasik/javagen/main/Struct_JsonString.java
 /home/maxim/git/workflow/Karasik/javagen/main/Struct_KeyValue.java
+/home/maxim/git/workflow/Karasik/javagen/main/Struct_LAccessArray.java
 /home/maxim/git/workflow/Karasik/javagen/main/Struct_LBinOp.java
 /home/maxim/git/workflow/Karasik/javagen/main/Struct_LInt.java
+/home/maxim/git/workflow/Karasik/javagen/main/Struct_LRedefineArray.java
 /home/maxim/git/workflow/Karasik/javagen/main/Struct_LVariable.java
 /home/maxim/git/workflow/Karasik/javagen/main/Struct_LineColumn.java
 /home/maxim/git/workflow/Karasik/javagen/main/Struct_LineResolver.java

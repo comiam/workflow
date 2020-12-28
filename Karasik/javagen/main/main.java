@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608575990805E12
+// timestamp: 1.609184888364E12
 
 package main;
 
@@ -56,13 +56,8 @@ public final class main extends FlowRuntime {
 	}
 
 	// Wrappers
-	final Func1<String,Struct> gfw_acvcToStr = new Func1<String,Struct>() {
-		final public String invoke(Struct a0) {
-			return m_formule_compiler.f_acvcToStr(a0);
-		}
-	};
-	final Func1<String,String> gfw_declToZ3 = new Func1<String,String>() {
-		final public String invoke(String a0) {
+	final Func1<String,Struct_VarDefine> gfw_declToZ3 = new Func1<String,Struct_VarDefine>() {
+		final public String invoke(Struct_VarDefine a0) {
 			return m_formule_compiler.f_declToZ3(a0);
 		}
 	};

@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608575628E12
+// timestamp: 1.609183283E12
 
 package main;
 
@@ -11,74 +11,8 @@ final class Module_formule_compiler {
 	Module_formule_compiler(main runtime) {
 		this.runtime = runtime;
 	}
-	String f_acvcToStr(Struct af) {
-		Struct l0__tmp = af;
-		switch (l0__tmp.getTypeId()) {
-		case 14/*Atom*/: {
-			final Struct_Atom l1__tmp = (Struct_Atom)l0__tmp;
-			final String l2_test = l1__tmp.f_test;
-			final Struct l3_f1 = l1__tmp.f_f;
-			final Struct l4_s = l1__tmp.f_s;
-			final String l5_test = l1__tmp.f_test;
-			final Struct l6_f1 = l1__tmp.f_f;
-			final Struct l7_s = l1__tmp.f_s;
-			return (((("("+f_lt2str(l6_f1))+l5_test)+f_lt2str(l7_s))+")");
-		}
-		case 26/*EmptyAtom*/: {
-			return "";
-		}
-		case 70/*Or*/: {
-			final Struct_Or l1__tmp = (Struct_Or)l0__tmp;
-			final Struct l8_f1 = l1__tmp.f_f;
-			final Struct l9_s = l1__tmp.f_s;
-			final Struct l10_f1 = l1__tmp.f_f;
-			final Struct l11_s = l1__tmp.f_s;
-			return (((("("+f_acvcToStr(l10_f1))+"||")+f_acvcToStr(l11_s))+")");
-		}
-		case 10/*And*/: {
-			final Struct_And l1__tmp = (Struct_And)l0__tmp;
-			final Struct l12_f1 = l1__tmp.f_f;
-			final Struct l13_s = l1__tmp.f_s;
-			final Struct l14_f1 = l1__tmp.f_f;
-			final Struct l15_s = l1__tmp.f_s;
-			return (((("("+f_acvcToStr(l14_f1))+"&&")+f_acvcToStr(l15_s))+")");
-		}
-		case 65/*Neg*/: {
-			final Struct_Neg l1__tmp = (Struct_Neg)l0__tmp;
-			final Struct l16_f1 = l1__tmp.f_f;
-			final Struct l17_f1 = l1__tmp.f_f;
-			return (("!("+f_acvcToStr(l17_f1))+")");
-		}
-		case 40/*Implication*/: {
-			final Struct_Implication l1__tmp = (Struct_Implication)l0__tmp;
-			final Struct l18_f1 = l1__tmp.f_f;
-			final Struct l19_s = l1__tmp.f_s;
-			final Struct l20_f1 = l1__tmp.f_f;
-			final Struct l21_s = l1__tmp.f_s;
-			return (((("("+f_acvcToStr(l20_f1))+"->")+f_acvcToStr(l21_s))+")");
-		}
-		case 9/*AllQuantor*/: {
-			final Struct_AllQuantor l1__tmp = (Struct_AllQuantor)l0__tmp;
-			final String l22_var = l1__tmp.f_var;
-			final Struct l23_f1 = l1__tmp.f_f;
-			final String l24_var = l1__tmp.f_var;
-			final Struct l25_f1 = l1__tmp.f_f;
-			return (((("ForAll"+l24_var)+":(")+f_acvcToStr(l25_f1))+")");
-		}
-		case 33/*ExiQuantor*/: {
-			final Struct_ExiQuantor l1__tmp = (Struct_ExiQuantor)l0__tmp;
-			final String l26_var = l1__tmp.f_var;
-			final Struct l27_f1 = l1__tmp.f_f;
-			final String l28_var = l1__tmp.f_var;
-			final Struct l29_f1 = l1__tmp.f_f;
-			return (((("Exists"+l28_var)+":(")+f_acvcToStr(l29_f1))+")");
-		}
-		default:
-			throw new RuntimeException("Unexpected struct in switch: "+l0__tmp.getTypeName());
-		}
-	}
-	String f_declToZ3(String adecl) {
-		return (("(declare-const "+adecl)+" Int)");
+	String f_declToZ3(Struct_VarDefine adecl) {
+		return (((("(declare-const "+adecl.f_name)+" ")+f_type2Z3(adecl.f_type))+")");
 	}
 	Struct_Annotation f_emptyAnnotation() {
 		return (new Struct_Annotation((new Struct_Atom("==", (new Struct_LVariable("var")), (new Struct_LVariable("var2"))))));
@@ -118,7 +52,7 @@ final class Module_formule_compiler {
 		case 26/*EmptyAtom*/: {
 			return "";
 		}
-		case 70/*Or*/: {
+		case 72/*Or*/: {
 			final Struct_Or l1__tmp = (Struct_Or)l0__tmp;
 			final Struct l8_f1 = l1__tmp.f_f;
 			final Struct l9_s = l1__tmp.f_s;
@@ -134,7 +68,7 @@ final class Module_formule_compiler {
 			final Struct l15_s = l1__tmp.f_s;
 			return (((("(and "+f_formuleToZ3(l14_f1))+" ")+f_formuleToZ3(l15_s))+")");
 		}
-		case 65/*Neg*/: {
+		case 67/*Neg*/: {
 			final Struct_Neg l1__tmp = (Struct_Neg)l0__tmp;
 			final Struct l16_f1 = l1__tmp.f_f;
 			final Struct l17_f1 = l1__tmp.f_f;
@@ -167,9 +101,6 @@ final class Module_formule_compiler {
 		default:
 			throw new RuntimeException("Unexpected struct in switch: "+l0__tmp.getTypeName());
 		}
-	}
-	String f_formulesToStr(Object[] af) {
-		return runtime.m_string.f_strGlue(runtime.h_Native.map(af, ((Func1<Object,Object>)(Func1)runtime.gfw_acvcToStr)), "\n");
 	}
 	Struct f_foundPostCond(Struct_ProgramSequence ap) {
 	 TAIL_CALL: for(;;) {
@@ -220,23 +151,18 @@ final class Module_formule_compiler {
 				runtime.m_runtime.f_println("Program not annotated!");
 				return SingletonStructs.arr_empty;
 			} else {
-				if (runtime.m_validator.f_containsArrays(aps)) {
-					runtime.m_runtime.f_println("Program have arrays!");
-					return SingletonStructs.arr_empty;
-				} else {
-					final Struct l1_f0 = ((Struct_Annotation)aps.f_op).f_formule;
-					final Struct l2_f1 = f_foundPostCond(f_getNextPS(aps));
-					final Struct l3_ac = f_generateAC(f_getNextPS(aps), l2_f1);
-					final Object[] l4_vc = f_generateVC(f_getNextPS(aps), l2_f1);
-					return runtime.h_Native.concat(l4_vc, (new Object[] { (new Struct_Implication(l1_f0, l3_ac)) }));
-				}
+				final Struct l1_f0 = ((Struct_Annotation)aps.f_op).f_formule;
+				final Struct l2_f1 = f_foundPostCond(f_getNextPS(aps));
+				final Struct l3_ac = f_generateAC(f_getNextPS(aps), l2_f1);
+				final Object[] l4_vc = f_generateVC(f_getNextPS(aps), l2_f1);
+				return runtime.h_Native.concat(l4_vc, (new Object[] { (new Struct_Implication(l1_f0, l3_ac)) }));
 			}
 		}
 	}
 	Object[] f_getDecl(Struct aop) {
 		Struct l0__tmp = aop;
 		switch (l0__tmp.getTypeId()) {
-		case 143/*VarDefine*/: {
+		case 145/*VarDefine*/: {
 			final Struct_VarDefine l1__tmp = (Struct_VarDefine)l0__tmp;
 			final String l2_name = l1__tmp.f_name;
 			final Struct l3_type = l1__tmp.f_type;
@@ -244,7 +170,7 @@ final class Module_formule_compiler {
 			final String l5_name = l1__tmp.f_name;
 			final Struct l6_type = l1__tmp.f_type;
 			final Struct l7_val = l1__tmp.f_value;
-			return (new Object[] { l5_name });
+			return (new Object[] { l1__tmp });
 		}
 		default: {
 			return SingletonStructs.arr_empty;
@@ -258,13 +184,13 @@ final class Module_formule_compiler {
 		final Struct l0_gsymswitch0 = ap.f_next;
 		Struct l1__tmp = l0_gsymswitch0;
 		switch (l1__tmp.getTypeId()) {
-		case 131/*Some*/: {
+		case 133/*Some*/: {
 			final Struct_Some l2__tmp = (Struct_Some)l1__tmp;
 			final Object l3_val = l2__tmp.f_value;
 			final Struct_ProgramSequence l4_val = ((Struct_ProgramSequence)l2__tmp.f_value);
 			return l4_val;
 		}
-		case 67/*None*/: {
+		case 69/*None*/: {
 			return f_emptyPS();
 		}
 		default:
@@ -274,51 +200,22 @@ final class Module_formule_compiler {
 	Struct_ProgramSequence f_getNextPS(Struct_ProgramSequence ap) {
 		return ((Struct_ProgramSequence)runtime.m_maybe.f_either(ap.f_next, f_emptyPS()));
 	}
-	String f_lt2str(Struct at) {
-		Struct l0__tmp = at;
-		switch (l0__tmp.getTypeId()) {
-		case 58/*LVariable*/: {
-			final Struct_LVariable l1__tmp = (Struct_LVariable)l0__tmp;
-			final String l2_name = l1__tmp.f_name;
-			final String l3_name = l1__tmp.f_name;
-			return l3_name;
-		}
-		case 57/*LInt*/: {
-			final Struct_LInt l1__tmp = (Struct_LInt)l0__tmp;
-			final int l4_v = l1__tmp.f_v;
-			final int l5_v = l1__tmp.f_v;
-			return runtime.m_string.f_i2s(l5_v);
-		}
-		case 56/*LBinOp*/: {
-			final Struct_LBinOp l1__tmp = (Struct_LBinOp)l0__tmp;
-			final String l6_op = l1__tmp.f_op;
-			final Struct l7_f = l1__tmp.f_f;
-			final Struct l8_s = l1__tmp.f_s;
-			final String l9_op = l1__tmp.f_op;
-			final Struct l10_f = l1__tmp.f_f;
-			final Struct l11_s = l1__tmp.f_s;
-			return (((("("+f_lt2str(l10_f))+l9_op)+f_lt2str(l11_s))+")");
-		}
-		default:
-			throw new RuntimeException("Unexpected struct in switch: "+l0__tmp.getTypeName());
-		}
-	}
 	String f_lt2z3(Struct alt) {
 		Struct l0__tmp = alt;
 		switch (l0__tmp.getTypeId()) {
-		case 58/*LVariable*/: {
+		case 60/*LVariable*/: {
 			final Struct_LVariable l1__tmp = (Struct_LVariable)l0__tmp;
 			final String l2_name = l1__tmp.f_name;
 			final String l3_name = l1__tmp.f_name;
 			return l3_name;
 		}
-		case 57/*LInt*/: {
+		case 58/*LInt*/: {
 			final Struct_LInt l1__tmp = (Struct_LInt)l0__tmp;
 			final int l4_v = l1__tmp.f_v;
 			final int l5_v = l1__tmp.f_v;
 			return runtime.m_string.f_i2s(l5_v);
 		}
-		case 56/*LBinOp*/: {
+		case 57/*LBinOp*/: {
 			final Struct_LBinOp l1__tmp = (Struct_LBinOp)l0__tmp;
 			final String l6_op = l1__tmp.f_op;
 			final Struct l7_f = l1__tmp.f_f;
@@ -327,6 +224,24 @@ final class Module_formule_compiler {
 			final Struct l10_f = l1__tmp.f_f;
 			final Struct l11_s = l1__tmp.f_s;
 			return (((((("("+l9_op)+" ")+f_lt2z3(l10_f))+" ")+f_lt2z3(l11_s))+")");
+		}
+		case 56/*LAccessArray*/: {
+			final Struct_LAccessArray l1__tmp = (Struct_LAccessArray)l0__tmp;
+			final Struct l12_name = l1__tmp.f_name;
+			final Struct l13_index = l1__tmp.f_index;
+			final Struct l14_name = l1__tmp.f_name;
+			final Struct l15_index = l1__tmp.f_index;
+			return (((("(select "+f_lt2z3(l14_name))+" ")+f_lt2z3(l15_index))+")");
+		}
+		case 59/*LRedefineArray*/: {
+			final Struct_LRedefineArray l1__tmp = (Struct_LRedefineArray)l0__tmp;
+			final Struct l16_name = l1__tmp.f_name;
+			final Struct l17_index = l1__tmp.f_index;
+			final Struct l18_value = l1__tmp.f_value;
+			final Struct l19_name = l1__tmp.f_name;
+			final Struct l20_index = l1__tmp.f_index;
+			final Struct l21_value = l1__tmp.f_value;
+			return (((((("(store "+f_lt2z3(l19_name))+" ")+f_lt2z3(l20_index))+" ")+f_lt2z3(l20_index))+")");
 		}
 		default:
 			throw new RuntimeException("Unexpected struct in switch: "+l0__tmp.getTypeName());
@@ -350,7 +265,7 @@ final class Module_formule_compiler {
 				continue TAIL_CALL;
 			}
 		}
-		case 147/*While*/: {
+		case 149/*While*/: {
 			final Struct_While l1__tmp = (Struct_While)l0__tmp;
 			final Struct_Test l9_test = l1__tmp.f_test;
 			final Struct l10_a = l1__tmp.f_a;
@@ -360,7 +275,7 @@ final class Module_formule_compiler {
 			final Struct l14_invariant = l1__tmp.f_invariant;
 			return f_getInv(l14_invariant);
 		}
-		case 135/*Test*/: {
+		case 137/*Test*/: {
 			final Struct_Test l1__tmp = (Struct_Test)l0__tmp;
 			final String l15_test = l1__tmp.f_test;
 			final Struct l16_f = l1__tmp.f_f;
@@ -370,7 +285,7 @@ final class Module_formule_compiler {
 			final Struct l20_s = l1__tmp.f_s;
 			return (new Struct_Implication((new Struct_Atom(l18_test, f_tv2ltv(l19_f), f_tv2ltv(l20_s))), apostCond));
 		}
-		case 128/*Sequence*/: {
+		case 130/*Sequence*/: {
 			final Struct_Sequence l1__tmp = (Struct_Sequence)l0__tmp;
 			final Struct l21_f = l1__tmp.f_f;
 			final Struct l22_s = l1__tmp.f_s;
@@ -392,7 +307,7 @@ final class Module_formule_compiler {
 			final Struct l30_s = l1__tmp.f_s;
 			return (new Struct_And(f_operationToAC(l29_f, apostCond), f_operationToAC(l30_s, apostCond)));
 		}
-		case 62/*Loop*/: {
+		case 64/*Loop*/: {
 			final Struct_Loop l1__tmp = (Struct_Loop)l0__tmp;
 			final Struct l31_f = l1__tmp.f_f;
 			final Struct l32_invariant = l1__tmp.f_invariant;
@@ -400,13 +315,23 @@ final class Module_formule_compiler {
 			final Struct l34_invariant = l1__tmp.f_invariant;
 			return f_getInv(l34_invariant);
 		}
-		case 144/*VarRedefine*/: {
+		case 146/*VarRedefine*/: {
 			final Struct_VarRedefine l1__tmp = (Struct_VarRedefine)l0__tmp;
 			final String l35_name = l1__tmp.f_name;
 			final Struct l36_value = l1__tmp.f_value;
 			final String l37_name = l1__tmp.f_name;
 			final Struct l38_value = l1__tmp.f_value;
 			return f_replaceFormules(apostCond, (new Struct_LVariable(l37_name)), f_tv2ltv(l38_value));
+		}
+		case 144/*VarArrayRedefine*/: {
+			final Struct_VarArrayRedefine l1__tmp = (Struct_VarArrayRedefine)l0__tmp;
+			final String l39_name = l1__tmp.f_name;
+			final Struct l40_index = l1__tmp.f_index;
+			final Struct l41_value = l1__tmp.f_value;
+			final String l42_name = l1__tmp.f_name;
+			final Struct l43_index = l1__tmp.f_index;
+			final Struct l44_value = l1__tmp.f_value;
+			return f_replaceFormules(apostCond, (new Struct_LVariable(l42_name)), (new Struct_LRedefineArray((new Struct_LVariable(l42_name)), f_tv2ltv(l43_index), f_tv2ltv(l44_value))));
 		}
 		default: {
 			return apostCond;
@@ -428,7 +353,7 @@ final class Module_formule_compiler {
 			final Struct l7_s = l1__tmp.f_b;
 			return runtime.h_Native.concat(f_operationToVC(l6_f, apostCond), f_operationToVC(l7_s, apostCond));
 		}
-		case 147/*While*/: {
+		case 149/*While*/: {
 			final Struct_While l1__tmp = (Struct_While)l0__tmp;
 			final Struct_Test l8_t = l1__tmp.f_test;
 			final Struct l9_a = l1__tmp.f_a;
@@ -442,7 +367,7 @@ final class Module_formule_compiler {
 				continue TAIL_CALL;
 			}
 		}
-		case 128/*Sequence*/: {
+		case 130/*Sequence*/: {
 			final Struct_Sequence l1__tmp = (Struct_Sequence)l0__tmp;
 			final Struct l15_f = l1__tmp.f_f;
 			final Struct l16_s = l1__tmp.f_s;
@@ -458,7 +383,7 @@ final class Module_formule_compiler {
 			final Struct l22_s = l1__tmp.f_s;
 			return runtime.h_Native.concat(f_operationToVC(l21_f, apostCond), f_operationToVC(l22_s, apostCond));
 		}
-		case 62/*Loop*/: {
+		case 64/*Loop*/: {
 			final Struct_Loop l1__tmp = (Struct_Loop)l0__tmp;
 			final Struct l23_f = l1__tmp.f_f;
 			final Struct l24_invariant = l1__tmp.f_invariant;
@@ -473,13 +398,19 @@ final class Module_formule_compiler {
 	 }
 	}
 	String f_proveConditions(Object[] aformules) {
-		final Func2<String,Integer, Struct> l1_$0 = new Func2<String,Integer,Struct>() {
+		final Func2<String,Integer, Struct> l3_$0 = new Func2<String,Integer,Struct>() {
 			final public String invoke(final Integer ai, final Struct af) {
 				final String l0_name = ("cond"+runtime.m_string.f_i2s(((int)ai)));
-				return (((((("(push)\n(define-fun "+l0_name)+"() Bool ")+f_formuleToZ3(af))+")\n(assert (not ")+l0_name)+"))\n(check-sat)\n(pop)\n");
+				return (((((((("(push)\n"+"(define-fun ")+l0_name)+"() Bool ")+f_formuleToZ3(af))+")\n")+"(assert (not ")+l0_name)+"))\n");
 			}
 		};
-		return runtime.m_string.f_strGlue(runtime.h_Native.mapi(aformules, ((Func2<Object,Integer, Object>)(Func2)l1_$0)), "\n");
+		final String l4_$2 = runtime.m_string.f_strGlue(runtime.h_Native.mapi(aformules, ((Func2<Object,Integer, Object>)(Func2)l3_$0)), "\n");
+		final Func2<String,Integer, Struct> l5_$1 = new Func2<String,Integer,Struct>() {
+			final public String invoke(final Integer ai, final Struct af) {
+				return ("(check-sat)\n"+"(pop)");
+			}
+		};
+		return (l4_$2+runtime.m_string.f_strGlue(runtime.h_Native.mapi(aformules, ((Func2<Object,Integer, Object>)(Func2)l5_$1)), "\n"));
 	}
 	Struct f_replaceFormules(Struct af, Struct aoldSt, Struct anewSt) {
 		Struct l0__tmp = af;
@@ -497,7 +428,7 @@ final class Module_formule_compiler {
 		case 26/*EmptyAtom*/: {
 			return ((Struct)SingletonStructs.str_EmptyAtom);
 		}
-		case 70/*Or*/: {
+		case 72/*Or*/: {
 			final Struct_Or l1__tmp = (Struct_Or)l0__tmp;
 			final Struct l8_f1 = l1__tmp.f_f;
 			final Struct l9_s = l1__tmp.f_s;
@@ -513,7 +444,7 @@ final class Module_formule_compiler {
 			final Struct l15_s = l1__tmp.f_s;
 			return (new Struct_And(f_replaceFormules(l14_f1, aoldSt, anewSt), f_replaceFormules(l15_s, aoldSt, anewSt)));
 		}
-		case 65/*Neg*/: {
+		case 67/*Neg*/: {
 			final Struct_Neg l1__tmp = (Struct_Neg)l0__tmp;
 			final Struct l16_f1 = l1__tmp.f_f;
 			final Struct l17_f1 = l1__tmp.f_f;
@@ -553,7 +484,7 @@ final class Module_formule_compiler {
 		} else {
 			Struct l0__tmp = acurrent;
 			switch (l0__tmp.getTypeId()) {
-			case 56/*LBinOp*/: {
+			case 57/*LBinOp*/: {
 				final Struct_LBinOp l1__tmp = (Struct_LBinOp)l0__tmp;
 				final String l2_op = l1__tmp.f_op;
 				final Struct l3_f = l1__tmp.f_f;
@@ -562,6 +493,14 @@ final class Module_formule_compiler {
 				final Struct l6_f = l1__tmp.f_f;
 				final Struct l7_s = l1__tmp.f_s;
 				return (new Struct_LBinOp(l5_op, f_replaceInLTypes(l6_f, aold, anew), f_replaceInLTypes(l7_s, aold, anew)));
+			}
+			case 56/*LAccessArray*/: {
+				final Struct_LAccessArray l1__tmp = (Struct_LAccessArray)l0__tmp;
+				final Struct l8_name = l1__tmp.f_name;
+				final Struct l9_index = l1__tmp.f_index;
+				final Struct l10_name = l1__tmp.f_name;
+				final Struct l11_index = l1__tmp.f_index;
+				return (new Struct_LAccessArray(f_replaceInLTypes(l10_name, aold, anew), f_replaceInLTypes(l11_index, aold, anew)));
 			}
 			default: {
 				return acurrent;
@@ -582,7 +521,7 @@ final class Module_formule_compiler {
 			final int l3_val = l1__tmp.f_v;
 			return (new Struct_LInt(l3_val));
 		}
-		case 145/*Variable*/: {
+		case 147/*Variable*/: {
 			final Struct_Variable l1__tmp = (Struct_Variable)l0__tmp;
 			final String l4_var = l1__tmp.f_name;
 			final String l5_var = l1__tmp.f_name;
@@ -600,7 +539,7 @@ final class Module_formule_compiler {
 			final Struct l13_t1 = f_tv2ltv(l11_s);
 			return (new Struct_LBinOp(l9_op, l12_t0, l13_t1));
 		}
-		case 139/*UnOp*/: {
+		case 141/*UnOp*/: {
 			final Struct_UnOp l1__tmp = (Struct_UnOp)l0__tmp;
 			final String l14_op = l1__tmp.f_op;
 			final Struct l15_f = l1__tmp.f_u;
@@ -620,10 +559,38 @@ final class Module_formule_compiler {
 				}
 			}
 		}
+		case 13/*ArrayAccess*/: {
+			final Struct_ArrayAccess l1__tmp = (Struct_ArrayAccess)l0__tmp;
+			final Struct_Variable l20_name = l1__tmp.f_var;
+			final Struct l21_index = l1__tmp.f_ind;
+			final Struct_Variable l22_name = l1__tmp.f_var;
+			final Struct l23_index = l1__tmp.f_ind;
+			return (new Struct_LAccessArray((new Struct_LVariable(l22_name.f_name)), f_tv2ltv(l23_index)));
+		}
 		default: {
 			return (new Struct_LInt(0));
 		}
 		}
 	 }
+	}
+	String f_type2Z3(Struct atype) {
+		Struct l0__tmp = atype;
+		switch (l0__tmp.getTypeId()) {
+		case 12/*Array*/: {
+			final Struct_Array l1__tmp = (Struct_Array)l0__tmp;
+			final int l2_s = l1__tmp.f_size;
+			final int l3_s = l1__tmp.f_size;
+			return "(Array Int Int)";
+		}
+		case 43/*Int*/: {
+			final Struct_Int l1__tmp = (Struct_Int)l0__tmp;
+			final int l4_v = l1__tmp.f_v;
+			final int l5_v = l1__tmp.f_v;
+			return "Int";
+		}
+		default: {
+			return "";
+		}
+		}
 	}
 }

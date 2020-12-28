@@ -11,7 +11,7 @@ export {
 	EmptyOp();
 
 	TypeValue ::= Int, Variable, Array, Operator, EmptyType, ErrorType;
-	Operator ::= BinOp, UnOp, ArrayAccess;
+	Operator ::= BinOp, UnOp, ArrayAccess, VarRedefine, VarArrayRedefine;
 
 	Variable(name:string);
 	Int(v:int);
@@ -22,16 +22,16 @@ export {
 	BinOp(op:string, f:TypeValue, s:TypeValue);
 	UnOp(op:string, u:TypeValue);
 	ArrayAccess(var:Variable, ind:TypeValue);
+	VarRedefine(name:string, value:TypeValue);
+	VarArrayRedefine(name: string, index: TypeValue, value:TypeValue);
 
-	Command ::= If, While, Test, Sequence, Choice, Loop, VarRedefine, VarArrayRedefine, Print;
+	Command ::= If, While, Test, Sequence, Choice, VarRedefine, VarArrayRedefine, Loop, Print;
 	If(test:Test, a:Command, b:Command);
 	While(test:Test, a:Command, invariant:Maybe<Annotation>);
 	Test(test:string, f:TypeValue, s:TypeValue);
 	Print(data:TypeValue);
 	Sequence(f:Command, s:Command);
 	Choice(f:Command, s:Command);
-	VarRedefine(name:string, value:TypeValue);
-	VarArrayRedefine(name: string, index: TypeValue, value:TypeValue);
 	Loop(f:Command, invariant:Maybe<Annotation>);
 
 	invertTest(t:Test) -> Test;

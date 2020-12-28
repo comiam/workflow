@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608575990807E12
+// timestamp: 1.609184888367E12
 
 package main;
 
@@ -66,8 +66,10 @@ public final class Structs {
 			new Struct_JsonObject(),
 			new Struct_JsonString(),
 			new Struct_KeyValue(),
+			new Struct_LAccessArray(),
 			new Struct_LBinOp(),
 			new Struct_LInt(),
+			new Struct_LRedefineArray(),
 			new Struct_LVariable(),
 			new Struct_LineColumn(),
 			new Struct_LineResolver(),

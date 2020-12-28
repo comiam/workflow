@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608575990796E12
+// timestamp: 1.609184888356E12
 
 package main;
 
@@ -15,7 +15,7 @@ public class Struct_Mult extends Struct {
 		f_r = a_r;
 	}
 
-	public int getTypeId() { return 64; }
+	public int getTypeId() { return 66; }
 	public String getTypeName() { return "Mult"; }
 
 	private static final String[] field_names = new String[] {
@@ -43,7 +43,7 @@ public class Struct_Mult extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 64) return 64-tmp;
+		if (tmp != 66) return 66-tmp;
 		Struct_Mult other = (Struct_Mult)other_gen;
 		tmp = f_l.compareTo(other.f_l);
 		if (tmp != 0) return tmp;

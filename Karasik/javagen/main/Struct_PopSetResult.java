@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608575990802E12
+// timestamp: 1.609184888361E12
 
 package main;
 
@@ -15,7 +15,7 @@ public class Struct_PopSetResult extends Struct {
 		f_rest = a_rest;
 	}
 
-	public int getTypeId() { return 119; }
+	public int getTypeId() { return 121; }
 	public String getTypeName() { return "PopSetResult"; }
 
 	private static final String[] field_names = new String[] {
@@ -43,7 +43,7 @@ public class Struct_PopSetResult extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 119) return 119-tmp;
+		if (tmp != 121) return 121-tmp;
 		Struct_PopSetResult other = (Struct_PopSetResult)other_gen;
 		tmp = FlowRuntime.compareByValue(f_value, other.f_value);
 		if (tmp != 0) return tmp;

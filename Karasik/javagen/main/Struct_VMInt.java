@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608575990804E12
+// timestamp: 1.609184888363E12
 
 package main;
 
@@ -13,7 +13,7 @@ public class Struct_VMInt extends Struct {
 		f_i = a_i;
 	}
 
-	public int getTypeId() { return 141; }
+	public int getTypeId() { return 143; }
 	public String getTypeName() { return "VMInt"; }
 
 	private static final String[] field_names = new String[] {
@@ -40,7 +40,7 @@ public class Struct_VMInt extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 141) return 141-tmp;
+		if (tmp != 143) return 143-tmp;
 		Struct_VMInt other = (Struct_VMInt)other_gen;
 		if (f_i != other.f_i)
 			return (f_i > other.f_i) ? 1 : -1;

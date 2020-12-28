@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608575990804E12
+// timestamp: 1.609184888364E12
 
 package main;
 
@@ -17,7 +17,7 @@ public class Struct_VarArrayRedefine extends Struct {
 		f_value = a_value;
 	}
 
-	public int getTypeId() { return 142; }
+	public int getTypeId() { return 144; }
 	public String getTypeName() { return "VarArrayRedefine"; }
 
 	private static final String[] field_names = new String[] {
@@ -46,7 +46,7 @@ public class Struct_VarArrayRedefine extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 142) return 142-tmp;
+		if (tmp != 144) return 144-tmp;
 		Struct_VarArrayRedefine other = (Struct_VarArrayRedefine)other_gen;
 		tmp = f_name.compareTo(other.f_name);
 		if (tmp != 0) return tmp;

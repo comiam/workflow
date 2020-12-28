@@ -19,9 +19,11 @@ first_state_def = type:t ws var_name$s ws eqv ws expression:exp {VarDefine($s, :
 empty_state_def = type:t ws var_name$s {VarDefine($s, :t, EmptyType())};
 
 //EXPRESSION SECTOR===============================================================================================
-expression = const | arr_access | var | bin_op | un_op;
+expression = const | arr_access | expvar_arrredefine | expvar_redefine | var | bin_op | un_op;
 
 const = digit$s {Int(s2i($s))};
+expvar_redefine = '(' ws var_name$s ws eqv ws expression:exp ws ')' {VarRedefine($s, :exp)};
+expvar_arrredefine = '(' ws var_name$s'[' ws expression:exp0 ws ']' ws eqv ws expression:exp ws ')' {VarArrayRedefine($s, :exp0, :exp)};
 arr_access = var:v '[' ws expression:ind ws ']' {ArrayAccess(:v, :ind)};
 var = var_name$s {Variable($s)};
 bin_op = '(' ws expression:f ws bin_op_type$op ws expression:s ws ')' {BinOp($op, :f, :s)};
@@ -36,7 +38,7 @@ If_op = "if" ws op_cond:t ws "then" ws command:c0 ws "else" ws command:c1 {If(:t
 annotated_While = "while" ws op_cond:t ws "<" ws formule:ann ws ">" ws "do" ws command:c0 {While(:t, :c0, Some(Annotation(:ann)))};
 WhileSimple     = "while" ws op_cond:t ws                              "do" ws command:c0 {While(:t, :c0, None())};
 sequence = "(" ws command:c0 ws ";" ws command:c1 ws ")" {Sequence(:c0, :c1)};
-choice = "(" ws command:c0 ws "U" ws command:c1 ws")" {Choise(:c0, :c1)};
+choice = "(" ws command:c0 ws "U" ws command:c1 ws ")" {Choice(:c0, :c1)};
 annotated_loop = "*" ws "<" ws formule:ann ws ">" ws command:c {Loop(:c, Some(Annotation(:ann)))};
 loop           = "*" ws                              command:c {Loop(:c, None())};
 test = "(" ws expression:ex0 ws test_op$s ws expression:ex1 ws ")?" {Test($s, :ex0, :ex1)};
@@ -46,8 +48,9 @@ print  = "print" ws "(" ws expression:e ws ")" {Print(:e)};
 
 //FORMULE SECTION=================================================================================================
 formule = neg | atom | or | and | impl | allq | exq;
-logic_expression = lconst | lvar | lbin_op;
+logic_expression = lconst | larr | lvar | lbin_op;
 
+larr = var_name$s '[' ws logic_expression:ind ws ']' {LAccessArray(LVariable($s), :ind)};
 lconst = digit$s {LInt(s2i($s))};
 lvar = var_name$s {LVariable($s)};
 lbin_op = '(' ws logic_expression:f ws bin_op_type$op ws logic_expression:s ws ')' {LBinOp($op, :f, :s)};

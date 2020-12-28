@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608575990807E12
+// timestamp: 1.609184888366E12
 
 package main;
 
@@ -22,22 +22,22 @@ public final class SingletonStructs {
 	static final SingletonStruct str_IntTreeNone = SingletonStruct.make(45,"IntTreeNone");
 	static final SingletonStruct str_JsonFieldIgnoreCase = SingletonStruct.make(50,"JsonFieldIgnoreCase");
 	static final SingletonStruct str_JsonNull = SingletonStruct.make(52,"JsonNull");
-	static final SingletonStruct str_None = SingletonStruct.make(67,"None");
-	static final SingletonStruct str_PegActionIndex = SingletonStruct.make(76,"PegActionIndex");
-	static final SingletonStruct str_PegBool = SingletonStruct.make(81,"PegBool");
-	static final SingletonStruct str_PegCaptureList = SingletonStruct.make(84,"PegCaptureList");
-	static final SingletonStruct str_PegCaptureStartList = SingletonStruct.make(85,"PegCaptureStartList");
-	static final SingletonStruct str_PegClearCache = SingletonStruct.make(88,"PegClearCache");
-	static final SingletonStruct str_PegDouble = SingletonStruct.make(91,"PegDouble");
-	static final SingletonStruct str_PegDrop = SingletonStruct.make(92,"PegDrop");
-	static final SingletonStruct str_PegEnd = SingletonStruct.make(93,"PegEnd");
-	static final SingletonStruct str_PegFail = SingletonStruct.make(96,"PegFail");
-	static final SingletonStruct str_PegInt = SingletonStruct.make(97,"PegInt");
-	static final SingletonStruct str_PegReturn = SingletonStruct.make(101,"PegReturn");
-	static final SingletonStruct str_PegStartCaptureList = SingletonStruct.make(106,"PegStartCaptureList");
-	static final SingletonStruct str_PegStartString = SingletonStruct.make(107,"PegStartString");
-	static final SingletonStruct str_PegStringType = SingletonStruct.make(110,"PegStringType");
-	static final SingletonStruct str_PegUnknown = SingletonStruct.make(113,"PegUnknown");
-	static final SingletonStruct str_PegVoid = SingletonStruct.make(116,"PegVoid");
-	static final SingletonStruct str_TreeEmpty = SingletonStruct.make(136,"TreeEmpty");
+	static final SingletonStruct str_None = SingletonStruct.make(69,"None");
+	static final SingletonStruct str_PegActionIndex = SingletonStruct.make(78,"PegActionIndex");
+	static final SingletonStruct str_PegBool = SingletonStruct.make(83,"PegBool");
+	static final SingletonStruct str_PegCaptureList = SingletonStruct.make(86,"PegCaptureList");
+	static final SingletonStruct str_PegCaptureStartList = SingletonStruct.make(87,"PegCaptureStartList");
+	static final SingletonStruct str_PegClearCache = SingletonStruct.make(90,"PegClearCache");
+	static final SingletonStruct str_PegDouble = SingletonStruct.make(93,"PegDouble");
+	static final SingletonStruct str_PegDrop = SingletonStruct.make(94,"PegDrop");
+	static final SingletonStruct str_PegEnd = SingletonStruct.make(95,"PegEnd");
+	static final SingletonStruct str_PegFail = SingletonStruct.make(98,"PegFail");
+	static final SingletonStruct str_PegInt = SingletonStruct.make(99,"PegInt");
+	static final SingletonStruct str_PegReturn = SingletonStruct.make(103,"PegReturn");
+	static final SingletonStruct str_PegStartCaptureList = SingletonStruct.make(108,"PegStartCaptureList");
+	static final SingletonStruct str_PegStartString = SingletonStruct.make(109,"PegStartString");
+	static final SingletonStruct str_PegStringType = SingletonStruct.make(112,"PegStringType");
+	static final SingletonStruct str_PegUnknown = SingletonStruct.make(115,"PegUnknown");
+	static final SingletonStruct str_PegVoid = SingletonStruct.make(118,"PegVoid");
+	static final SingletonStruct str_TreeEmpty = SingletonStruct.make(138,"TreeEmpty");
 }

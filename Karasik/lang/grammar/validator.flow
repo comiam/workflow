@@ -4,30 +4,6 @@ import string;
 
 export {
 	checkStructure(ps:ProgramSequence) -> Pair<bool, string>;	
-	containsArrays(ps:ProgramSequence) -> bool;
-}
-
-containsArrays(ps:ProgramSequence) -> bool {
-	p = opContainsArrays(ps.op);
-
-	if(p)
-		true
-	else {
-		switch (ps.next) {
-			Some(ps1): opContainsArrays(ps1.op) && p;
-			None(): false;
-		}
-	}	
-}
-
-opContainsArrays(op:Operation) -> bool {
-	switch (op) {
-		VarDefine(name, type, val): 
-			isSameStructType(type, Array(0));
-		VarArrayRedefine(name, index, val): 
-			true;
-		default: false;
-	}
 }
 
 checkStructure(ps:ProgramSequence) -> Pair<bool, string> {
@@ -123,14 +99,8 @@ checkVariblesOfCommands(op:Operation, vars: Tree<string, TypeValue>) -> Triple<b
 		VarDefine(name, type, val): 
 			if(containsKeyTree(vars, name))
 				Triple(false, "Variable " + name + " twice init!", vars)
-			else {
-				if(isNonEmpty(val) && isSameStructType(type, val))
-					Triple(true, "", setTree(vars, name, type))
-				else if(!isNonEmpty(val))
-					Triple(true, "", setTree(vars, name, type))
-				else
-					Triple(false, "Variable " + name + " and init val haven't same types!", vars);
-			}
+			else 
+				Triple(true, "", setTree(vars, name, type));
 		VarRedefine(name, val): 
 			if(!containsKeyTree(vars, name))
 				Triple(false, "Variable " + name + " doesn't exists!", vars)
@@ -139,12 +109,8 @@ checkVariblesOfCommands(op:Operation, vars: Tree<string, TypeValue>) -> Triple<b
 		VarArrayRedefine(name, index, val): 
 			if(!containsKeyTree(vars, name))
 				Triple(false, "Variable " + name + " doesn't exists!", vars)
-			else {
-				if(isNonEmpty(val) && isNonEmpty(index))
-					Triple(true, "", vars)
-				else
-					Triple(false, "Variable " + name + " and assign val haven't same types!", vars);	
-			}	
+			else 
+				Triple(true, "", vars);
 		Test(t, f, s): {
 			p0 = checkVariablesOfTypes(f, vars);
 			p1 = checkVariablesOfTypes(s, vars);
@@ -233,19 +199,7 @@ checkVariblesOfFormules(formule:Formule, vars: Tree<string, TypeValue>) -> Pair<
 
 			Pair(p0.first && p1.first, trim2(p0.second + "\n" + p1.second, "\n"));
 		}
-		AllQuantor(var, f): {
-			p0 = checkVariablesOfLTypes(LVariable(var), vars);
-			p1 = checkVariblesOfFormules(f, vars);
-
-			Pair(p0.first && p1.first, trim2(p0.second + "\n" + p1.second, "\n"));
-		}
-		ExiQuantor(var, f): {
-			p0 = checkVariablesOfLTypes(LVariable(var), vars);
-			p1 = checkVariblesOfFormules(f, vars);
-
-			Pair(p0.first && p1.first, trim2(p0.second + "\n" + p1.second, "\n"));
-		}
-		EmptyAtom():
+		default:
 			Pair(true, "");
 	}
 }
@@ -264,6 +218,19 @@ checkVariablesOfLTypes(t:LogicTypeValue, vars: Tree<string, TypeValue>) -> Pair<
 			p1 = checkVariablesOfLTypes(s, vars);
 
 			Pair(p0.first && p1.first, trim2(p0.second + "\n" + p1.second, "\n"));
+		}
+		LAccessArray(name, index): {
+			p0 = checkVariablesOfLTypes(name, vars);
+			p1 = checkVariablesOfLTypes(index, vars);
+
+			Pair(p0.first && p1.first, trim2(p0.second + "\n" + p1.second, "\n"));
+		}
+        LRedefineArray(name, index, value):{
+			p0 = checkVariablesOfLTypes(name, vars);
+			p1 = checkVariablesOfLTypes(index, vars);
+			p2 = checkVariablesOfLTypes(value, vars);
+
+			Pair(p0.first && p1.first && p2.first, trim2(p0.second + "\n" + p1.second + "\n" + p2.second, "\n"));
 		}
 	}
 }
@@ -294,6 +261,20 @@ checkVariablesOfTypes(t:TypeValue, vars: Tree<string, TypeValue>) -> Pair<bool, 
 				Pair(false, "Variable " + var.name + " doesnt exists!");
 		EmptyType():
 			Pair(true, "");
+		VarRedefine(name, val): 
+			if(!containsKeyTree(vars, name))
+				Pair(false, "Variable " + name + " doesn't exists!")
+			else 
+				Pair(true, "");
+		VarArrayRedefine(name, index, val): 
+			if(!containsKeyTree(vars, name))
+				Pair(false, "Variable " + name + " doesn't exists!")
+			else {
+				if(isNonEmpty(val) && isNonEmpty(index))
+					Pair(true, "")
+				else
+					Pair(false, "Variable " + name + " and assign val haven't same types!");	
+			}	
 		default:
 			Pair(false, "");
 	}

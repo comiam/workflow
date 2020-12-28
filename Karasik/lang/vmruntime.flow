@@ -71,7 +71,12 @@ execVMCommand(vmc: VMCommand, vmState: Tree<string, VMType>) -> Pair<[int], Tree
 						Pair([-1], vmState);
 					} else {
 						t = setTree(vmState, v, VMInt(getVal(val)));
-						Pair([g], t);
+						Pair([g], mergeTreeCustom(t, getState(val), \k, val2, val1 -> {
+								if(k != v)
+									val2
+								else
+									val1;
+							}));
 					}
 				}	
 				VMArray(arr): {
@@ -85,42 +90,44 @@ execVMCommand(vmc: VMCommand, vmState: Tree<string, VMType>) -> Pair<[int], Tree
 			v0 = toInt(e0, vmState);
 			v1 = toInt(e1, vmState);
 
+			newState = mergeTree(getState(v0), getState(v1));
+
 			if(isNone(v0) || isNone(v1))
 				Pair([-1], vmState)
 			else {
 				if(t == "==") {
 					if(getVal(v0) == getVal(v1))
-							Pair(g0, vmState)
+							Pair(g0, newState)
 						else
-							Pair(g1, vmState);		
+							Pair(g1, newState);		
 				}else if(t == "<=") {
 					if(getVal(v0) <= getVal(v1))
-							Pair(g0, vmState)
+							Pair(g0, newState)
 						else
-							Pair(g1, vmState);		
+							Pair(g1, newState);		
 				}else if(t == ">=") {
 					if(getVal(v0) >= getVal(v1))
-							Pair(g0, vmState)
+							Pair(g0, newState)
 						else
-							Pair(g1, vmState);
+							Pair(g1, newState);
 				}else if(t == "!=") {
 					if(getVal(v0) != getVal(v1))
-							Pair(g0, vmState)
+							Pair(g0, newState)
 						else
-							Pair(g1, vmState);
+							Pair(g1, newState);
 				}else if(t == ">") {
 					if(getVal(v0) > getVal(v1))
-							Pair(g0, vmState)
+							Pair(g0, newState)
 						else
-							Pair(g1, vmState);
+							Pair(g1, newState);
 				}else if(t == "<") {
 					if(getVal(v0) < getVal(v1))
-							Pair(g0, vmState)
+							Pair(g0, newState)
 						else
-							Pair(g1, vmState);
+							Pair(g1, newState);
 				}else {
 					println("Unknown test: " + t + " !");
-					Pair([-1], vmState);
+					Pair([-1], newState);
 				}
 			}	
 		}
@@ -137,7 +144,12 @@ execVMCommand(vmc: VMCommand, vmState: Tree<string, VMType>) -> Pair<[int], Tree
 						Pair([-1], vmState);
 					}else {
 						t = setTree(vmState, v, VMInt(getVal(val)));
-						Pair([g], t);
+						Pair([g], mergeTreeCustom(t, getState(val), \k, val2, val1 -> {
+									if(k != v)
+										val2
+									else
+										val1;
+								}));
 					}
 				}
 			}else {
@@ -163,7 +175,12 @@ execVMCommand(vmc: VMCommand, vmState: Tree<string, VMType>) -> Pair<[int], Tree
 						arr1 = VMArray(replace(arr.a, getVal(ind), getVal(val)));
 
 						t = setTree(vmState, v, arr1);
-						Pair([g], t);
+						Pair([g], mergeTreeCustom(t, mergeTree(getState(val), getState(ind)), \k, val2, val1 -> {
+									if(k != v)
+										val2
+									else
+										val1;
+								}));
 					}
 				}
 			}else {
@@ -190,7 +207,7 @@ execVMCommand(vmc: VMCommand, vmState: Tree<string, VMType>) -> Pair<[int], Tree
 									Pair([-1], vmState);
 								} else {
 									println(getVal(val0));
-									Pair([g], vmState);
+									Pair([g], getState(val0));
 								}
 							}
 						None(): {
@@ -207,7 +224,7 @@ execVMCommand(vmc: VMCommand, vmState: Tree<string, VMType>) -> Pair<[int], Tree
 						Pair([-1], vmState);
 					} else {
 						println(getVal(val));
-						Pair([g], vmState);
+						Pair([g], getState(val));
 					}
 				}
 			}	
@@ -215,7 +232,7 @@ execVMCommand(vmc: VMCommand, vmState: Tree<string, VMType>) -> Pair<[int], Tree
 	}
 }	
 
-toInt(t:VMObj, vmState: Tree<string, VMType>) -> Maybe<int> {
+toInt(t:VMObj, vmState: Tree<string, VMType>) -> Maybe<Pair<int, Tree<string, VMType>>> {
 	switch (t) {
 		Sum(l, r): {
 			m0 = toInt(l, vmState);
@@ -224,7 +241,7 @@ toInt(t:VMObj, vmState: Tree<string, VMType>) -> Maybe<int> {
 			if(isNone(m0) || isNone(m1))
 				None()
 			else	
-				Some(getVal(m0) + getVal(m1));
+				Some(Pair(getVal(m0) + getVal(m1), mergeTree(getState(m0), getState(m1))));
 		}
 		Min(l, r): {
 			m0 = toInt(l, vmState);
@@ -233,7 +250,7 @@ toInt(t:VMObj, vmState: Tree<string, VMType>) -> Maybe<int> {
 			if(isNone(m0) || isNone(m1))
 				None()
 			else	
-				Some(getVal(m0) - getVal(m1));
+				Some(Pair(getVal(m0) - getVal(m1), mergeTree(getState(m0), getState(m1))));
 		}
 		Div(up, down): {
 			m0 = toInt(up, vmState);
@@ -242,7 +259,7 @@ toInt(t:VMObj, vmState: Tree<string, VMType>) -> Maybe<int> {
 			if(isNone(m0) || isNone(m1))
 				None()
 			else	
-				Some(getVal(m0) / getVal(m1));
+				Some(Pair(getVal(m0) / getVal(m1), mergeTree(getState(m0), getState(m1))));
 		}
 		Mult(l, r): {
 			m0 = toInt(l, vmState);
@@ -251,10 +268,10 @@ toInt(t:VMObj, vmState: Tree<string, VMType>) -> Maybe<int> {
 			if(isNone(m0) || isNone(m1))
 				None()
 			else	
-				Some(getVal(m0) * getVal(m1));
+				Some(Pair(getVal(m0) * getVal(m1), mergeTree(getState(m0), getState(m1))));
 		}
 		ExpInt(val):
-			Some(val);
+			Some(Pair(val, vmState));
 		ExpVar(var): {
 			m0 = lookupTree(vmState, var);
 			
@@ -264,7 +281,7 @@ toInt(t:VMObj, vmState: Tree<string, VMType>) -> Maybe<int> {
 							println("Try to get array " + var + " as operand!");
 							None();
 						} else
-							Some(getIntVal(val));
+							Some(Pair(getIntVal(val), vmState));
 					None(): {
 						println("Variable " + var + " doesn't exists!");
 						None();
@@ -288,7 +305,7 @@ toInt(t:VMObj, vmState: Tree<string, VMType>) -> Maybe<int> {
 								println("Index out of bounds for array " + var + ": arr size " + i2s(length(arr)) + " vs " + i2s(indVal));
 								None();
 							} else
-								Some(arr[indVal]);	
+								Some(Pair(arr[indVal], getState(ind)));	
 						}
 						else {
 							println("Try to access to non array var " + var + "!");
@@ -300,6 +317,64 @@ toInt(t:VMObj, vmState: Tree<string, VMType>) -> Maybe<int> {
 					}
 				}
 			}	
+		}
+		Access(v, e, g): {
+			if(containsKeyTree(vmState, v)) {
+				val = toInt(e, vmState);
+
+				if(isNone(val)) {
+					println("Access expression value for var " + v + " is illegal!");
+					None();
+				} else {
+					if(isSameStructType(VMArray([]), val)) {
+						println("Try to access array " + v + " as variable!");
+						None();
+					}else {
+						tr = setTree(vmState, v, VMInt(getVal(val)));
+						Some(Pair(getVal(val), 
+							mergeTreeCustom(tr, getState(val), \k, val2, val1 -> {
+									if(k != v)
+										val2
+									else
+										val1;
+								})));
+					}
+				}
+			}else {
+				println("Variable " + v + " doesn't exists!");
+				None();
+			}
+		}
+		IndexArrayAccess(v, i, e, g): {
+			if(containsKeyTree(vmState, v)) {
+				val = toInt(e, vmState);
+				ind = toInt(i, vmState);
+
+				if(isNone(val) || isNone(ind)) {
+					println("Access expression value for var " + v + " is illegal!");
+					None();
+				} else {
+					var = either(lookupTree(vmState, v), VMArray([]));
+					if(!isSameStructType(VMArray([]), var)) {
+						println("Try to access variable " + v + " as array!");
+						None();
+					}else {
+						arr = cast (var : VMType -> VMArray);
+						arr1 = VMArray(replace(arr.a, getVal(ind), getVal(val)));
+
+						tr = setTree(vmState, v, arr1);
+						Some(Pair(getVal(val), mergeTreeCustom(tr, mergeTree(getState(val), getState(ind)), \k, val2, val1 -> {
+									if(k != v)
+										val2
+									else
+										val1;
+								})));
+					}
+				}
+			}else {
+				println("Variable " + v + " doesn't exists!");
+				None();
+			}
 		}
 		default:
 			None();
@@ -324,11 +399,20 @@ getArr(t) {
 	}
 }
 
-getVal(m0) {
+getVal(m0: Maybe<Pair<int, Tree<string, VMType>>>) {
 	switch (m0) {
 		Some(i):
-			i;
+			i.first;
 		None():
 			-1;	
+	}
+}
+
+getState(m0: Maybe<Pair<int, Tree<string, VMType>>>) {
+	switch(m0) {
+		Some(i):
+			i.second;
+		None():
+			makeTree();	
 	}
 }

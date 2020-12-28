@@ -55,6 +55,10 @@ expr2s(e:VMExpr) {
 			var;
 		ExpArrayAccess(arr, ind):
 			concatStrings([arr, "[", expr2s(ind), "]"]);
+		Access(var, expr, goto): 
+			concatStrings([var, "=", expr2s(expr)]);
+        IndexArrayAccess(var, index, expr, goto):	
+        	concatStrings([var, "[", expr2s(index), "]", "=", expr2s(expr)]);
 	}
 }
 
@@ -202,6 +206,10 @@ tv2vme(t:TypeValue) -> VMExpr {
 				Sum(tv2vme(f), ExpInt(1));
 		ArrayAccess(var, ind):
 			ExpArrayAccess(var.name, tv2vme(ind));
+		VarRedefine(name, value):
+			Access(name, tv2vme(value), 0);
+		VarArrayRedefine(name, index, value):
+			IndexArrayAccess(name, tv2vme(index), tv2vme(value), 0);
 		default: {
 			ExpInt(0);
 		}

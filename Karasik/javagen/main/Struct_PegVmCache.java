@@ -1,5 +1,5 @@
 // HASH COLLISIONS: YES
-// timestamp: 1.608575990801E12
+// timestamp: 1.60918488836E12
 
 package main;
 
@@ -13,7 +13,7 @@ public class Struct_PegVmCache extends Struct {
 		f_caches = a_caches;
 	}
 
-	public int getTypeId() { return 114; }
+	public int getTypeId() { return 116; }
 	public String getTypeName() { return "PegVmCache"; }
 
 	private static final String[] field_names = new String[] {
@@ -40,7 +40,7 @@ public class Struct_PegVmCache extends Struct {
 	public int compareTo(Struct other_gen) {
 		if (other_gen == this) return 0;
 		int tmp = other_gen.getTypeId();
-		if (tmp != 114) return 114-tmp;
+		if (tmp != 116) return 116-tmp;
 		Struct_PegVmCache other = (Struct_PegVmCache)other_gen;
 		tmp = FlowRuntime.compareByValue(f_caches, other.f_caches);
 		return tmp;

@@ -9,8 +9,10 @@ export {
 	AllQuantor(var: string, f: Formule);
 	ExiQuantor(var: string, f: Formule);
 	
-	LogicTypeValue ::= LInt, LVariable, LBinOp;
+	LogicTypeValue ::= LInt, LVariable, LBinOp, LAccessArray, LRedefineArray;
 	LVariable(name:string);
+	LAccessArray(name:LogicTypeValue, index:LogicTypeValue);
+	LRedefineArray(name:LogicTypeValue, index:LogicTypeValue, value:LogicTypeValue);
 	LInt(v:int);
 	LBinOp(op:string, f:LogicTypeValue, s:LogicTypeValue);
 }

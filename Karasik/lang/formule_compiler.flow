@@ -23,18 +23,13 @@ getACVCConditions(ps: ProgramSequence) -> [Formule] {
 			println("Program not annotated!");
 			[];
 		} else {
-			if(containsArrays(ps)) {
-				println("Program have arrays!");
-				[];
-			} else {
-				f0 = cast (ps.op : Operation -> Annotation).formule;
-				f1 = foundPostCond(getNextPS(ps));
+			f0 = cast (ps.op : Operation -> Annotation).formule;
+			f1 = foundPostCond(getNextPS(ps));
 
-				ac = generateAC(getNextPS(ps), f1);
-				vc = generateVC(getNextPS(ps), f1);
+			ac = generateAC(getNextPS(ps), f1);
+			vc = generateVC(getNextPS(ps), f1);
 
-				concat(vc, [Implication(f0, ac)]);
-			}
+			concat(vc, [Implication(f0, ac)]);
 		}
 	}
 }
@@ -55,13 +50,31 @@ translateToZ3(p: ProgramSequence, formules : [Formule]) -> string {
 proveConditions(formules : [Formule]) -> string {
 	strGlue(mapi(formules, \i, f -> {
 			name = "cond" + i2s(i);
-			"(push)\n(define-fun " + name + "() Bool " + formuleToZ3(f) + ")\n(assert (not " + name + "))\n(check-sat)\n(pop)\n"
+			"(push)\n" +
+			"(define-fun " + name + "() Bool " + formuleToZ3(f) + ")\n" +
+			"(assert (not " + name + "))\n"
+		}), 
+	"\n") + 
+	strGlue(mapi(formules, \i,f -> {
+			"(check-sat)\n" +
+			"(pop)"
 		}), 
 	"\n");
 }
 
-declToZ3(decl : string) -> string {
-	"(declare-const " + decl + " Int)";
+declToZ3(decl : VarDefine) -> string {
+	"(declare-const " + decl.name + " " + type2Z3(decl.type) + ")";
+}
+
+type2Z3(type: TypeValue) -> string {
+	switch(type)
+	{
+		Array(s):
+			"(Array Int Int)";
+		Int(v):
+			"Int";	
+		default: "";
+	}
 }
 
 lt2z3(lt: LogicTypeValue) -> string {
@@ -72,6 +85,10 @@ lt2z3(lt: LogicTypeValue) -> string {
 			i2s(v);
 		LBinOp(op, f, s):
 			"(" + op + " " + lt2z3(f) + " " + lt2z3(s) + ")";
+		LAccessArray(name, index): 
+			"(select " + lt2z3(name) + " " + lt2z3(index) + ")";
+        LRedefineArray(name, index, value): 
+        	"(store " + lt2z3(name) + " " + lt2z3(index) + " " + lt2z3(index) + ")";
 	}
 }
 
@@ -89,7 +106,7 @@ formuleToZ3(f: Formule) -> string {
 		Or(f1, s):
 			"(or "  + formuleToZ3(f1) + " " + formuleToZ3(s) + ")";
 		And(f1, s):
-			"(and "  + formuleToZ3(f1) + " " + formuleToZ3(s) + ")";
+			"(and " + formuleToZ3(f1) + " " + formuleToZ3(s) + ")";
 		Neg(f1):
 			"(not " + formuleToZ3(f1) + ")";
 		Implication(f1, s):
@@ -101,7 +118,7 @@ formuleToZ3(f: Formule) -> string {
 	}
 }
 
-extractDecl(p: ProgramSequence) -> [string] {
+extractDecl(p: ProgramSequence) -> [VarDefine] {
 	p1 = p.op;
 
 	if(isNone(p.next))
@@ -110,9 +127,9 @@ extractDecl(p: ProgramSequence) -> [string] {
 		concat(getDecl(p1), extractDecl(getNextOp(p)));
 }
 
-getDecl(op: Operation) -> [string] {
+getDecl(op: Operation) -> [VarDefine] {
 	switch (op) {
-		VarDefine(name, type, val): [name];
+		VarDefine(name, type, val): [op];
 		default: [];
 	}
 }
@@ -132,9 +149,9 @@ acvcToStr(f: Formule) -> string {
 		Implication(f1, s):
 			"(" + acvcToStr(f1) + "->" + acvcToStr(s) + ")";
 		AllQuantor(var, f1): 
-			"ForAll" + var + ":(" + acvcToStr(f1) + ")";
+			"ForAll " + var + ":(" + acvcToStr(f1) + ")";
 		ExiQuantor(var, f1):
-			"Exists" + var + ":(" + acvcToStr(f1) + ")";  
+			"Exists " + var + ":(" + acvcToStr(f1) + ")";  
 	}  
 }
 
@@ -146,6 +163,10 @@ lt2str(t: LogicTypeValue) -> string {
 			i2s(v);
 		LBinOp(op, f, s):
 			"(" + lt2str(f) + op + lt2str(s) + ")";
+		LAccessArray(name, index): 
+			lt2str(name) + "[" + lt2str(index) + "]";
+        LRedefineArray(name, index, value):
+        	lt2str(name) + "[" + lt2str(index) + "] = " + lt2str(value);
 	}
 }
 
@@ -212,6 +233,8 @@ operationToAC(op: Operation, postCond: Formule) -> Formule {
 			getInv(invariant);
 		VarRedefine(name, value): 
 			replaceFormules(postCond, LVariable(name), tv2ltv(value));
+		VarArrayRedefine(name, index, value):
+			replaceFormules(postCond, LVariable(name), LRedefineArray(LVariable(name), tv2ltv(index), tv2ltv(value)));
 		default:
 			postCond;
 	}
@@ -234,9 +257,10 @@ tv2ltv(tv: TypeValue) {
 				tv2ltv(BinOp("-", f, Int(1)))
 			else
 				tv2ltv(BinOp("+", f, Int(1)));
-		default: {
-			LInt(0);
-		}
+		ArrayAccess(name, index):
+			LAccessArray(LVariable(name.name), tv2ltv(index));
+
+		default: LInt(0);	
 	}
 }
 
@@ -268,6 +292,8 @@ replaceInLTypes(current: LogicTypeValue, old: LogicTypeValue, new: LogicTypeValu
 		switch(current) {
 			LBinOp(op, f, s):
 				LBinOp(op, replaceInLTypes(f, old, new), replaceInLTypes(s, old, new));
+			LAccessArray(name, index):
+				LAccessArray(replaceInLTypes(name, old, new), replaceInLTypes(index, old, new));
 			default:
 				current;	
 		}

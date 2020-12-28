@@ -18,16 +18,16 @@ final class Module_pegcode_lib {
 	String f_captureEntry2String(Struct ap) {
 		Struct l0__tmp = ap;
 		switch (l0__tmp.getTypeId()) {
-		case 85/*PegCaptureStartList*/: {
+		case 87/*PegCaptureStartList*/: {
 			return "<startlist>";
 		}
-		case 86/*PegCaptureStringStart*/: {
+		case 88/*PegCaptureStringStart*/: {
 			final Struct_PegCaptureStringStart l1__tmp = (Struct_PegCaptureStringStart)l0__tmp;
 			final int l2_s = l1__tmp.f_start;
 			final int l3_s = l1__tmp.f_start;
 			return ("stringstart:"+runtime.m_string.f_i2s(l3_s));
 		}
-		case 125/*RuleResult*/: {
+		case 127/*RuleResult*/: {
 			final Struct_RuleResult l1__tmp = (Struct_RuleResult)l0__tmp;
 			final Struct l4_result = l1__tmp.f_result;
 			final Object l5___ = l1__tmp.f_input;
@@ -58,10 +58,10 @@ final class Module_pegcode_lib {
 			final Struct l4_v = ((Func2<Struct,Struct, String>)(Func2)runtime.n_lookupTree).invoke(aenv, l3_id);
 			Struct l5__tmp = l4_v;
 			switch (l5__tmp.getTypeId()) {
-			case 67/*None*/: {
+			case 69/*None*/: {
 				return runtime.m_dynamic.f_flow(("Unknown var: "+l3_id));
 			}
-			case 131/*Some*/: {
+			case 133/*Some*/: {
 				final Struct_Some l6__tmp = (Struct_Some)l5__tmp;
 				final Object l7_mv = l6__tmp.f_value;
 				final Struct_RuleResult l8_mv = ((Struct_RuleResult)l6__tmp.f_value);
@@ -89,10 +89,10 @@ final class Module_pegcode_lib {
 			final Struct l19_fn = ((Func2<Struct,Struct, String>)(Func2)runtime.n_lookupTree).invoke(afns, l11_id);
 			Struct l20__tmp = l19_fn;
 			switch (l20__tmp.getTypeId()) {
-			case 67/*None*/: {
+			case 69/*None*/: {
 				return runtime.h_Native.makeStructValue(l11_id, l18_vargs, SingletonStructs.str_IllegalStruct);
 			}
-			case 131/*Some*/: {
+			case 133/*Some*/: {
 				final Struct_Some l21__tmp = (Struct_Some)l20__tmp;
 				final Object l22_v = l21__tmp.f_value;
 				final Func1<Object,Object[]> l23_v = ((Func1<Object,Object[]>)l21__tmp.f_value);
@@ -120,7 +120,7 @@ final class Module_pegcode_lib {
 			final Struct l34_fn = ((Func2<Struct,Struct, String>)(Func2)runtime.n_lookupTree).invoke(afns, l26_id);
 			Struct l35__tmp = l34_fn;
 			switch (l35__tmp.getTypeId()) {
-			case 67/*None*/: {
+			case 69/*None*/: {
 				final Object l37_r = runtime.h_Native.makeStructValue(l26_id, l33_vargs, SingletonStructs.str_IllegalStruct);
 				if ((((Struct)runtime.m_dynamic.f_flow(l37_r)).getTypeId() == 39||runtime.m_array.f_contains(l33_vargs, SingletonStructs.str_IllegalStruct))) {
 					final String l38_sargs = runtime.m_string.f_strGlue(runtime.h_Native.map(l33_vargs, ((Func1<Object,Object>)(Func1)runtime.gfw_toString)), ", ");
@@ -129,7 +129,7 @@ final class Module_pegcode_lib {
 				}
 				return l37_r;
 			}
-			case 131/*Some*/: {
+			case 133/*Some*/: {
 				final Struct_Some l36__tmp = (Struct_Some)l35__tmp;
 				final Object l39_v = l36__tmp.f_value;
 				final Func1<Object,Object[]> l40_v = ((Func1<Object,Object[]>)l36__tmp.f_value);
@@ -178,7 +178,7 @@ final class Module_pegcode_lib {
 			final Struct l5_t = l1__tmp.f_tail;
 			Struct l6__tmp = l4_h;
 			switch (l6__tmp.getTypeId()) {
-			case 85/*PegCaptureStartList*/: {
+			case 87/*PegCaptureStartList*/: {
 				return (new Struct_Pair(aacc, l5_t));
 			}
 			default: {
@@ -220,7 +220,7 @@ final class Module_pegcode_lib {
 			final Struct l5_tail_ = l1__tmp.f_tail;
 			Struct l6__tmp = l4_h;
 			switch (l6__tmp.getTypeId()) {
-			case 125/*RuleResult*/: {
+			case 127/*RuleResult*/: {
 				final Struct_RuleResult l7__tmp = (Struct_RuleResult)l6__tmp;
 				final Struct l8_result = l7__tmp.f_result;
 				final Object l9___ = l7__tmp.f_input;
